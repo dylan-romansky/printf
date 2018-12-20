@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/22 17:47:25 by dromansk          #+#    #+#             */
-/*   Updated: 2018/12/13 14:39:26 by dromansk         ###   ########.fr       */
+/*   Updated: 2018/12/19 14:04:19 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <unistd.h>
 # include <stdarg.h>
 # include <stdio.h>
+# include "printf.h"
 
 typedef struct		s_list
 {
@@ -90,6 +91,9 @@ char				*ft_strndup(const char *s1, size_t n);
 int					ft_sqrt(int square);
 int					ft_factorial(int a);
 int					ft_permutations(int n, int r);
+char				base_table(int i);
+void				ft_putnbr_base(int value, int base);
+char				*ft_itoa_base(int value, int base);
 int					ft_printf(const char * restrict format, ...);
 
 #endif
