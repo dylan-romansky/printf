@@ -23,16 +23,7 @@
 
 typedef struct	s_flag
 {
-	va_list		ap;
-	int			d;
-	int			i;
-	int			o;
-	int			u;
-	int			x;
-	int			X;
-	int			c;
-	int			s;
-	int			p;
+	va_list		ap
 	int			h;
 	int			hh;
 	int			l;
