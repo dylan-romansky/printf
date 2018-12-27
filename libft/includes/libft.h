@@ -95,5 +95,6 @@ char				base_table(int i);
 void				ft_putnbr_base(int value, int base);
 char				*ft_itoa_base(int value, int base);
 int					ft_printf(const char * restrict format, ...);
+char				*ft_ltoa_base(long value, int base);
 
 #endif

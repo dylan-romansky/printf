@@ -85,15 +85,6 @@ t_flag	initflags(t_flag **input, va_list ap)
 
 	if ((new = _newflag(ap)))
 	{
-		new->d = 0;
-		new->i = 0;
-		new->o = 0;
-		new->u = 0;
-		new->x = 0;
-		new->X = 0;
-		new->c = 0;
-		new->s = 0;
-		new->p = 0;
 		new->h = 0;
 		new->hh = 0;
 		new->l = 0;

@@ -14,6 +14,16 @@
 
 /* write get_data */
 
+char	*parse_arg(flags, format)
+{
+	if (*format == 'd' || *format == 'i' || *format == 'o' || *format == 'u'
+			|| *format == 'x' || *format == 'X')
+		return (parse_numbers(*format, flags));
+	if (*format == 'c' || *format == 's')
+		return (parse_chars(*format, flags));
+	/* p; */
+}
+
 char	*get_data(va_list *args, char *format);
 {
 	char	*string;
@@ -22,11 +32,8 @@ char	*get_data(va_list *args, char *format);
 	string = NULL;
 	flags = newflag(*args);
 	flags = set_flags(flags, ++format);
-	while (!(*format == 'd' || *format == 'i' || *format == 'o' || *format == 'u'
-			*format == 'x' || *format == 'X' || *format == 'c' || *format =='s'
-			|| *format == 'p' || *format == 'f'))
-		format++;
-	return (get_data(flags, format, args));
+	format += flag_skip(format);
+	return (parse_arg(flags, format));
 }
 
 int		ft_printf(const char * restrict format, ...)
