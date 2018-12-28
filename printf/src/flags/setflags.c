@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/19 15:12:25 by dromansk          #+#    #+#             */
-/*   Updated: 2018/12/19 17:09:33 by dromansk         ###   ########.fr       */
+/*   Updated: 2018/12/27 16:42:22 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,17 +28,24 @@ int		flag_skip(char *format)
 	return (i);
 }
 
-t_flag	set_first(t_flag *flags, char *format)
+t_flag	set_flags(t_flag **input, char *format, va_list *args)
 {
+	t_flag	*flags;
+
+	flags = *input;
 	while (*format && (*format == '-' || *format == ' ' || *format == '0' ||
 				*format == '#'))
 	{
 		if (*format == '0')
 		{
 			flags->zero = 1;
-			flags = set_width(flags, format);
-			while (('0' <= *format && *format <= '9') || *format == '*')
-				format++;
+			flags->width = set_width(&flags, format, args);
+			format += skip_nums(format);
+		}
+		if (*format == '.')
+		{
+			flags->prec = set_prec(&flags, ++format, args);
+			format += skip_nums(format);
 		}
 		if (*format == '-')
 			flags->dash = 1;
@@ -51,25 +58,16 @@ t_flag	set_first(t_flag *flags, char *format)
 	return (flags);
 }
 
-t_flag	set_width_prelim(t_flag *flags, char *format)
+int		set_width(t_flag **flags, char *format, va_list *args)
 {
 	if (*format == '.')
 	{
 		flags->prec = 1;
 		format++;
-		if (*format == '*')
-		{
-			flags->wild = 1;
-			flags->width = -1;
-		}
-		else if(*format >= 0 && *format <= '9')
-		{
-			flags->width = ft_atoi(format);
-		}
 	}
-	else if (*format == '*')
-		flags->wild = 1;
+	if (*format == '*')
+		return (va_arg(*args, int));
 	else if ('0' <= *format && *format <= '9')
-		flags->width = ft_atoi(format);
-	return (flags);
+		return (ft_atoi(format));
+	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 15:18:32 by dromansk          #+#    #+#             */
-/*   Updated: 2018/12/19 17:09:37 by dromansk         ###   ########.fr       */
+/*   Updated: 2018/12/27 16:09:12 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,23 +67,12 @@ t_flag		set_flags(t_flag *flags, char *format)
 			|| *format == 'p' || *format == 'f')
 		flags = set_data; */
 
-t_flag		_newflag(va_list ap)
+int		initflags(t_flag **input)
 {
 	t_flag	*new;
 
-	if ((new = (t_flag *)malloc(sizeof(t_flag))))
-	{
-		va_copy(new->ap, ap);
-		return (new);
-	}
-	return (NULL);
-}
-
-t_flag	initflags(t_flag **input, va_list ap)
-{
-	t_flag	*new;
-
-	if ((new = _newflag(ap)))
+	new = *input;
+	if (new != NULL)
 	{
 		new->h = 0;
 		new->hh = 0;
@@ -99,17 +88,17 @@ t_flag	initflags(t_flag **input, va_list ap)
 		new->prec = 0;
 		new->wild = 0;
 		new->width = 0;
-		/*init_print(void);*/
-		return (new);
+		return (1);
 	}
-	return (NULL);
+	return (0);
 }
 
-t_flag	newflag(va_list ap)
+t_flag	newflag(void)
 {
 	t_flag	*new;
 
-	if ((new = initflags(&new, ap)))
-		return (new);
+	if((new = (t_flag *)malloc(sizeof(t_flag))))
+		if ((initflags(&new)))
+			return (new);
 	return (NULL);
 }

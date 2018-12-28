@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 15:47:32 by dromansk          #+#    #+#             */
-/*   Updated: 2018/12/19 17:09:35 by dromansk         ###   ########.fr       */
+/*   Updated: 2018/12/27 16:23:02 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@
 
 typedef struct	s_flag
 {
-	va_list		ap;
 	int			h;
 	int			hh;
 	int			l;
@@ -36,7 +35,6 @@ typedef struct	s_flag
 	int			dash;
 	int			space;
 	int			prec;
-	int			wild;
 	int			width;
 }				t_flag;
 
