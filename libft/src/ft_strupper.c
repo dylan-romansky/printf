@@ -1,36 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr_base.c                                   :+:      :+:    :+:   */
+/*   ft_strupper.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/18 20:57:59 by dromansk          #+#    #+#             */
-/*   Updated: 2018/12/27 20:52:47 by dromansk         ###   ########.fr       */
+/*   Created: 2018/12/27 19:49:17 by dromansk          #+#    #+#             */
+/*   Updated: 2018/12/27 19:51:25 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putnbr_base(int value, int base)
+char	*ft_strupper(char *s)
 {
-	long	n;
+	char	*n;
+	int		i;
 
-	if (base == 10)
-		n = (long)value;
-	else
-		n = (unsigned int)value;
-	if (n < 0)
+	n = s;
+	i = 0;
+	while (n[i])
 	{
-		if (base == 10)
-			ft_putchar('-');
-		n = -n;
+		if ('a' <= n[i] && n[i] <= 'z')
+			n[i] = ft_toupper(n[i]);
+		i++;
 	}
-	if (n >= base)
-	{
-		ft_putnbr_base((int)(n / base), base);
-		ft_putnbr_base((int)(n % base), base);
-	}
-	else
-		ft_putchar(base_table((int)n));
+	return (n);
 }

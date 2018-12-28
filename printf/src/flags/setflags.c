@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/19 15:12:25 by dromansk          #+#    #+#             */
-/*   Updated: 2018/12/27 16:42:22 by dromansk         ###   ########.fr       */
+/*   Updated: 2018/12/27 19:42:52 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,10 @@ t_flag	set_flags(t_flag **input, char *format, va_list *args)
 	while (*format && (*format == '-' || *format == ' ' || *format == '0' ||
 				*format == '#'))
 	{
-		if (*format == '0')
+		if ('0' <= *format && *format <= '9')
 		{
-			flags->zero = 1;
+			if (*format == '0')
+				flags->zero = 1;
 			flags->width = set_width(&flags, format, args);
 			format += skip_nums(format);
 		}

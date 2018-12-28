@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 20:32:12 by dromansk          #+#    #+#             */
-/*   Updated: 2018/12/18 21:29:39 by dromansk         ###   ########.fr       */
+/*   Updated: 2018/12/27 20:52:58 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,10 @@ char			*ft_itoa_base(int value, int base)
 	char *s;
 	long n;
 
-	n = (long)value;
+	if (base == 10)
+		n = (long)value;
+	else
+		n = (unsigned int)value;
 	if ((s = (char *)malloc(sizeof(char) * 2)))
 	{
 		if (n < 0)
