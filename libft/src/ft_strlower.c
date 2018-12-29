@@ -1,21 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strnequ.c                                       :+:      :+:    :+:   */
+/*   ft_strlower.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/10/23 17:30:38 by dromansk          #+#    #+#             */
-/*   Updated: 2018/12/27 21:41:20 by dromansk         ###   ########.fr       */
+/*   Created: 2018/12/27 21:52:27 by dromansk          #+#    #+#             */
+/*   Updated: 2018/12/27 21:52:59 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_strnequ(char const *s1, char const *s2, size_t n)
+char	*ft_strlower(char *s)
 {
-	if (s1 != NULL && s2 != NULL)
-		if (!ft_strncmp(s1, s2, n))
-			return (1);
-	return (0);
+	char	*n;
+	int		i;
+
+	n = s;
+	i = 0;
+	while (n[i])
+	{
+		if ('A' <= n[i] && n[i] <= 'Z')
+			n[i] = ft_tolower(n[i]);
+		i++;
+	}
+	return (n);
 }

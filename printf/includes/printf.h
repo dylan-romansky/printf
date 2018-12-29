@@ -6,13 +6,14 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 15:47:32 by dromansk          #+#    #+#             */
-/*   Updated: 2018/12/27 16:23:02 by dromansk         ###   ########.fr       */
+/*   Updated: 2018/12/28 17:20:30 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PRINTF_H
 # define PRINTF_H
 # include <stdarg.h>
+# include "libft.h"
 
 /* typedef struct	s_print
 {
@@ -38,11 +39,12 @@ typedef struct	s_flag
 	int			width;
 }				t_flag;
 
-t_flag		newflag(va_list ap);
-t_flag		set_flags(t_flag *flags, char *format);
-t_flag		set_first(t_flag *flags, char *format);
-t_flag		set_width_prelim(t_flag *flags, char *format);
-int			flag_skip(char *format);
+int				ft_printf(const char * restrict format, ...);
+t_flag			newflag(va_list ap);
+t_flag			set_flags(t_flag *flags, char *format, va_list args);
+t_flag			set_first(t_flag *flags, char *format, va_list args);
+t_flag			set_width/prec(char *format, va_list args);
+int				flag_skip(char *format);
 
 #endif
 

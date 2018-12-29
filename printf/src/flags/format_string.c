@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/27 15:32:04 by dromansk          #+#    #+#             */
-/*   Updated: 2018/12/27 21:02:00 by dromansk         ###   ########.fr       */
+/*   Updated: 2018/12/28 16:55:07 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,12 @@ char	*format_string(char *s, t_flag flags, char c)
 	char	n;
 
 	n = s;
+	if (!n && c == 's')
+		n = ft_strdup("(null)");
+	if (!n && c == 'p')
+		n = ft_strdup("0x0");
+	if (!n && c == 'c')
+		n = ft_strdup("");
 	if (flags->precision)
 		n = handle_precision(n, flags, c);
 	if (flags->sharp)

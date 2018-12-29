@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/12 14:34:10 by dromansk          #+#    #+#             */
-/*   Updated: 2018/12/27 17:01:16 by dromansk         ###   ########.fr       */
+/*   Updated: 2018/12/28 17:20:36 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ char	*get_data(va_list *args, char *format);
 	string = NULL;
 	flags = newflag(void);
 	flags = set_flags(&flags, ++format);
-	format += flag_skip(format);
 	return (parse_arg(flags, format, args));
 }
 
@@ -45,11 +44,12 @@ int		ft_printf(const char * restrict format, ...)
 	{
 		if (*format != '%')
 		{
-			ft_putchar(*(format++));
+			ft_putchar(*format++);
 		}
 		if (*format == '%')
 		{
 			ft_putstr(get_data(&args, (char *)format));
+			format += flag_skip(format);
 			/* figure out how to make args skip to next arg */
 		}
 		format++;

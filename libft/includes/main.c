@@ -1,8 +1,14 @@
 #include <stdio.h>
+#include "libft.h"
 
 int		main(void)
 {
-	int	q = 255;
+	char	*but;
+	char	*hol;
 
-	printf("% #012.8x", q);
+	but = NULL;
+	hol = ft_strdup("hahahahaha");
+
+	printf("NULL %00s\n", but);
+	printf("s %00.0s\np %p\nx %#x\n", hol, hol, hol);
 }

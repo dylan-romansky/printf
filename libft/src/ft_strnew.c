@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/23 13:24:24 by dromansk          #+#    #+#             */
-/*   Updated: 2018/11/02 13:36:40 by dromansk         ###   ########.fr       */
+/*   Updated: 2018/12/27 21:48:02 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,7 @@ char	*ft_strnew(size_t size)
 {
 	char	*s;
 
-	s = (char *)malloc(++size);
-	if (s == NULL)
+	if (!(s = (char *)malloc(++size)))
 		return (NULL);
 	ft_bzero(s, size);
 	return (s);
