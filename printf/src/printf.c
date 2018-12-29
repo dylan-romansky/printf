@@ -6,13 +6,25 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/12 14:34:10 by dromansk          #+#    #+#             */
-/*   Updated: 2018/12/28 17:20:36 by dromansk         ###   ########.fr       */
+/*   Updated: 2018/12/28 20:34:42 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-/* write get_data */
+/* write float printing code */
+
+char	*str_to_arg(char *format)
+{
+	char	*s;
+	size_t	i;
+
+	i = 0;
+	while (format[i] && format[i] != '%')
+		i++;
+	s = ft_strsub(format, 0, i);
+	return (s);
+}
 
 char	*parse_arg(t_flag flags, char *format, va_list *args)
 {
@@ -21,12 +33,15 @@ char	*parse_arg(t_flag flags, char *format, va_list *args)
 		return (parse_numbers(*format, flags, args));
 	if (*format == 'c' || *format == 's')
 		return (parse_chars(*format, flags, args));
-	/* p; */
+	/* 
+	if (*format == 'p')
+		return (parse_pointer(*format, flags, args));
+		*/
+	return (NULL);
 }
 
 char	*get_data(va_list *args, char *format);
 {
-	char	*string;
 	t_flag	flags;
 
 	string = NULL;
@@ -38,21 +53,25 @@ char	*get_data(va_list *args, char *format);
 int		ft_printf(const char * restrict format, ...)
 {
 	va_list	args;
+	char	*string;
+	char	*buf;
 
-	va_start(list, format);
+	va_start(args, format);
+	string = ft_strnew(0);
 	while (*format)
 	{
-		if (*format != '%')
-		{
-			ft_putchar(*format++);
-		}
-		if (*format == '%')
-		{
-			ft_putstr(get_data(&args, (char *)format));
-			format += flag_skip(format);
-			/* figure out how to make args skip to next arg */
-		}
-		format++;
+		buf = str_to_arg(format);
+		format += ft_strlen(buf);
+		string = ft_strjoin(string, buf);
+		free (buf);
+		if (!(*format))
+			break ;
+		string = ft_strjoin(string, get_data(&args, format));
+		format += flag_skip(format);
 	}
+	va_end(args);
+	free (buf);
+	ft_putstr(string);
+	free (string);
 	return (0);
 }

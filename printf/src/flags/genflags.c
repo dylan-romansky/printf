@@ -6,13 +6,11 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 15:18:32 by dromansk          #+#    #+#             */
-/*   Updated: 2018/12/27 16:09:12 by dromansk         ###   ########.fr       */
+/*   Updated: 2018/12/28 20:34:54 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "printf.h"
-
-/* write flag set setters and width/precision getters */
 
 /*t_print		init_print(void);
 {
@@ -28,12 +26,12 @@
 	return (size);
 }*/
 
-t_flag		set_flags(t_flag *flags, char *format)
+int			set_flags(t_flag **flags, char *format)
 {
-
 	if (*format == '-' || *format == ' ' || *format == '0' || *format == '#')
 	{
-		flags = set_first(flags, format);
+		if (!set_first(flags, format))
+			return (0);
 		while (*format == '-' || *format == ' ' || *format == '0' || *format == '#')
 		{
 			if (*format == '0' && *(format + 1) != '0')
@@ -49,17 +47,17 @@ t_flag		set_flags(t_flag *flags, char *format)
 	}
 	if (*format == '*' || *format == '.' || ('0' <= *format && *format <= '9'))
 	{
-		flags = set_width(flags, format);
+		if (!set_width(flags, format))
+			return (0);
 		while (*format == '*' || *format == '.' || ('0' <= *format && *format <= '9'))
 			format++;
 	}
 	if (*format == 'h' || *format == 'l' || *format == 'L')
 	{
-		flags = set_length(flags, format++);
-		if (*format == 'h' || *format == 'l')
-			format++;
+		if (!set_length(flags, format++))
+			return (0);
 	}
-	return (flags);
+	return (1);
 }
 	/* figure out where to fit this later
 	if (*format == 'd' || *format == 'i' || *format == 'o' || *format == 'u'
@@ -85,6 +83,7 @@ int		initflags(t_flag **input)
 		new->zero = 0;
 		new->dash = 0;
 		new->space = 0;
+		new->dot = 0;
 		new->prec = 0;
 		new->wild = 0;
 		new->width = 0;

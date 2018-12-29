@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/19 15:12:25 by dromansk          #+#    #+#             */
-/*   Updated: 2018/12/28 17:20:41 by dromansk         ###   ########.fr       */
+/*   Updated: 2018/12/28 19:31:17 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,37 @@ int		flag_skip(char *format)
 	return (i);
 }
 
-t_flag	set_first(t_flag **input, char *format, va_list *args)
+int		set_first(t_flag **input, char *format, va_list *args)
 {
 	t_flag	*flags;
 
 	flags = *input;
 	while (*format && (*format == '-' || *format == ' ' || *format == '0' ||
 				*format == '#'))
+	{
+		if (*format == '-')
+			flags->dash = 1;
+		if (*format == ' ')
+			flags->space = 1;
+		if (*format == '0')
+		{
+			flags->zero = 1;
+			if (*(format + 1) == '0')
+				exit ;
+		}
+		if (*format == '#')
+			flags->sharp = 1;
+		format++;
+	}
+	return (1);
+}
+
+int		set_width(t_flag **input, char *format)
+{
+	t_flag	*flags;
+
+	flags = *input;
+	while (*format && (('0' <= *format && *format <= '9') || *format == '*' || *format == '.'))
 	{
 		if ('0' <= *format && *format <= '9')
 		{
@@ -45,6 +69,7 @@ t_flag	set_first(t_flag **input, char *format, va_list *args)
 		}
 		if (*format == '.')
 		{
+			flags->dot = 1;
 			flags->prec = set_width/prec(++format, args);
 			format += skip_nums(format);
 		}
@@ -54,9 +79,11 @@ t_flag	set_first(t_flag **input, char *format, va_list *args)
 			flags->space = 1;
 		if (*format == '#')
 			flags->sharp = 1;
+		if (!(*format && (('0' <= *format && *format <= '9') || *format == '*' || *format == '.')))
+			break ;
 		format++;
 	}
-	return (flags);
+	return (1);
 }
 
 int		set_width/prec(char *format, va_list *args)
@@ -66,4 +93,19 @@ int		set_width/prec(char *format, va_list *args)
 	else if ('0' <= *format && *format <= '9')
 		return (ft_atoi(format));
 	return (0);
+}
+
+int		set_length(t_flags **input, char *format)
+{
+	t_flag	*flags;
+
+	flags = *input;
+	if (*format == 'l')
+	{
+		if (*(format + 1) == 'l')
+			flags->ll = 1;
+		else
+			flags->l = 1;
+	}
+	return (1);
 }

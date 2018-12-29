@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/22 17:47:25 by dromansk          #+#    #+#             */
-/*   Updated: 2018/12/28 15:59:56 by dromansk         ###   ########.fr       */
+/*   Updated: 2018/12/28 20:25:20 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,8 +93,9 @@ int					ft_permutations(int n, int r);
 char				base_table(int i);
 void				ft_putnbr_base(int value, int base);
 char				*ft_itoa_base(int value, int base);
-char				*ft_ltoa_base(long value, int base);
+char				*ft_ltoa_base(long long value, int base);
 char				*ft_strupper(char *s);
 char				*ft_strlower(char *s);
+char				*ft_ftoa(long double f);
 
 #endif

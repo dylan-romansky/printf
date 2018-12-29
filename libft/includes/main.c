@@ -3,12 +3,12 @@
 
 int		main(void)
 {
-	char	*but;
-	char	*hol;
+	double	f;
+	long double	d;
 
-	but = NULL;
-	hol = ft_strdup("hahahahaha");
+	f = 1.111111111111111;
+	d = 1.11111111111111111111111111;
 
-	printf("NULL %00s\n", but);
-	printf("s %00.0s\np %p\nx %#x\n", hol, hol, hol);
+	printf("%.19f\n%.19Lf\n%s\n%s", f, d, ft_ftoa(f), ft_ftoa(d));
+	return (0);
 }

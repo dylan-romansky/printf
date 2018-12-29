@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 15:47:32 by dromansk          #+#    #+#             */
-/*   Updated: 2018/12/28 17:20:30 by dromansk         ###   ########.fr       */
+/*   Updated: 2018/12/28 19:40:23 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,6 @@
 # define PRINTF_H
 # include <stdarg.h>
 # include "libft.h"
-
-/* typedef struct	s_print
-{
-	int			zero;
-	int			precision;
-	int			width;
-}				t_print; */
 
 typedef struct	s_flag
 {
@@ -35,16 +28,26 @@ typedef struct	s_flag
 	int			zero;
 	int			dash;
 	int			space;
+	int			dot;
 	int			prec;
 	int			width;
 }				t_flag;
 
 int				ft_printf(const char * restrict format, ...);
 t_flag			newflag(va_list ap);
-t_flag			set_flags(t_flag *flags, char *format, va_list args);
-t_flag			set_first(t_flag *flags, char *format, va_list args);
-t_flag			set_width/prec(char *format, va_list args);
+int				set_flags(t_flag **flags, char *format, va_list args);
+int				set_first(t_flag **input, char *format, va_list args);
+int				set_width/prec(char *format, va_list args);
+int				set_width(t_flag **input, char *format);
+int				set_length(t_flags **input, char *format);
 int				flag_skip(char *format);
+char			*parse_numbers(char c, t_flag flags, va_list *args);
+char			*parse_chars(char c, t_flag flags, va_list *args);
+char			*get_num(char c, long long i, t_flag *flags);
+char			*handle_h(char c, t_flag *flags, va_list *args);
+char			*handle_l(char c, t_flag *flags, va_list *args);
+char			*handle_L(char c, t_flag *flags, va_list *args);
+char			*format_string(char *s, t_flag flags, char c);
 
 #endif
 
