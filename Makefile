@@ -5,23 +5,34 @@
 #                                                     +:+ +:+         +:+      #
 #    By: dromansk <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2018/12/13 14:20:44 by dromansk          #+#    #+#              #
-#    Updated: 2018/12/13 15:15:21 by dromansk         ###   ########.fr        #
+#    Created: 2018/10/22 14:53:52 by dromansk          #+#    #+#              #
+#    Updated: 2018/11/20 18:57:28 by dromansk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = test
+NAME = libftprintf.a
 
-INCLUDES = -I ./libft/includes
+SRCS = ./printf/src/*.c ./printf/src/flags/*.c
 
-LIB = -L libft/ -lft
+I = -I ./libft/includes -I ./printf/includes
+
+O = *.o
 
 all: $(NAME)
 
 $(NAME):
-	gcc -o $(NAME) main.c printf.c $(INCLUDES) $(LIB)
+	$(MAKE) -C ./libft/ reclean
+	gcc -Wall -Werror -Wextra $(I) $(SRCS) -c
+	ar rcs $(NAME) $(O)
+	ranlib $(NAME)
 
 clean:
+	rm -rf $(O)
+
+fclean: clean
 	rm -rf $(NAME)
 
-re: clean all
+re: fclean all
+
+reclean: re
+	rm -rf $(O)

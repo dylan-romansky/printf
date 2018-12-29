@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "printf.h"
+#include "libft.h"
 
 int		flag_skip(char *format)
 {
@@ -28,7 +29,7 @@ int		flag_skip(char *format)
 	return (i);
 }
 
-int		set_first(t_flag **input, char *format, va_list *args)
+int		set_first(t_flag **input, char *format)
 {
 	t_flag	*flags;
 
@@ -41,11 +42,8 @@ int		set_first(t_flag **input, char *format, va_list *args)
 		if (*format == ' ')
 			flags->space = 1;
 		if (*format == '0')
-		{
 			flags->zero = 1;
-			if (*(format + 1) == '0')
-				exit ;
-		}
+		/* verify how 0 flag works */
 		if (*format == '#')
 			flags->sharp = 1;
 		format++;
@@ -53,7 +51,7 @@ int		set_first(t_flag **input, char *format, va_list *args)
 	return (1);
 }
 
-int		set_width(t_flag **input, char *format)
+int		set_width(t_flag **input, char *format, va_list *args)
 {
 	t_flag	*flags;
 
@@ -64,13 +62,13 @@ int		set_width(t_flag **input, char *format)
 		{
 			if (*format == '0')
 				flags->zero = 1;
-			flags->width = set_width/prec(format, args);
+			flags->width = set_width_and_prec(format, args);
 			format += skip_nums(format);
 		}
 		if (*format == '.')
 		{
 			flags->dot = 1;
-			flags->prec = set_width/prec(++format, args);
+			flags->prec = set_width_and_prec(++format, args);
 			format += skip_nums(format);
 		}
 		if (*format == '-')
@@ -86,7 +84,7 @@ int		set_width(t_flag **input, char *format)
 	return (1);
 }
 
-int		set_width/prec(char *format, va_list *args)
+int		set_width_and_prec(char *format, va_list *args)
 {
 	if (*format == '*')
 		return (va_arg(*args, int));
@@ -95,7 +93,7 @@ int		set_width/prec(char *format, va_list *args)
 	return (0);
 }
 
-int		set_length(t_flags **input, char *format)
+int		set_length(t_flag **input, char *format)
 {
 	t_flag	*flags;
 

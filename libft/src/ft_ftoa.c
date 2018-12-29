@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-char	trimzeros(char *s)
+char	*trimzeros(char *s)
 {
 	size_t		i;
 
@@ -38,5 +38,5 @@ char	*ft_ftoa(long double f)
 			dec = -dec;
 		s = ft_strjoin(s, ft_ltoa_base(dec, 10));
 	}
-	return (trimzeros(s);
+	return (trimzeros(s));
 }

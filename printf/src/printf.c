@@ -11,8 +11,7 @@
 /* ************************************************************************** */
 
 #include "libft.h"
-
-/* write float printing code */
+#include "printf.h"
 
 char	*str_to_arg(char *format)
 {
@@ -26,11 +25,13 @@ char	*str_to_arg(char *format)
 	return (s);
 }
 
-char	*parse_arg(t_flag flags, char *format, va_list *args)
+char	*parse_arg(t_flag *flags, char *format, va_list *args)
 {
 	if (*format == 'd' || *format == 'i' || *format == 'o' || *format == 'u'
 			|| *format == 'x' || *format == 'X')
 		return (parse_numbers(*format, flags, args));
+	if (*format == 'f')
+		return (parse_float(*format, flags, args));
 	if (*format == 'c' || *format == 's')
 		return (parse_chars(*format, flags, args));
 	/* 
@@ -40,13 +41,17 @@ char	*parse_arg(t_flag flags, char *format, va_list *args)
 	return (NULL);
 }
 
-char	*get_data(va_list *args, char *format);
+char	*get_data(va_list *args, char *format)
 {
-	t_flag	flags;
+	t_flag	*flags;
 
-	string = NULL;
-	flags = newflag(void);
-	flags = set_flags(&flags, ++format);
+	if (!(flags = (t_flag *)malloc(sizeof(t_flag))))
+		return (NULL);
+	if (!initflags(&flags))
+		return (NULL);
+	if (!set_flags(&flags, ++format, args))
+		return (NULL);
+	format += flag_skip((format)) - 1;
 	return (parse_arg(flags, format, args));
 }
 
@@ -60,14 +65,14 @@ int		ft_printf(const char * restrict format, ...)
 	string = ft_strnew(0);
 	while (*format)
 	{
-		buf = str_to_arg(format);
+		buf = str_to_arg((char *)format);
 		format += ft_strlen(buf);
 		string = ft_strjoin(string, buf);
 		free (buf);
 		if (!(*format))
 			break ;
-		string = ft_strjoin(string, get_data(&args, format));
-		format += flag_skip(format);
+		string = ft_strjoin(string, get_data(&args, (char *)format));
+		format += flag_skip((char *)format);
 	}
 	va_end(args);
 	free (buf);

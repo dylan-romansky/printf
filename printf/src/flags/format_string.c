@@ -10,18 +10,21 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
+#include "printf.h"
+
 /* make sure this handles all the formatting variables */
 
-char	*handle_precision(char *s, t_flag flags, char c)
+char	*handle_precision(char *s, t_flag *flags, char c)
 {
 	char	*t;
 	char	*n;
-	size_t	len;
+	int		len;
 
 	t = ft_strnew(1);
 	*t = '0';
 	n = s;
-	len = ft_strlen(s);
+	len = (int)ft_strlen(s);
 	if (len < flags->prec)
 		if (c != 'c' && c != 's')
 			while (len < flags->prec)
@@ -32,16 +35,16 @@ char	*handle_precision(char *s, t_flag flags, char c)
 }
 
 
-char	*handle_width(char *s, t_flag flags)
+char	*handle_width(char *s, t_flag *flags)
 {
 	char	*c;
 	char	*n;
-	size_t	len;
+	int		len;
 
 	c = ft_strnew(1);
 	*c = (flags->zero && !flags->dash) ? '0' : ' ';
 	n = s;
-	len = ft_strlen(s);
+	len = (int)ft_strlen(s);
 	while (len < flags->width)
 	{
 		if (flags->dash)
@@ -52,7 +55,7 @@ char	*handle_width(char *s, t_flag flags)
 	return (n);
 }
 
-char	*handle_space(char *s, t_flag flags)
+char	*handle_space(char *s)
 {
 	char	*c;
 	char	*n;
@@ -64,21 +67,21 @@ char	*handle_space(char *s, t_flag flags)
 	return (n);
 }
 
-char	*alt(char *s, char c);
+char	*alt(char *s, char c)
 {
 	char	*n;
 
 	n = s;
-	if (char c == 'x' || char c == 'X')
+	if (c == 'x' || c == 'X')
 		n = ft_strjoin("0x", s);
-	if (char c == 'o')
+	if (c == 'o')
 		n = ft_strjoin("0", s);
 	return (n);
 }
 
-char	*format_string(char *s, t_flag flags, char c)
+char	*format_string(char *s, t_flag *flags, char c)
 {
-	char	n;
+	char	*n;
 
 	n = s;
 	if (!n && c == 's')
@@ -92,7 +95,7 @@ char	*format_string(char *s, t_flag flags, char c)
 	if (flags->sharp)
 		n = alt(n, c);
 	if (flags->space)
-		n = handle_space(n, flags);
+		n = handle_space(n);
 	if (flags->width)
 		n = handle_width(n, flags);
 	return (n);

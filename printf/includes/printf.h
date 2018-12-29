@@ -34,20 +34,22 @@ typedef struct	s_flag
 }				t_flag;
 
 int				ft_printf(const char * restrict format, ...);
-t_flag			newflag(va_list ap);
-int				set_flags(t_flag **flags, char *format, va_list args);
-int				set_first(t_flag **input, char *format, va_list args);
-int				set_width/prec(char *format, va_list args);
-int				set_width(t_flag **input, char *format);
-int				set_length(t_flags **input, char *format);
+int				initflags(t_flag **input);
+int				set_flags(t_flag **flags, char *format, va_list *args);
+int				set_first(t_flag **input, char *format);
+int				set_width_and_prec(char *format, va_list *args);
+int				set_width(t_flag **input, char *format, va_list *args);
+int				set_length(t_flag **input, char *format);
 int				flag_skip(char *format);
-char			*parse_numbers(char c, t_flag flags, va_list *args);
-char			*parse_chars(char c, t_flag flags, va_list *args);
+char			*parse_numbers(char c, t_flag *flags, va_list *args);
+char			*parse_chars(char c, t_flag *flags, va_list *args);
+char			*parse_float(char c, t_flag *flags, va_list *args);
 char			*get_num(char c, long long i, t_flag *flags);
 char			*handle_h(char c, t_flag *flags, va_list *args);
 char			*handle_l(char c, t_flag *flags, va_list *args);
 char			*handle_L(char c, t_flag *flags, va_list *args);
-char			*format_string(char *s, t_flag flags, char c);
+char			*format_string(char *s, t_flag *flags, char c);
+int				skip_nums(char *format);
 
 #endif
 

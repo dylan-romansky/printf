@@ -10,6 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
 #include "printf.h"
 
 /*t_print		init_print(void);
@@ -26,7 +27,7 @@
 	return (size);
 }*/
 
-int			set_flags(t_flag **flags, char *format)
+int			set_flags(t_flag **flags, char *format, va_list *args)
 {
 	if (*format == '-' || *format == ' ' || *format == '0' || *format == '#')
 	{
@@ -47,7 +48,7 @@ int			set_flags(t_flag **flags, char *format)
 	}
 	if (*format == '*' || *format == '.' || ('0' <= *format && *format <= '9'))
 	{
-		if (!set_width(flags, format))
+		if (!set_width(flags, format, args))
 			return (0);
 		while (*format == '*' || *format == '.' || ('0' <= *format && *format <= '9'))
 			format++;
@@ -85,19 +86,8 @@ int		initflags(t_flag **input)
 		new->space = 0;
 		new->dot = 0;
 		new->prec = 0;
-		new->wild = 0;
 		new->width = 0;
 		return (1);
 	}
 	return (0);
-}
-
-t_flag	newflag(void)
-{
-	t_flag	*new;
-
-	if((new = (t_flag *)malloc(sizeof(t_flag))))
-		if ((initflags(&new)))
-			return (new);
-	return (NULL);
 }
