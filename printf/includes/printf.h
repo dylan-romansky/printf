@@ -44,6 +44,7 @@ int				flag_skip(char *format);
 char			*parse_numbers(char c, t_flag *flags, va_list *args);
 char			*parse_chars(char c, t_flag *flags, va_list *args);
 char			*parse_float(char c, t_flag *flags, va_list *args);
+char			*parse_pointer(char c, t_flag *flags, va_list *args);
 char			*get_num(char c, long long i, t_flag *flags);
 char			*handle_h(char c, t_flag *flags, va_list *args);
 char			*handle_l(char c, t_flag *flags, va_list *args);

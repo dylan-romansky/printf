@@ -72,10 +72,13 @@ char	*alt(char *s, char c)
 	char	*n;
 
 	n = s;
-	if (c == 'x' || c == 'X')
-		n = ft_strjoin("0x", s);
-	if (c == 'o')
-		n = ft_strjoin("0", s);
+	if (s[0] != '0' && (s[1] != 'x' || s[1] != 'X'))
+	{
+		if (c == 'x' || c == 'X')
+			n = ft_strjoin("0x", s);
+		if (c == 'o')
+			n = ft_strjoin("0", s);
+	}
 	return (n);
 }
 
@@ -90,10 +93,10 @@ char	*format_string(char *s, t_flag *flags, char c)
 		n = ft_strdup("0x0");
 	if (!n && c == 'c')
 		n = ft_strdup("");
+	if (flags->sharp || c == 'p')
+		n = c == 'p' ? alt(n, 'x') : alt(n, c);
 	if (flags->dot)
 		n = handle_precision(n, flags, c);
-	if (flags->sharp)
-		n = alt(n, c);
 	if (flags->space)
 		n = handle_space(n);
 	if (flags->width)

@@ -10,9 +10,10 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "printf.h"
+#include <stdio.h>
 
 int		main(void){
-	printf("expected %d\n%s\n%c\n", 69420, "big chungus", 'd');
-	ft_printf("result %d\n%s\n%c\n", 69420, "big chungus", 'd');
+	printf("expected %#x %s %c\n", 69420, "big chungus", 'd');
+	ft_printf("result   %#x %s %c\n", 69420, "big chungus", 'd');
 	return (0);}

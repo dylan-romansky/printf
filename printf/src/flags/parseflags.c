@@ -49,3 +49,13 @@ char	*parse_float(char c, t_flag *flags, va_list *args)
 		f = va_arg(*args, double);
 	return (format_string(ft_ftoa(f), flags, c));
 }
+
+/* figure out how to properly get pointer address */
+
+char	*parse_pointer(char c, t_flag *flags, va_list *args)
+{
+	long		p;
+
+	p = va_arg(*args, long);
+	return (format_string(ft_ltoa_base(p, 16), flags, c));
+}

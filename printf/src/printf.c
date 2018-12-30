@@ -34,10 +34,8 @@ char	*parse_arg(t_flag *flags, char *format, va_list *args)
 		return (parse_float(*format, flags, args));
 	if (*format == 'c' || *format == 's')
 		return (parse_chars(*format, flags, args));
-	/* 
 	if (*format == 'p')
 		return (parse_pointer(*format, flags, args));
-		*/
 	return (NULL);
 }
 
@@ -51,7 +49,7 @@ char	*get_data(va_list *args, char *format)
 		return (NULL);
 	if (!set_flags(&flags, ++format, args))
 		return (NULL);
-	format += flag_skip((format)) - 1;
+	format += flag_skip((format));
 	return (parse_arg(flags, format, args));
 }
 
@@ -72,7 +70,7 @@ int		ft_printf(const char * restrict format, ...)
 		if (!(*format))
 			break ;
 		string = ft_strjoin(string, get_data(&args, (char *)format));
-		format += flag_skip((char *)format);
+		format += flag_skip((char *)format) + 1;
 	}
 	va_end(args);
 	free (buf);

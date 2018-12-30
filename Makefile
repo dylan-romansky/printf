@@ -12,17 +12,19 @@
 
 NAME = libftprintf.a
 
-SRCS = ./printf/src/*.c ./printf/src/flags/*.c
+SRCS = ./printf/src/*.c ./printf/src/flags/*.c ./libft/src/*.c
 
 I = -I ./libft/includes -I ./printf/includes
 
 O = *.o
 
+L = -L ./libft -lft
+
 all: $(NAME)
 
 $(NAME):
 	$(MAKE) -C ./libft/ reclean
-	gcc -Wall -Werror -Wextra $(I) $(SRCS) -c
+	gcc -Wall -Werror -Wextra $(I) $(SRCS) -c $(L)
 	ar rcs $(NAME) $(O)
 	ranlib $(NAME)
 
