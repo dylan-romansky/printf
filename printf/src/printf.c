@@ -13,6 +13,8 @@
 #include "libft.h"
 #include "printf.h"
 
+/* verify pointer works as intended. Debug precision and width. */
+
 char	*str_to_arg(char *format)
 {
 	char	*s;
