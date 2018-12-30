@@ -17,6 +17,6 @@ int		main(void){
 	char *s;
 
 	s = ft_strdup("big chungus");
-	printf("expected %p %s %c\n", 69420, s, 'd');
-	ft_printf("result   %p %s %c\n", 69420, s, 'd');
+	printf("expected %012.7d %s %c\n", 69420, s, 'd');
+	ft_printf("result   %012.7d %s %c\n", 69420, s, 'd');
 	return (0);}
