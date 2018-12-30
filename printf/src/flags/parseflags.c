@@ -54,8 +54,8 @@ char	*parse_float(char c, t_flag *flags, va_list *args)
 
 char	*parse_pointer(char c, t_flag *flags, va_list *args)
 {
-	long		p;
+	size_t		p;
 
-	p = va_arg(*args, long);
+	p = va_arg(*args, size_t);
 	return (format_string(ft_ltoa_base(p, 16), flags, c));
 }
