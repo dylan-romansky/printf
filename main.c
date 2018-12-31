@@ -14,9 +14,9 @@
 #include <stdio.h>
 
 int		main(void){
-	char *s;
+	double pi;
 
-	s = ft_strdup("big chungus");
-	printf("expected %012.7d %s %c\n", 69420, s, 'd');
-	ft_printf("result   %012.7d %s %c\n", 69420, s, 'd');
+	pi = 3.141592653589793;
+	printf("expected %Lf\n", pi);
+	ft_printf("result   %Lf\n", pi);
 	return (0);}

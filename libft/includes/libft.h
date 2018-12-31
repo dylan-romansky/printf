@@ -96,6 +96,6 @@ char				*ft_itoa_base(int value, int base);
 char				*ft_ltoa_base(long long value, int base);
 char				*ft_strupper(char *s);
 char				*ft_strlower(char *s);
-char				*ft_ftoa(long double f);
+char				*ft_ftoa(long double f, size_t prec);
 
 #endif

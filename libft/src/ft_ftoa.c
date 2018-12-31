@@ -12,17 +12,14 @@
 
 #include "libft.h"
 
-char	*trimzeros(char *s)
+long long	precision(long double dec, size_t prec)
 {
-	size_t		i;
-
-	i = ft_strlen(s) - 1;
-	while (i && s[i] == '0')
-		i--;
-	return (ft_strsub(s, 0, i));
+	while (prec--)
+		dec *= 10;
+	return ((long long)(dec + 0.5));
 }
-	
-char	*ft_ftoa(long double f)
+
+char		*ft_ftoa(long double f, size_t prec)
 {
 	long long	num;
 	long long	dec;
@@ -30,7 +27,7 @@ char	*ft_ftoa(long double f)
 
 	num = (long long)f;
 	s = ft_ltoa_base(num, 10);
-	dec = (long long)((f - num) * 100000000000000000 + 0.5);
+	dec = precision((f - num), prec);
 	if (dec)
 	{
 		s = ft_strjoin(s, ".");
@@ -38,5 +35,5 @@ char	*ft_ftoa(long double f)
 			dec = -dec;
 		s = ft_strjoin(s, ft_ltoa_base(dec, 10));
 	}
-	return (trimzeros(s));
+	return (s);
 }

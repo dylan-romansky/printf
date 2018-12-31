@@ -51,6 +51,7 @@ char			*handle_l(char c, t_flag *flags, va_list *args);
 char			*handle_L(char c, t_flag *flags, va_list *args);
 char			*format_string(char *s, t_flag *flags, char c);
 int				skip_nums(char *format);
+//char			*float_precision(char *s, t_flag *flags);
 
 #endif
 

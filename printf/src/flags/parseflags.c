@@ -44,10 +44,24 @@ char	*parse_float(char c, t_flag *flags, va_list *args)
 	long double	f;
 
 	if (flags->L)
+	{
 		f = va_arg(*args, long double);
+		if (!flags->dot)
+		{
+			flags->dot = 1;
+			flags->prec = 15;
+		}
+	}
 	else
+	{
 		f = va_arg(*args, double);
-	return (format_string(ft_ftoa(f), flags, c));
+		if (!flags->dot)
+		{
+			flags->dot = 1;
+			flags->prec = 6;
+		}
+	}
+	return (format_string(ft_ftoa(f, flags->prec), flags, c));
 }
 
 /* figure out how to properly get pointer address */

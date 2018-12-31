@@ -15,26 +15,6 @@
 
 /* make sure this handles all the formatting variables */
 
-char	*handle_precision(char *s, t_flag *flags, char c)
-{
-	char	*t;
-	char	*n;
-	int		len;
-
-	t = ft_strnew(1);
-	*t = '0';
-	n = s;
-	len = (int)ft_strlen(s);
-	if (len < flags->prec)
-		if (c != 'c' && c != 's')
-			while (len < flags->prec)
-				n = ft_strjoin(t, n);
-	if (len > flags->prec)
-		n = ft_strndup(n, len);
-	return (n);
-}
-
-
 char	*handle_width(char *s, t_flag *flags)
 {
 	char	*c;
@@ -42,15 +22,19 @@ char	*handle_width(char *s, t_flag *flags)
 	int		len;
 
 	c = ft_strnew(1);
-	*c = (flags->zero && !flags->dash) ? '0' : ' ';
-	n = s;
 	len = (int)ft_strlen(s);
+	if (flags->zero && !flags->dash && len < flags->prec && flags->dot)
+		c[0] = '0';
+	else
+		c[0] = ' ';
+	n = s;
 	while (len < flags->width)
 	{
 		if (flags->dash)
-			ft_strjoin(n, c);
+			n = ft_strjoin(n, c);
 		else
-			ft_strjoin(c, n);
+			n = ft_strjoin(c, n);
+		len++;
 	}
 	return (n);
 }
@@ -64,6 +48,28 @@ char	*handle_space(char *s)
 	*c = (*s == '-') ? '-' : ' ';
 	n = s;
 	n = ft_strjoin(c, n);
+	return (n);
+}
+
+char	*handle_precision(char *s, t_flag *flags, char c)
+{
+	char	*t;
+	char	*n;
+	int		len;
+
+	t = ft_strnew(1);
+	*t = '0';
+	n = s;
+	len = (int)ft_strlen(s);
+	if (len < flags->prec)
+		if (c != 'c' && c != 's')
+			while (len < flags->prec)
+			{
+				n = ft_strjoin(t, n);
+				len++;
+			}
+	if (len > flags->prec)
+		n = ft_strndup(n, flags->prec);
 	return (n);
 }
 
@@ -95,10 +101,10 @@ char	*format_string(char *s, t_flag *flags, char c)
 		n = ft_strdup("");
 	if (flags->sharp || c == 'p')
 		n = c == 'p' ? alt(n, 'x') : alt(n, c);
-	if (flags->dot)
-		n = handle_precision(n, flags, c);
 	if (flags->space)
 		n = handle_space(n);
+	if (flags->dot && c != 'f')
+		n = handle_precision(n, flags, c);
 	if (flags->width)
 		n = handle_width(n, flags);
 	return (n);
