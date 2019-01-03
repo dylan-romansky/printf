@@ -6,7 +6,7 @@
 #    By: dromansk <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/10/22 14:53:52 by dromansk          #+#    #+#              #
-#    Updated: 2018/11/20 18:57:28 by dromansk         ###   ########.fr        #
+#    Updated: 2019/01/02 17:23:33 by dromansk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,8 +23,7 @@ L = -L ./libft -lft
 all: $(NAME)
 
 $(NAME):
-	$(MAKE) -C ./libft/ reclean
-	gcc -Wall -Werror -Wextra $(I) $(SRCS) -c $(L)
+	gcc -Wall -Werror -Wextra $(I) $(SRCS) -c
 	ar rcs $(NAME) $(O)
 	ranlib $(NAME)
 
@@ -38,3 +37,6 @@ re: fclean all
 
 reclean: re
 	rm -rf $(O)
+
+test: reclean
+	gcc main.c -I ./printf/includes -L ./ -lftprintf
