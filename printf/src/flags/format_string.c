@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/27 15:32:04 by dromansk          #+#    #+#             */
-/*   Updated: 2019/01/02 18:12:07 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/01/02 21:13:10 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,6 @@ char	*format_string(char *s, t_flag *flags, char c)
 	char	*n;
 
 	n = s;
-	printf("formating:\n%c\n%s\n", c, s);
 	if (!n && c == 's')
 		return("(null)");
 	if (!n && c == 'p')

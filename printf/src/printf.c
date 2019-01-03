@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/12 14:34:10 by dromansk          #+#    #+#             */
-/*   Updated: 2019/01/02 18:03:24 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/01/02 21:13:45 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ int		ft_printf(const char * restrict format, ...)
 	va_list	args;
 	char	*string;
 	char	*buf;
+	int		printed;
 
 	va_start(args, format);
 	string = ft_strnew(0);
@@ -76,6 +77,7 @@ int		ft_printf(const char * restrict format, ...)
 	}
 	va_end(args);
 	ft_putstr(string);
+	printed = (int)ft_strlen(string);
 	free (string);
 	return (0);
 }
