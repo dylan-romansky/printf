@@ -6,34 +6,72 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 15:18:32 by dromansk          #+#    #+#             */
-/*   Updated: 2018/12/28 20:34:54 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/01/02 22:34:55 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "printf.h"
 
-/*t_print		init_print(void);
+int		percentflag(char *format)
 {
-	t_print	*size;
+	int		i;
 
-	size = NULL;
-	if((size = (t_print *)malloc(sizeof(t_print))))
+	i = 0;
+	if (*format == '%' && *(format + 1))
 	{
-		size->zero = 0;
-		size->precision = 0;
-		size->width = 0;
+		format++;
+		i++;
 	}
-	return (size);
-}*/
+	while (*format && !(*format == 'd' || *format == 'i' || *format == 'u' ||
+				*format == 'o' || *format == 'x' || *format == 'X' ||
+				*format == 'c' || *format == 's' || *format == 'p' ||
+				*format == 'f' || *format == '%'))
+	{
+		format++;
+		i++;
+	}
+	if (*format == '%')
+		return (i);
+	return (0);
+}
 
-int			set_flags(t_flag **flags, char *format, va_list *args)
+int		prec(char *format, va_list *args, t_flag **input)
+{
+	t_flag	*flags;
+
+	flags = *input;
+	flags->dot = 1;
+	flags->prec = set_width_and_prec(++format, args);
+	return (skip_nums(format));
+}
+
+int		set_more_flags(t_flag **flags, char *format, va_list *args)
+{
+	if (*format == '*' || *format == '.' || ('0' <= *format && *format <= '9'))
+	{
+		if (!set_width(flags, format, args))
+			return (0);
+		while (*format == '*' || *format == '.' || ('0' <= *format &&
+					*format <= '9'))
+			format++;
+	}
+	if (*format == 'h' || *format == 'l' || *format == 'L')
+	{
+		if (!set_length(flags, format++))
+			return (0);
+	}
+	return (1);
+}
+
+int		set_flags(t_flag **flags, char *format, va_list *args)
 {
 	if (*format == '-' || *format == ' ' || *format == '0' || *format == '#')
 	{
 		if (!set_first(flags, format))
 			return (0);
-		while (*format == '-' || *format == ' ' || *format == '0' || *format == '#')
+		while (*format == '-' || *format == ' ' || *format == '0' ||
+				*format == '#')
 		{
 			if (*format == '0' && *(format + 1) != '0')
 				format++;
@@ -46,25 +84,8 @@ int			set_flags(t_flag **flags, char *format, va_list *args)
 				format++;
 		}
 	}
-	if (*format == '*' || *format == '.' || ('0' <= *format && *format <= '9'))
-	{
-		if (!set_width(flags, format, args))
-			return (0);
-		while (*format == '*' || *format == '.' || ('0' <= *format && *format <= '9'))
-			format++;
-	}
-	if (*format == 'h' || *format == 'l' || *format == 'L')
-	{
-		if (!set_length(flags, format++))
-			return (0);
-	}
-	return (1);
+	return (set_more_flags(flags, format, args));
 }
-	/* figure out where to fit this later
-	if (*format == 'd' || *format == 'i' || *format == 'o' || *format == 'u'
-			*format == 'x' || *format == 'X' || *format == 'c' || *format =='s'
-			|| *format == 'p' || *format == 'f')
-		flags = set_data; */
 
 int		initflags(t_flag **input)
 {

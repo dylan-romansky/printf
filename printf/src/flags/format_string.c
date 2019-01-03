@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/27 15:32:04 by dromansk          #+#    #+#             */
-/*   Updated: 2019/01/02 21:13:10 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/01/02 21:43:03 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,9 +76,9 @@ char	*handle_precision(char *s, t_flag *flags, char c)
 char	*alt(char *s, char c)
 {
 	if (s[0] != '0' && s[1] == 'o')
-		return(ft_strjoin("0", s));
+		return (ft_strjoin("0", s));
 	if (c == 'x' || c == 'X' || c == 'p')
-		return(ft_strjoin("0x", s));
+		return (ft_strjoin("0x", s));
 	return (s);
 }
 
@@ -88,11 +88,11 @@ char	*format_string(char *s, t_flag *flags, char c)
 
 	n = s;
 	if (!n && c == 's')
-		return("(null)");
+		return ("(null)");
 	if (!n && c == 'p')
-		return("0x0");
+		return ("0x0");
 	if (!n && c == 'c')
-		return("");
+		return ("");
 	if (flags->sharp || c == 'p')
 		n = alt(n, c);
 	if (flags->space)

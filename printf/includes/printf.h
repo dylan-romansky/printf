@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 15:47:32 by dromansk          #+#    #+#             */
-/*   Updated: 2018/12/28 19:40:23 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/01/02 22:28:29 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,8 @@ char			*handle_l(char c, t_flag *flags, va_list *args);
 char			*handle_L(char c, t_flag *flags, va_list *args);
 char			*format_string(char *s, t_flag *flags, char c);
 int				skip_nums(char *format);
-//char			*float_precision(char *s, t_flag *flags);
+int				prec(char *format, va_list *args, t_flag **input);
+int				percentflag(char *format);
 
 #endif
 

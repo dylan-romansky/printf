@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/12 14:34:10 by dromansk          #+#    #+#             */
-/*   Updated: 2019/01/02 21:16:26 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/01/02 22:36:28 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "printf.h"
 
 /* verify pointer works as intended. Debug precision and width. */
+/* bigger issue, doesn't handle % properly */
 
 char	*str_to_arg(char *format)
 {
@@ -29,17 +30,28 @@ char	*str_to_arg(char *format)
 
 char	*parse_arg(t_flag *flags, char *format, va_list *args)
 {
+	printf("parse '%s'\n", format);//
 	if (*format == '%')
+	{printf("percent\n");//
 		return (format_string("%", flags, '%'));
+	}
 	if (*format == 'd' || *format == 'i' || *format == 'o' || *format == 'u'
 			|| *format == 'x' || *format == 'X')
+	{printf("num %c\n", *format);//
 		return (parse_numbers(*format, flags, args));
+	}
 	if (*format == 'f')
+	{printf("float\n");//
 		return (parse_float(*format, flags, args));
+	}
 	if (*format == 'c' || *format == 's')
+	{printf("char\n");//
 		return (parse_chars(*format, flags, args));
+	}
 	if (*format == 'p')
+	{printf("pointer\n");//
 		return (parse_pointer(*format, flags, args));
+	}
 	return (NULL);
 }
 
@@ -76,6 +88,7 @@ int		ft_printf(const char * restrict format, ...)
 			break ;
 		string = ft_strjoin(string, get_data(&args, (char *)format));
 		format += flag_skip((char *)format) + 1;
+		
 	}
 	va_end(args);
 	ft_putstr(string);

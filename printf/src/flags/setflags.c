@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/19 15:12:25 by dromansk          #+#    #+#             */
-/*   Updated: 2019/01/02 17:42:19 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/01/02 22:36:46 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,10 @@ int		flag_skip(char *format)
 {
 	int		i;
 
-	i = 0;
+	i = percentflag(format);
+	if (i)
+		return (i);
+	printf("%s\n", format);//
 	while (!(*format == 'd' || *format == 'i' || *format == 'u' ||
 				*format == 'o' || *format == 'x' || *format == 'X' ||
 				*format == 'c' || *format == 's' || *format == 'p' ||
@@ -43,7 +46,7 @@ int		set_first(t_flag **input, char *format)
 			flags->space = 1;
 		if (*format == '0')
 			flags->zero = 1;
-		/* verify how 0 flag works */
+/* verify how 0 flag works */
 		if (*format == '#')
 			flags->sharp = 1;
 		format++;
@@ -56,28 +59,24 @@ int		set_width(t_flag **input, char *format, va_list *args)
 	t_flag	*flags;
 
 	flags = *input;
-	while (*format && (('0' <= *format && *format <= '9') || *format == '*' || *format == '.'))
+	while (*format && (('0' <= *format && *format <= '9') ||
+				*format == '*' || *format == '.'))
 	{
 		if ('0' <= *format && *format <= '9')
 		{
-			if (*format == '0')
-				flags->zero = 1;
 			flags->width = set_width_and_prec(format, args);
 			format += skip_nums(format);
 		}
 		if (*format == '.')
-		{
-			flags->dot = 1;
-			flags->prec = set_width_and_prec(++format, args);
-			format += skip_nums(format);
-		}
+			format += prec(format, args, input);
 		if (*format == '-')
 			flags->dash = 1;
 		if (*format == ' ')
 			flags->space = 1;
 		if (*format == '#')
 			flags->sharp = 1;
-		if (!(*format && (('0' <= *format && *format <= '9') || *format == '*' || *format == '.')))
+		if (!(*format && (('0' <= *format && *format <= '9') ||
+						*format == '*' || *format == '.')))
 			break ;
 		format++;
 	}
