@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 15:18:32 by dromansk          #+#    #+#             */
-/*   Updated: 2019/01/02 22:34:55 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/01/03 01:27:59 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,15 @@ int		percentflag(char *format)
 	int		i;
 
 	i = 0;
-	if (*format == '%' && *(format + 1))
+	if (*format == '%')
 	{
-		format++;
-		i++;
+		if (*(format + 1) == '%')
+			return (1);
+		if (*(format - 1) == '%')
+			return (-1);
+		else
+			format++;
+			i++;
 	}
 	while (*format && !(*format == 'd' || *format == 'i' || *format == 'u' ||
 				*format == 'o' || *format == 'x' || *format == 'X' ||
