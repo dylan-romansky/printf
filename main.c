@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/13 14:34:29 by dromansk          #+#    #+#             */
-/*   Updated: 2019/01/02 17:56:45 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/01/02 21:16:44 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,5 +19,5 @@ int		main(void){
 	s = ft_strdup("bungholio");
 	
 	printf("expected %s\naddress: %p\n", s, s);
-	ft_printf("result   %s\naddress: %p\n", s, s);
+	ft_printf("result   %s\naddress: %p\n%%\n", s, s);
 	return (0);}

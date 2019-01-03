@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 20:32:12 by dromansk          #+#    #+#             */
-/*   Updated: 2018/12/28 20:22:17 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/01/02 21:24:27 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ char			*ft_ltoa_base(long long value, int base)
 		n = value;
 	else
 		n = (unsigned long long)value;
-	if ((s = (char *)malloc(sizeof(char) * 2)))
+	if ((s = ft_strnew(1)))
 	{
 		if (n < 0)
 		{

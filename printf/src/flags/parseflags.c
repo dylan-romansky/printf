@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/27 13:50:27 by dromansk          #+#    #+#             */
-/*   Updated: 2019/01/02 18:05:39 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/01/02 21:24:35 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,9 @@ char	*parse_float(char c, t_flag *flags, va_list *args)
 char	*parse_pointer(char c, t_flag *flags, va_list *args)
 {
 	size_t		p;
+	char		*s;
 
-	p = va_arg(*args, size_t);
+	s = va_arg(*args, char *);
+	p = (size_t)s;
 	return (format_string(ft_ltoa_base(p, 16), flags, c));
 }
