@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/27 15:32:04 by dromansk          #+#    #+#             */
-/*   Updated: 2018/12/28 19:27:11 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/01/02 18:12:07 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,17 +75,11 @@ char	*handle_precision(char *s, t_flag *flags, char c)
 
 char	*alt(char *s, char c)
 {
-	char	*n;
-
-	n = s;
-	if (s[0] != '0' && (s[1] != 'x' || s[1] != 'X'))
-	{
-		if (c == 'x' || c == 'X')
-			n = ft_strjoin("0x", s);
-		if (c == 'o')
-			n = ft_strjoin("0", s);
-	}
-	return (n);
+	if (s[0] != '0' && s[1] == 'o')
+		return(ft_strjoin("0", s));
+	if (c == 'x' || c == 'X' || c == 'p')
+		return(ft_strjoin("0x", s));
+	return (s);
 }
 
 char	*format_string(char *s, t_flag *flags, char c)
@@ -93,14 +87,15 @@ char	*format_string(char *s, t_flag *flags, char c)
 	char	*n;
 
 	n = s;
+	printf("formating:\n%c\n%s\n", c, s);
 	if (!n && c == 's')
-		n = ft_strdup("(null)");
+		return("(null)");
 	if (!n && c == 'p')
-		n = ft_strdup("0x0");
+		return("0x0");
 	if (!n && c == 'c')
-		n = ft_strdup("");
+		return("");
 	if (flags->sharp || c == 'p')
-		n = c == 'p' ? alt(n, 'x') : alt(n, c);
+		n = alt(n, c);
 	if (flags->space)
 		n = handle_space(n);
 	if (flags->dot && c != 'f')

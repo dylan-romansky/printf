@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/19 15:12:25 by dromansk          #+#    #+#             */
-/*   Updated: 2018/12/28 19:31:17 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/01/02 17:42:19 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,5 +105,7 @@ int		set_length(t_flag **input, char *format)
 		else
 			flags->l = 1;
 	}
+	if (*format == 'L')
+		flags->L = 1;
 	return (1);
 }

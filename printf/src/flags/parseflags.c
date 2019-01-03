@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/27 13:50:27 by dromansk          #+#    #+#             */
-/*   Updated: 2018/12/27 19:45:12 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/01/02 18:05:39 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,22 +44,13 @@ char	*parse_float(char c, t_flag *flags, va_list *args)
 	long double	f;
 
 	if (flags->L)
-	{
 		f = va_arg(*args, long double);
-		if (!flags->dot)
-		{
-			flags->dot = 1;
-			flags->prec = 15;
-		}
-	}
 	else
-	{
 		f = va_arg(*args, double);
-		if (!flags->dot)
-		{
-			flags->dot = 1;
-			flags->prec = 6;
-		}
+	if (!flags->dot)
+	{
+		flags->dot = 1;
+		flags->prec = 6;
 	}
 	return (format_string(ft_ftoa(f, flags->prec), flags, c));
 }

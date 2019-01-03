@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/13 14:34:29 by dromansk          #+#    #+#             */
-/*   Updated: 2019/01/02 17:28:10 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/01/02 17:56:45 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,10 @@
 #include <stdio.h>
 
 int		main(void){
-	long double pi;
+	char	*s;
 
-	pi = 3.141592653589793;
-	printf("expected %f\n", (double)pi);
-	ft_printf("result   %f\n", pi);
+	s = ft_strdup("bungholio");
+	
+	printf("expected %s\naddress: %p\n", s, s);
+	ft_printf("result   %s\naddress: %p\n", s, s);
 	return (0);}
