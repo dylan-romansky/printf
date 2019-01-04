@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/27 13:50:27 by dromansk          #+#    #+#             */
-/*   Updated: 2019/01/02 21:44:28 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/01/03 21:15:08 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,6 @@ char	*parse_float(char c, t_flag *flags, va_list *args)
 	}
 	return (format_string(ft_ftoa(f, flags->prec), flags, c));
 }
-
-/* figure out how to properly get pointer address */
 
 char	*parse_pointer(char c, t_flag *flags, va_list *args)
 {

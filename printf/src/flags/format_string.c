@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/27 15:32:04 by dromansk          #+#    #+#             */
-/*   Updated: 2019/01/03 19:31:28 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/01/04 01:50:48 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ char	*handle_width(char *s, t_flag *flags)
 
 	c = ft_strnew(1);
 	len = (int)ft_strlen(s);
-	if (flags->zero && !flags->dash && len < flags->prec && flags->dot)
+	if (flags->zero && !flags->dash && ((len < flags->prec && flags->dot) ||
+				(!flags->dot)))
 		c[0] = '0';
 	else
 		c[0] = ' ';
@@ -76,9 +77,9 @@ char	*handle_precision(char *s, t_flag *flags, char c)
 
 char	*alt(char *s, char c)
 {
-	if (s[0] != '0' && s[1] == 'o')
+	if (s[0] != '0' && c == 'o')
 		return (ft_strjoin("0", s));
-	if (c == 'x' || c == 'X' || c == 'p')
+	if ((c == 'x' || c == 'X' || c == 'p') && !(s[1] == 'x' || s[1] == 'X'))
 		return (ft_strjoin("0x", s));
 	return (s);
 }
