@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/13 14:34:29 by dromansk          #+#    #+#             */
-/*   Updated: 2019/01/02 21:53:13 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/01/03 21:12:41 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,9 @@
 #include <stdio.h>
 
 int		main(void){
-	char	*s;
+	long i;
 
-	s = ft_strdup("bungholio");
-	
-	printf("expected %s\naddress: %p\n%%\n\n", s, s);
-	ft_printf("result   %s\naddress: %p\n%%\n", s, s);
+	i = -12345673865479;
+	printf("expected %lx\n\n", i);
+	ft_printf("result   %lx\n", i);
 	return (0);}
