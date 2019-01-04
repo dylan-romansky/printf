@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 20:32:12 by dromansk          #+#    #+#             */
-/*   Updated: 2019/01/02 21:24:27 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/01/03 21:01:42 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ char			*ft_ltoa_base(long long value, int base)
 		n = (unsigned long long)value;
 	if (n < 0 && base == 10)
 	{
-		s[0] = ft_strdup("-");
+		s = ft_strdup("-");
 		n = -n;
 	}
 	else
