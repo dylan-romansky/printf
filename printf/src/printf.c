@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/12 14:34:10 by dromansk          #+#    #+#             */
-/*   Updated: 2019/01/03 01:28:45 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/01/03 16:24:46 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,5 +83,5 @@ int		ft_printf(const char * restrict format, ...)
 	ft_putstr(string);
 	printed = (int)ft_strlen(string);
 	free (string);
-	return (0);
+	return (printed);
 }
