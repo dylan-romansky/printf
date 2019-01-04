@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/19 15:12:25 by dromansk          #+#    #+#             */
-/*   Updated: 2019/01/03 01:30:00 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/01/03 16:44:36 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,16 @@ int		flag_skip(char *format)
 {
 	int		i;
 
-	i = percentflag(format);
-	if (i)
-		return (i);
+	i = 0;//percentflag(format);
+	if (*format == '%' && *(format - 1) != '%')
+	{
+		format++;
+		i++;
+	}
 	while (!(*format == 'd' || *format == 'i' || *format == 'u' ||
 				*format == 'o' || *format == 'x' || *format == 'X' ||
 				*format == 'c' || *format == 's' || *format == 'p' ||
-				*format == 'f'))
+				*format == 'f' || *format == '%'))
 	{
 		format++;
 		i++;
