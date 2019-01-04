@@ -21,26 +21,20 @@ char			*ft_ltoa_base(long long value, int base)
 		n = value;
 	else
 		n = (unsigned long long)value;
-	if ((s = ft_strnew(1)))
+	if (n < 0 && base == 10)
 	{
-		if (n < 0)
-		{
-			if (base == 10)
-			{
-				s[0] = '-';
-				s[1] = '\0';
-			}
-			n = -n;	
-		}
-		if (n >= base)
-			s = ft_strjoin(s, ft_strjoin(ft_ltoa_base((long long)(n / base), base),
-						ft_ltoa_base((long long)(n % base), base)));
-		else if (n < base && n >= 0)
-		{
-			s[0] = base_table((int)n);
-			s[1] = '\0';
-		}
-		return (s);
+		s[0] = ft_strdup("-");
+		n = -n;
 	}
-	return (NULL);
+	else
+		s = ft_strnew(0);
+	if (n >= base)
+		s = ft_strjoin(s, ft_strjoin(ft_ltoa_base((long long)(n / base), base),
+					ft_ltoa_base((long long)(n % base), base)));
+	else if (n < base && n >= 0)
+	{
+		s[0] = base_table((int)n);
+		s[1] = '\0';
+	}
+	return (s);
 }
