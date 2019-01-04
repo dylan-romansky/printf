@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/27 15:32:04 by dromansk          #+#    #+#             */
-/*   Updated: 2019/01/02 21:43:03 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/01/03 19:24:53 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,8 @@ char	*handle_space(char *s)
 	c = ft_strnew(1);
 	*c = (*s == '-') ? '-' : ' ';
 	n = s;
-	n = ft_strjoin(c, n);
+	if (n[0] != ' ' || n[0] != '-');
+		n = ft_strjoin(c, n);
 	return (n);
 }
 
@@ -68,7 +69,7 @@ char	*handle_precision(char *s, t_flag *flags, char c)
 				n = ft_strjoin(t, n);
 				len++;
 			}
-	if (len > flags->prec)
+	if (len > flags->prec && (c == 'f' || c == 's'))
 		n = ft_strndup(n, flags->prec);
 	return (n);
 }
