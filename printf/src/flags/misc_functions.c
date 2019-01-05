@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/04 00:06:38 by dromansk          #+#    #+#             */
-/*   Updated: 2019/01/04 16:22:35 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/01/04 18:25:53 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ char	*ft_ultoa_base(unsigned long long value, int base)
 	unsigned long long	n;
 
 	n = value;
+	s = NULL;
 	if (n >= (unsigned)base)
 		s = ft_strjoin(ft_ultoa_base((n / base), base),
 					ft_ultoa_base((n % base), base));
@@ -37,6 +38,7 @@ char	*ft_uitoa_base(unsigned long value, int base)
 	unsigned long	n;
 
 	n = value;
+	s = NULL;
 	if (n >= (unsigned)base)
 		s = ft_strjoin(ft_uitoa_base((n / base), base),
 					ft_uitoa_base((n % base), base));
