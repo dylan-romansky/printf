@@ -22,11 +22,13 @@ int		percentflag(char *format)
 	{
 		if (*(format + 1) == '%')
 			return (1);
-		if (*(format - 1) == '%')
+		else if (*(format - 1) == '%')
 			return (-1);
 		else
+		{
 			format++;
 			i++;
+		}
 	}
 	while (*format && !(*format == 'd' || *format == 'i' || *format == 'u' ||
 				*format == 'o' || *format == 'x' || *format == 'X' ||

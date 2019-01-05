@@ -55,7 +55,9 @@ int				prec(char *format, va_list *args, t_flag **input);
 int				percentflag(char *format);
 char			*choose_string_maker(long long i, t_flag *flags, int base);
 int				putstr_printed(char *s);
-char			*join_and_free(char **string, char **buf);
+char			*join_and_free(char **string, char *buf);
+char			*mirrored_join_and_free(char *buf, char **string);
+
 void			flag_del(t_flag **flags);
 
 #endif

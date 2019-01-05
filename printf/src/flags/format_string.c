@@ -32,9 +32,9 @@ char	*handle_width(char *s, t_flag *flags)
 	while (len < flags->width)
 	{
 		if (flags->dash)
-			n = ft_strjoin(n, c);
+			n = join_and_free(&n, c);
 		else
-			n = ft_strjoin(c, n);
+			n = mirrored_join_and_free(c, &n);
 		len++;
 	}
 	ft_strclr(c);
@@ -49,10 +49,10 @@ char	*handle_space(char *s)
 
 	c = ft_strnew(1);
 	*c = (*s == '-') ? '-' : ' ';
-	n = s;
-	if (n[0] != ' ' || n[0] != '-')
-		n = ft_strjoin(c, n);
-	ft_strclr(c);
+	if (s[0] != ' ' || s[0] != '-')
+		n = ft_strjoin(c, s);
+	else
+		n = s;
 	free(c);
 	return (n);
 }
@@ -60,6 +60,7 @@ char	*handle_space(char *s)
 char	*handle_precision(char *s, t_flag *flags, char c)
 {
 	char	*t;
+	char	*tmp;
 	char	*n;
 	int		len;
 
@@ -71,13 +72,17 @@ char	*handle_precision(char *s, t_flag *flags, char c)
 		if (c != 'c' && c != 's')
 			while (len < flags->prec)
 			{
-				n = ft_strjoin(t, n);
+				tmp = ft_strjoin(t, n);
+				free (n);
+				n = tmp;
+				tmp = NULL;
+				free (tmp);
 				len++;
 			}
 	if (len > flags->prec && (c == 'f' || c == 's'))
-		n = ft_strndup(n, flags->prec);
-	ft_strclr(t);
+		tmp = ft_strndup(n, flags->prec);
 	free (t);
+	free (tmp);
 	return (n);
 }
 
@@ -102,12 +107,12 @@ char	*format_string(char *s, t_flag *flags, char c)
 	if (!n && c == 'c')
 		return ("");
 	if (flags->sharp || c == 'p')
-		n = alt(n, c);
+		n = alt(s, c);
 	if (flags->space && c != '%')
 		n = handle_space(n);
 	if (flags->dot && c != 'f')
-		n = handle_precision(n, flags, c);
+		n = handle_precision(s, flags, c);
 	if (flags->width)
-		n = handle_width(n, flags);
+		n = handle_width(s, flags);
 	return (n);
 }

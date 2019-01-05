@@ -19,12 +19,12 @@ char	*ft_ultoa_base(unsigned long long value, int base)
 	unsigned long long	n;
 
 	n = value;
-	s = ft_strnew(1);
 	if (n >= (unsigned)base)
 		s = ft_strjoin(ft_ultoa_base((n / base), base),
 					ft_ultoa_base((n % base), base));
 	else if (n < (unsigned)base)
 	{
+		s = ft_strnew(1);
 		s[0] = base_table((int)n);
 		s[1] = '\0';
 	}
@@ -37,12 +37,12 @@ char	*ft_uitoa_base(unsigned long value, int base)
 	unsigned long	n;
 
 	n = value;
-	s = ft_strnew(1);
 	if (n >= (unsigned)base)
 		s = ft_strjoin(ft_uitoa_base((n / base), base),
 					ft_uitoa_base((n % base), base));
 	else if (n < (unsigned)base)
 	{
+		s = ft_strnew(1);
 		s[0] = base_table((int)n);
 		s[1] = '\0';
 	}
@@ -55,7 +55,7 @@ char	*choose_string_maker(long long i, t_flag *flags, int base)
 		return (ft_ultoa_base((unsigned long)i, base));
 	if (flags->ll)
 		return (ft_ultoa_base((unsigned long long)i, base));
-	return (ft_itoa_base((unsigned long)i, base));
+	return (ft_uitoa_base((unsigned long)i, base));
 }
 
 int		putstr_printed(char *s)
@@ -68,20 +68,12 @@ int		putstr_printed(char *s)
 	return (i);
 }
 
-char	*join_and_free(char **string, char **buf)
+char	*join_and_free(char **string, char *buf)
 {
 	char			*tmp;
 
-	tmp = ft_strjoin(*string, *buf);
+	tmp = ft_strjoin(*string, buf);
 	ft_strclr(*string);
-	ft_strclr(*buf);
 	free (*string);
-	free (*buf);
 	return (tmp);
-}
-
-void	flag_del(t_flag **flags)
-{
-	if (initflags(flags))
-		free (*flags);
 }
