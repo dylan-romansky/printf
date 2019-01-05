@@ -18,12 +18,11 @@ void	flag_del(t_flag **flags)
 		free (*flags);
 }
 
-char	*mirrored_join_and_free(char *buf, char **string)
+char	*swap_n_free(char *s, char **p)
 {
-	char			*tmp;
+	char	*tmp;
 
-	tmp = ft_strjoin(buf, *string);
-	ft_strclr(*string);
-	free (*string);
+	tmp = s;
+	free(*p);
 	return (tmp);
 }

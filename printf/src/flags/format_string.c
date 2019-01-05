@@ -32,12 +32,11 @@ char	*handle_width(char *s, t_flag *flags)
 	while (len < flags->width)
 	{
 		if (flags->dash)
-			n = join_and_free(&n, c);
+			n = swap_n_free(ft_strjoin(n, c), &n);
 		else
-			n = mirrored_join_and_free(c, &n);
+			n = swap_n_free(ft_strjoin(c, n), &n);
 		len++;
 	}
-	ft_strclr(c);
 	free (c);
 	return (n);
 }
@@ -88,18 +87,23 @@ char	*handle_precision(char *s, t_flag *flags, char c)
 
 char	*alt(char *s, char c)
 {
+	char	*n;
+
 	if (s[0] != '0' && c == 'o')
-		return (ft_strjoin("0", s));
-	if ((c == 'x' || c == 'X' || c == 'p') && !(s[1] == 'x' || s[1] == 'X'))
-		return (ft_strjoin("0x", s));
-	return (s);
+		 n = ft_strjoin("0", s);
+	else if ((c == 'x' || c == 'X' || c == 'p') && !(s[1] == 'x' || s[1] == 'X'))
+		n = ft_strjoin("0x", s);
+	else
+		n = s;
+	printf("%s\n", n);
+	return (n);
 }
 
 char	*format_string(char *s, t_flag *flags, char c)
 {
 	char	*n;
 
-	n = s;
+	n = NULL;
 	if (!n && c == 's')
 		return ("(null)");
 	if (!n && c == 'p')
@@ -107,12 +111,12 @@ char	*format_string(char *s, t_flag *flags, char c)
 	if (!n && c == 'c')
 		return ("");
 	if (flags->sharp || c == 'p')
-		n = alt(s, c);
+		n = swap_n_free(alt(s, c), &n);
 	if (flags->space && c != '%')
-		n = handle_space(n);
+		n = swap_n_free(handle_space(s), &n);
 	if (flags->dot && c != 'f')
-		n = handle_precision(s, flags, c);
+		n = swap_n_free(handle_precision(s, flags, c), &n);
 	if (flags->width)
-		n = handle_width(s, flags);
+		n = swap_n_free(handle_width(s, flags), &n);
 	return (n);
 }

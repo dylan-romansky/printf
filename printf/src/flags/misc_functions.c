@@ -69,13 +69,3 @@ int		putstr_printed(char *s)
 		write(1, (s + i++), 1);
 	return (i);
 }
-
-char	*join_and_free(char **string, char *buf)
-{
-	char			*tmp;
-
-	tmp = ft_strjoin(*string, buf);
-	ft_strclr(*string);
-	free (*string);
-	return (tmp);
-}

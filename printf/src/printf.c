@@ -68,18 +68,16 @@ int		ft_printf(const char * restrict format, ...)
 
 	va_start(args, format);
 	string = ft_strnew(0);
-	buf = NULL;
 	while (*format)
 	{
 		buf = str_to_arg((char *)format);
 		format += ft_strlen(buf);
-		string = join_and_free(&string, buf);
+		string = swap_n_free(ft_strjoin(string, buf), &string);
 		free(buf);
 		if (!(*format))
 			break ;
-		string = ft_strjoin(string, get_data(&args, (char *)format));
+		string = swap_n_free(ft_strjoin(string, get_data(&args, (char *)format)), &string);
 		format += flag_skip((char *)format) + 1;
-		
 	}
 	va_end(args);
 	printed = putstr_printed(string);
