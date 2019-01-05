@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/12 14:34:10 by dromansk          #+#    #+#             */
-/*   Updated: 2019/01/03 16:24:46 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/01/04 17:07:53 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,12 @@
 
 char	*str_to_arg(char *format)
 {
-	char	*s;
 	size_t	i;
 
 	i = 0;
 	while (format[i] && format[i] != '%')
 		i++;
-	s = ft_strsub(format, 0, i);
-	return (s);
+	return (ft_strsub(format, 0, i));
 }
 
 char	*parse_arg(t_flag *flags, char *format, va_list *args)
@@ -47,6 +45,7 @@ char	*parse_arg(t_flag *flags, char *format, va_list *args)
 char	*get_data(va_list *args, char *format)
 {
 	t_flag	*flags;
+	char	*s;
 
 	if (!(flags = (t_flag *)malloc(sizeof(t_flag))))
 		return (NULL);
@@ -55,7 +54,9 @@ char	*get_data(va_list *args, char *format)
 	if (!set_flags(&flags, ++format, args))
 		return (NULL);
 	format += flag_skip((format));
-	return (parse_arg(flags, format, args));
+	s = parse_arg(flags, format, args);
+	flag_del(&flags);
+	return (s);
 }
 
 int		ft_printf(const char * restrict format, ...)
@@ -71,8 +72,8 @@ int		ft_printf(const char * restrict format, ...)
 	{
 		buf = str_to_arg((char *)format);
 		format += ft_strlen(buf);
-		string = ft_strjoin(string, buf);
-		free (buf);
+		string = join_and_free(&string, &buf);
+		printf("string now:\n%s\n", string);
 		if (!(*format))
 			break ;
 		string = ft_strjoin(string, get_data(&args, (char *)format));
@@ -80,8 +81,7 @@ int		ft_printf(const char * restrict format, ...)
 		
 	}
 	va_end(args);
-	ft_putstr(string);
-	printed = (int)ft_strlen(string);
+	printed = putstr_printed(string);
 	free (string);
 	return (printed);
 }

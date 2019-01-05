@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/27 13:50:27 by dromansk          #+#    #+#             */
-/*   Updated: 2019/01/03 21:15:08 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/01/04 16:26:09 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ char	*parse_chars(char c, t_flag *flags, va_list *args)
 {
 	char		*s;
 
+	s = NULL;
 	if (c == 'c')
 	{
 		s = (char *)malloc(sizeof(char) * 2);
@@ -35,6 +36,7 @@ char	*parse_chars(char c, t_flag *flags, va_list *args)
 	}
 	if (c == 's')
 	{
+		free(s);
 		return (format_string(va_arg(*args, char *), flags, c));
 	}
 	return (NULL);
@@ -63,5 +65,7 @@ char	*parse_pointer(char c, t_flag *flags, va_list *args)
 
 	s = va_arg(*args, char *);
 	p = (size_t)s;
+	ft_strclr(s);
+	free(s);
 	return (format_string(ft_ltoa_base(p, 16), flags, c));
 }

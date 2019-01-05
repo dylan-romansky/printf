@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/04 00:06:38 by dromansk          #+#    #+#             */
-/*   Updated: 2019/01/04 01:39:35 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/01/04 16:22:35 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,4 +56,32 @@ char	*choose_string_maker(long long i, t_flag *flags, int base)
 	if (flags->ll)
 		return (ft_ultoa_base((unsigned long long)i, base));
 	return (ft_itoa_base((unsigned long)i, base));
+}
+
+int		putstr_printed(char *s)
+{
+	int				i;
+
+	i = 0;
+	while (s[i])
+		write(1, (s + i++), 1);
+	return (i);
+}
+
+char	*join_and_free(char **string, char **buf)
+{
+	char			*tmp;
+
+	tmp = ft_strjoin(*string, *buf);
+	ft_strclr(*string);
+	ft_strclr(*buf);
+	free (*string);
+	free (*buf);
+	return (tmp);
+}
+
+void	flag_del(t_flag **flags)
+{
+	if (initflags(flags))
+		free (*flags);
 }

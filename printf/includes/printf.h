@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 15:47:32 by dromansk          #+#    #+#             */
-/*   Updated: 2019/01/04 01:33:27 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/01/04 16:07:47 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,9 @@ int				skip_nums(char *format);
 int				prec(char *format, va_list *args, t_flag **input);
 int				percentflag(char *format);
 char			*choose_string_maker(long long i, t_flag *flags, int base);
+int				putstr_printed(char *s);
+char			*join_and_free(char **string, char **buf);
+void			flag_del(t_flag **flags);
 
 #endif
 
