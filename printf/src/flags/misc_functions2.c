@@ -20,9 +20,11 @@ void	flag_del(t_flag **flags)
 
 char	*swap_n_free(char *s, char **p)
 {
-	char	*tmp;
+	char *tmp;
 
-	tmp = s;
-	free(*p);
-	return (tmp);
+	if (p)
+		tmp = *p;
+	if (s != tmp && tmp)
+		free(tmp);
+	return (s);
 }
