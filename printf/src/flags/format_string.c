@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/27 15:32:04 by dromansk          #+#    #+#             */
-/*   Updated: 2019/01/04 17:11:25 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/01/08 16:52:56 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ char	*handle_width(char *s, t_flag *flags)
 	else
 		c[0] = ' ';
 	n = ft_strdup(s);
-	printf("%p\n%p\n", n, s);
 	while (len < flags->width)
 	{
 		if (flags->dash)

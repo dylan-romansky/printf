@@ -6,32 +6,37 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/24 00:03:00 by dromansk          #+#    #+#             */
-/*   Updated: 2018/11/01 15:06:17 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/01/08 16:50:13 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char			*ft_itoa(int n)
+static int	numlen(int n)
 {
-	char *s;
+	int		i;
 
-	if ((s = (char *)malloc(sizeof(char) * 2)))
+	i = 1;
+	while (n /= 10)
+		i++;
+	return (i);
+}
+
+char		*ft_itoa(int n)
+{
+	char	*s;
+	long	v;
+	int		i;
+
+	v = n;
+	i = numlen(n);
+	if ((s = ft_strnew(i)))
 	{
-		if (n == -2147483648)
-			return (ft_strcpy(s, "-2147483648"));
-		if (n < 0)
+		s[i] = '\0';
+		while (i--)
 		{
-			s[0] = '-';
-			s[1] = '\0';
-			return (ft_strjoin(s, ft_itoa(-n)));
-		}
-		else if (n >= 10)
-			s = ft_strjoin(ft_itoa(n / 10), ft_itoa(n % 10));
-		else if (n < 10 && n >= 0)
-		{
-			s[0] = n + '0';
-			s[1] = '\0';
+			s[i] = base_table(v % 10);
+			v /= 10;
 		}
 		return (s);
 	}

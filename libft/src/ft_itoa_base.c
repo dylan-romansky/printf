@@ -6,36 +6,37 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 20:32:12 by dromansk          #+#    #+#             */
-/*   Updated: 2018/12/27 20:52:58 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/01/08 16:51:00 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char			*ft_itoa_base(int value, int base)
+static int	numlen_base(int n, int base)
 {
-	char *s;
-	long n;
+	int		i;
 
-	if (base == 10)
-		n = (long)value;
-	else
-		n = (unsigned int)value;
-	if ((s = (char *)malloc(sizeof(char) * 2)))
+	i = 1;
+	while (n /= base)
+		i++;
+	return (i);
+}
+
+char		*ft_itoa_base(int n, int base)
+{
+	char	*s;
+	long	v;
+	int		i;
+
+	v = n;
+	i = numlen_base(n, base);
+	if ((s = ft_strnew(i)))
 	{
-		if (n < 0)
+		s[i] = '\0';
+		while (i--)
 		{
-			s[0] = '-';
-			s[1] = '\0';
-			n = -n;	
-		}
-		if (n >= base)
-			s = ft_strjoin(s, ft_strjoin(ft_itoa_base((int)(n / base), base),
-						ft_itoa_base((int)(n % base), base)));
-		else if (n < base && n >= 0)
-		{
-			s[0] = base_table((int)n);
-			s[1] = '\0';
+			s[i] = base_table(v % base);
+			v /= base;
 		}
 		return (s);
 	}
