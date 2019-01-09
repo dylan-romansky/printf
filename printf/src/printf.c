@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/12 14:34:10 by dromansk          #+#    #+#             */
-/*   Updated: 2019/01/08 16:55:31 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/01/08 17:50:25 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,9 @@ int		ft_printf(const char * restrict format, ...)
 		free(buf);
 		if (!(*format))
 			break ;
-		string = swap_n_free(ft_strjoin(string, get_data(&args, (char *)format)), &string);
+		buf = get_data(&args, (char *)format);
+		string = swap_n_free(ft_strjoin(string, buf), &string);
+		free (buf);
 		format += flag_skip((char *)format) + 1;
 	}
 	va_end(args);
