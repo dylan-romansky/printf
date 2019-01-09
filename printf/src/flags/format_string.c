@@ -22,14 +22,13 @@ char	*handle_width(char *s, t_flag *flags)
 	char	*n;
 	int		len;
 
-	c = ft_strnew(1);
 	len = (int)ft_strlen(s);
 	n = NULL;
 	if (flags->zero && !flags->dash && ((len < flags->prec && flags->dot) ||
 				(!flags->dot)))
-		c[0] = '0';
+		c = ft_strdup("0");
 	else
-		c[0] = ' ';
+		c = ft_strdup(" ");
 	n = ft_strdup(s);
 	while (len < flags->width)
 	{
