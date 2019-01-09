@@ -31,6 +31,7 @@ char	*handle_width(char *s, t_flag *flags)
 	else
 		c[0] = ' ';
 	n = ft_strdup(s);
+	printf("%p\n%p\n", n, s);
 	while (len < flags->width)
 	{
 		if (flags->dash)
