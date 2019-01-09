@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 15:47:32 by dromansk          #+#    #+#             */
-/*   Updated: 2019/01/08 17:33:55 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/01/08 19:48:51 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,10 @@ int				percentflag(char *format);
 char			*choose_string_maker(long long i, t_flag *flags, int base);
 int				putstr_printed(char *s);
 char			*swap_n_free(char *s, char **p);
-char			*add_pre(char *pre, char *s);
+char			*handle_precision(char *s, t_flag *flags, char c);
+char			*neg_prec(char *s, t_flag *flags, char c);
 void			flag_del(t_flag **flags);
+int				float_check(char *s);
 
 #endif
 

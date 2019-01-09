@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/04 00:06:38 by dromansk          #+#    #+#             */
-/*   Updated: 2019/01/08 17:48:34 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/01/08 19:39:46 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "printf.h"
@@ -37,4 +37,40 @@ int		putstr_printed(char *s)
 	while (s[i])
 		write(1, s + i++, 1);
 	return (i);
+}
+
+char	*neg_prec(char *s, t_flag *flags, char c)
+{
+	char	*neg;
+	char	*dig;
+	char	*ret;
+
+	dig = ft_strsub(s, 1, (int)ft_strlen(s) - 1);
+	neg = ft_strdup("-");
+	dig = swap_n_free(handle_precision(dig, flags, c), &dig);
+	ret = ft_strjoin(neg, dig);
+	free (dig);
+	free (neg);
+	return (ret);
+}
+
+int		is_nan(char *s)
+{
+	int		neg;
+	int		dot;
+	int		i;
+
+	i = 0;
+	while (s[i])
+	{
+		if (s[i] == '.')
+			dot++;
+		if (s[i] == '-')
+			neg++;
+		if (dot > 1 || neg > 1 || (!ft_isdigit(s[i]) && s[i] != '.'
+				   && s[i] != '-'))
+			return (1);
+		i++;
+	}
+	return (0);
 }

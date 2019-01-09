@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/22 17:47:25 by dromansk          #+#    #+#             */
-/*   Updated: 2018/12/28 20:25:20 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/01/08 19:54:37 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <unistd.h>
 # include <stdarg.h>
 # include <stdio.h>
+# include <float.h>
 
 typedef struct		s_list
 {
@@ -96,6 +97,7 @@ char				*ft_itoa_base(int value, int base);
 char				*ft_ltoa_base(long long value, int base);
 char				*ft_strupper(char *s);
 char				*ft_strlower(char *s);
-char				*ft_ftoa(long double f, size_t prec);
+char				*ft_ftoa(double f, size_t prec);
+char				*ft_lftoa(long double f, size_t prec);
 
 #endif

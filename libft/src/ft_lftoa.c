@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_ftoa.c                                          :+:      :+:    :+:   */
+/*   ft_lftoa.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/28 20:19:02 by dromansk          #+#    #+#             */
-/*   Updated: 2019/01/08 20:12:36 by dromansk         ###   ########.fr       */
+/*   Created: 2019/01/08 19:50:06 by dromansk          #+#    #+#             */
+/*   Updated: 2019/01/08 20:12:55 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ long long	precision(long double dec, size_t prec)
 	return ((long long)(dec + 0.5));
 }
 
-int			nan_comp(double f)
+int			nan_comp(long double f)
 {
 	float		test;
 
@@ -29,13 +29,13 @@ int			nan_comp(double f)
 	return (0);
 }
 
-char		*ft_ftoa(double f, size_t prec)
+char		*ft_lftoa(long double f, size_t prec)
 {
 	long long	num;
 	long long	dec;
 	char		*s;
 
-	if (f < DBL_MIN || f > DBL_MAX)
+	if (f < LDBL_MIN || f > LDBL_MAX)
 		return (ft_strdup("inf"));
 	if (nan_comp(f))
 		return (ft_strdup("nan"));

@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/27 15:32:04 by dromansk          #+#    #+#             */
-/*   Updated: 2019/01/08 17:48:08 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/01/08 20:33:32 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,9 @@ char	*handle_space(char *s)
 	char	*c;
 	char	*n;
 
-	c = ft_strnew(1);
+	c = ft_strdup(" ");
 	n = NULL;
-	*c = (*s == '-') ? '-' : ' ';
-	if (s[0] != ' ' || s[0] != '-')
+	if (s[0] != ' ' && s[0] != '-')
 		n = ft_strjoin(c, s);
 	else
 		n = ft_strdup(s);
@@ -65,8 +64,9 @@ char	*handle_precision(char *s, t_flag *flags, char c)
 	char	*n;
 	int		len;
 
-	t = ft_strnew(1);
-	*t = '0';
+	if (*s == '-')
+		return (neg_prec(s, flags, c));
+	t = ft_strdup("0");
 	n = ft_strdup(s);
 	tmp = NULL;
 	len = (int)ft_strlen(s);
@@ -108,18 +108,20 @@ char	*format_string(char *s, t_flag *flags, char c)
 
 	n = s;
 	if (!n && c == 's')
-		return ("(null)");
+		return (ft_strdup("(null)"));
 	if (!n && c == 'p')
-		return ("0x0");
+		return (ft_strdup("0x0"));
 	if (!n && c == 'c')
-		return ("");
+		return (ft_strdup(""));
+	if (float_check(s))
+		return (s);
 	if (flags->dot && c != 'f')
 		n = swap_n_free(handle_precision(n, flags, c), &n);
 	if (flags->sharp)
 		n = swap_n_free(alt(n, c), &n);
-	if (flags->space && c != '%')
-		n = swap_n_free(handle_space(n), &n);
 	if (flags->width)
 		n = swap_n_free(handle_width(n, flags), &n);
+	if (flags->space && c != '%')
+		n = swap_n_free(handle_space(n), &n);
 	return (n);
 }

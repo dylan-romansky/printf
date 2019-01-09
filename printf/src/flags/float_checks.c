@@ -1,28 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   float_checks.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/13 14:34:29 by dromansk          #+#    #+#             */
-/*   Updated: 2019/01/08 20:14:38 by dromansk         ###   ########.fr       */
+/*   Created: 2019/01/08 20:00:58 by dromansk          #+#    #+#             */
+/*   Updated: 2019/01/08 20:01:12 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "printf.h"
-#include <stdio.h>
+#include "libft.h"
 
-int		main(void){
-	float one;
-	float zero;
-	float nan;
-	float inf;
-
-	one = 1;
-	zero = 0;
-	inf = one / zero;
-	nan = zero / zero;
-	printf("expected:\n%f\n%f\n\n", inf, nan);
-	ft_printf("result:\n%f\n%f\n", inf, nan);
-	return (0);}
+int		float_check(char *s)
+{
+	if (ft_strequ("inf", s) || ft_strequ("nan", s))
+		return (1);
+	return (0);
+}
