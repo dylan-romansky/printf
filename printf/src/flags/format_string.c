@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/27 15:32:04 by dromansk          #+#    #+#             */
-/*   Updated: 2019/01/08 20:33:32 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/01/08 20:47:54 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,8 @@ char	*alt(char *s, char c)
 	char	*n;
 
 	n = NULL;
+	if (ft_strequ(s, "0"))
+		return (ft_strdup(s));
 	if (s[0] != '0' && c == 'o')
 		 n = ft_strjoin("0", s);
 	else if ((c == 'x' || c == 'X' || c == 'p') && !(s[1] == 'x' || s[1] == 'X'))

@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/27 13:50:27 by dromansk          #+#    #+#             */
-/*   Updated: 2019/01/04 16:26:09 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/01/08 20:52:16 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ char	*parse_numbers(char c, t_flag *flags, va_list *args)
 {
 	if ((flags->h) || (flags->hh))
 		return (handle_h(c, flags, args));
-	if ((flags->l) || (flags->ll))
-		return (handle_l(c, flags, args));
+	if ((flags->l) || (flags->ll) || (flags->j))
+		return (handle_lj(c, flags, args));
 	return (get_num(c, va_arg(*args, int), flags));
 }
 

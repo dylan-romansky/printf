@@ -6,74 +6,71 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/04 00:06:38 by dromansk          #+#    #+#             */
-/*   Updated: 2019/01/08 20:01:22 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/01/08 21:02:17 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 #include "printf.h"
 #include "libft.h"
 
-int		unumlen(unsigned long long value, unsigned int base)
+void	flag_del(t_flag **flags)
 {
-	int					i;
-	
-	i = 1;
-	while (value /= base)
-		i++;
-	return (i);
+	if (initflags(flags))
+		free (*flags);
 }
 
-int		numlen(long long value, int base)
+char	*swap_n_free(char *s, char **p)
 {
-	int					i;
+	char	*tmp;
 
-	i = 1;
-	while (value /= base)
-		i++;
-	return (i);
-}
-
-char	*ft_ultoa_base(unsigned long long value, int base)
-{
-	char				*s;
-	unsigned long long	n;
-	int					i;
-
-	n = value;
-	i = unumlen(value, base);
-	s = ft_strnew(i);
-	s[i] = '\0';
-	while (i--)
-	{
-		s[i] = base_table((int)(n % base));
-		n /= base;
-	}
+	if (p)
+		tmp = *p;
+	if (s != tmp && tmp)
+		free(tmp);
 	return (s);
 }
 
-char	*ft_uitoa_base(unsigned long value, int base)
+int		putstr_printed(char *s)
 {
-	char				*s;
-	unsigned long		n;
-	int					i;
+	int		i;
 
-	n = value;
-	i = unumlen(value, base);
-	s = ft_strnew(i);
-	s[i] = '\0';
-	while (i--)
-	{
-		s[i] = base_table((int)(n % base));
-		n /= base;
-	}
-	return (s);
+	i = 0;
+	while (s[i])
+		write(1, s + i++, 1);
+	return (i);
 }
 
-char	*choose_string_maker(long long i, t_flag *flags, int base)
+char	*neg_prec(char *s, t_flag *flags, char c)
 {
-	if (flags->l)
-		return (ft_ultoa_base((unsigned long)i, base));
-	if (flags->ll)
-		return (ft_ultoa_base((unsigned long long)i, base));
-	return (ft_uitoa_base((unsigned long)i, base));
+	char	*neg;
+	char	*dig;
+	char	*ret;
+
+	dig = ft_strsub(s, 1, (int)ft_strlen(s) - 1);
+	neg = ft_strdup("-");
+	dig = swap_n_free(handle_precision(dig, flags, c), &dig);
+	ret = ft_strjoin(neg, dig);
+	free (dig);
+	free (neg);
+	return (ret);
+}
+
+int		is_nan(char *s)
+{
+	int		neg;
+	int		dot;
+	int		i;
+
+	i = 0;
+	while (s[i])
+	{
+		if (s[i] == '.')
+			dot++;
+		if (s[i] == '-')
+			neg++;
+		if (dot > 1 || neg > 1 || (!ft_isdigit(s[i]) && s[i] != '.'
+				   && s[i] != '-'))
+			return (1);
+		i++;
+	}
+	return (0);
 }

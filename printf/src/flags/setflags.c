@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/19 15:12:25 by dromansk          #+#    #+#             */
-/*   Updated: 2019/01/03 16:44:36 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/01/08 20:51:40 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@ int		set_first(t_flag **input, char *format)
 			flags->space = 1;
 		if (*format == '0')
 			flags->zero = 1;
-/* verify how 0 flag works */
 		if (*format == '#')
 			flags->sharp = 1;
 		format++;
@@ -108,5 +107,7 @@ int		set_length(t_flag **input, char *format)
 	}
 	if (*format == 'L')
 		flags->L = 1;
+	if (*format == 'j')
+		flags->j = 1;
 	return (1);
 }

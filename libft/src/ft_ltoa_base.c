@@ -6,35 +6,46 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 20:32:12 by dromansk          #+#    #+#             */
-/*   Updated: 2019/01/04 01:14:13 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/01/08 21:40:01 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char			*ft_ltoa_base(long long value, int base)
+static long	numlen_base(intmax_t n, int base)
+{
+	long		i;
+
+	i = 1;
+	while (n /= base)
+		i++;
+	return (i);
+}
+
+char		*ft_ltoa_base(long long n, int base)
 {
 	char		*s;
-	long long	n;
+	intmax_t	v;
+	long		i;
 
+	v = n;
+	i = numlen_base(n, base);
 	if (base == 10)
-		n = value;
-	else
-		n = (unsigned long long)value;
-	if (n < 0 && base == 10)
+		return (ft_ltoa(n));
+	if ((s = ft_strnew(i)))
 	{
-		s = ft_strdup("-");
-		n = -n;
+		if (v < 0)
+		{
+			s[0] = '0';
+			i--;
+		}
+		s[i] = '\0';
+		while (i--)
+		{
+			s[i] = base_table(v % base);
+			v /= base;
+		}
+		return (s);
 	}
-	else
-		s = ft_strnew(0);
-	if (n >= base)
-		s = ft_strjoin(s, ft_strjoin(ft_ltoa_base((long long)(n / base), base),
-					ft_ltoa_base((long long)(n % base), base)));
-	else if (n < base && n >= 0)
-	{
-		s[0] = base_table((int)n);
-		s[1] = '\0';
-	}
-	return (s);
+	return (NULL);
 }

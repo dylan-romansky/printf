@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 15:18:32 by dromansk          #+#    #+#             */
-/*   Updated: 2019/01/04 16:02:43 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/01/08 20:51:16 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ int		set_more_flags(t_flag **flags, char *format, va_list *args)
 					*format <= '9'))
 			format++;
 	}
-	if (*format == 'h' || *format == 'l' || *format == 'L')
+	if (*format == 'h' || *format == 'l' || *format == 'L' || *format == 'j')
 	{
 		if (!set_length(flags, format++))
 			return (0);
@@ -106,6 +106,7 @@ int		initflags(t_flag **input)
 		new->l = 0;
 		new->ll = 0;
 		new->L = 0;
+		new->j = 0;
 		new->f = 0;
 		new->percent = 0;
 		new->sharp = 0;

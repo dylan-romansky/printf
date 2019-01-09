@@ -6,25 +6,25 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/27 14:19:16 by dromansk          #+#    #+#             */
-/*   Updated: 2019/01/04 01:37:44 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/01/08 21:38:17 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "printf.h"
 #include "libft.h"
 
-char	*get_num(char c, long long i, t_flag *flags)
+char	*get_num(char c, intmax_t i, t_flag *flags)
 {
 	if (c == 'd' || c == 'i')
-		return (format_string(ft_ltoa_base(i, 10), flags, c));
+		return (format_string(choose_string_maker(i, flags), flags, c));
 	if (c == 'o')
-		return (format_string(choose_string_maker(i, flags, 8), flags, c));
+		return (format_string(choose_ustring_maker(i, flags, 8), flags, c));
 	if (c == 'u')
-		return (format_string(choose_string_maker(i, flags, 10), flags, c));
+		return (format_string(choose_ustring_maker(i, flags, 10), flags, c));
 	if (c == 'x')
-		return (format_string(choose_string_maker(i, flags, 16), flags, c));
+		return (format_string(choose_ustring_maker(i, flags, 16), flags, c));
 	if (c == 'X')
-		return (ft_strupper(format_string(choose_string_maker(i, flags, 16),
+		return (ft_strupper(format_string(choose_ustring_maker(i, flags, 16),
 						flags,c)));
 	return (NULL);
 }
@@ -47,10 +47,11 @@ char	*handle_h(char c, t_flag *flags, va_list *args)
 	return (NULL);
 }
 
-char	*handle_l(char c, t_flag *flags, va_list *args)
+char	*handle_lj(char c, t_flag *flags, va_list *args)
 {
 	long		i;
 	long long	j;
+	intmax_t	m;
 
 	if (flags->l)
 	{
@@ -61,6 +62,11 @@ char	*handle_l(char c, t_flag *flags, va_list *args)
 	{
 		j = va_arg(*args, long long);
 		return (get_num(c, j, flags));
+	}
+	if (flags->j)
+	{
+		m = va_arg(*args, intmax_t);
+		return (get_num(c, m, flags));
 	}
 	return (NULL);
 }
