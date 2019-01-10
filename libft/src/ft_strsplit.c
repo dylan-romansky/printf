@@ -18,15 +18,19 @@ static char		**array_join(char **sentence, char *word)
 	char	**new;
 	int		i;
 
-	old = *sentence;
+	old = sentence;
 	new = NULL;
 	i = 0;
 	while (old[i])
 		i++;
-	i = -1;
 	if ((new = (char **)malloc(sizeof(char *) * (i + 2))))
+	{
+		i = -1;
 		while (old[++i])
 			new[i] = old[i];
+		new[i++] = word;
+		new[i] = NULL;
+	}
 	free (sentence);
 	return (new);
 }
@@ -36,7 +40,7 @@ static int		wordlen(char const *str, char d)
 	int		i;
 
 	i = 0;
-	while (str[i] != d)
+	while (str[i] && str[i] != d)
 		i++;
 	return (i);
 }
@@ -51,14 +55,14 @@ char			**ft_strsplit(char const *s, char c)
 	*n = NULL;
 	while (*s)
 	{
-		if (*s == c)
-			s++;
-		else
+		if (*s && *s != c)
 		{
 			len = wordlen(s, c);
 			n = array_join(n, ft_strndup(s, (size_t)len));
 			s += len;
 		}
+		else
+			s++;
 	}
 	return (n);
 }
