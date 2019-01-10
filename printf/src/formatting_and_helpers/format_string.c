@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/27 15:32:04 by dromansk          #+#    #+#             */
-/*   Updated: 2019/01/09 17:24:08 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/01/10 15:26:35 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,14 +36,14 @@ char	*handle_width(char *s, t_flag *flags, char c)
 	return (n);
 }
 
-char	*handle_space(char *s)
+char	*handle_space(char *s, t_flag *flags)
 {
 	char	*c;
 	char	*n;
 
-	c = ft_strdup(" ");
+	c = (flags->plus) ? ft_strdup("+") : ft_strdup(" ");
 	n = NULL;
-	if (s[0] != ' ' && s[0] != '-')
+	if (s[0] != ' ' && s[0] != '-' && s[0] != '+')
 		n = ft_strjoin(c, s);
 	else
 		n = ft_strdup(s);
@@ -69,7 +69,7 @@ char	*handle_precision(char *s, t_flag *flags, char c)
 				n = swap_n_free(ft_strjoin(t, n), &n);
 				len++;
 			}
-	if (len > flags->prec && c != 'p') /* make sure you didn't break things by checking more than f s */
+	if ((c == 's' || ft_strequ(n, "0")) && len > flags->prec) /* make sure you didn't break things by checking more than f s */
 		n = swap_n_free(ft_strndup(n, flags->prec), &n);
 	free(t);
 	return (n);
@@ -109,7 +109,7 @@ char	*format_string(char *s, t_flag *flags, char c)
 	}
 	if (flags->width)
 		n = swap_n_free(handle_width(n, flags, c), &n);
-	if (flags->space && c != '%')
-		n = swap_n_free(handle_space(n), &n);
+	if ((flags->space || flags->plus) && (c == 'i' || c == 'd'))
+		n = swap_n_free(handle_space(n, flags), &n);
 	return (n);
 }

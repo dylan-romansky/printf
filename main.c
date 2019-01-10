@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/13 14:34:29 by dromansk          #+#    #+#             */
-/*   Updated: 2019/01/09 17:24:28 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/01/10 15:07:46 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,6 @@
 #include <stdio.h>
 
 int		main(void){
-	printf("expected:\n%#12.x\n%#12.0x\n", 0, 0);
-	ft_printf("result:\n%#12.x\n%#12.0x\n", 0, 0);
+	printf("expected:\n%+ d\n", 1);
+	ft_printf("result:\n%+ d\n", 1);
 	return (0);}

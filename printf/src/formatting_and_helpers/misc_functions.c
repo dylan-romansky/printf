@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/04 00:06:38 by dromansk          #+#    #+#             */
-/*   Updated: 2019/01/09 17:21:52 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/01/10 14:35:13 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,13 @@ void	flag_del(t_flag **flags)
 		free(*flags);
 }
 
-int		putstr_printed(char *s)
+int		putstr_printed(char *s, int fd)
 {
 	int		i;
 
 	i = 0;
 	while (s[i])
-		write(1, s + i++, 1);
+		write(1, s + i++, fd);
 	return (i);
 }
 

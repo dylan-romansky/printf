@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 15:47:32 by dromansk          #+#    #+#             */
-/*   Updated: 2019/01/09 17:18:29 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/01/10 15:01:42 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ typedef struct	s_flag
 	int			sharp;
 	int			zero;
 	int			dash;
+	int			plus;
 	int			space;
 	int			dot;
 	int			prec;
@@ -36,6 +37,8 @@ typedef struct	s_flag
 }				t_flag;
 
 int				ft_printf(const char *restrict format, ...);
+int				ft_dprintf(int fd, const char *restrict format, ...);
+char			*make_string(const char *restrict format, va_list *args);
 int				initflags(t_flag **input);
 int				set_flags(t_flag **flags, char *format, va_list *args);
 int				set_first(t_flag **input, char *format);
@@ -58,7 +61,7 @@ int				prec(char *format, va_list *args, t_flag **input);
 int				percentflag(char *format);
 char			*choose_ustring_maker(intmax_t i, t_flag *flags, int base);
 char			*choose_string_maker(intmax_t i, t_flag *flags);
-int				putstr_printed(char *s);
+int				putstr_printed(char *s, int fd);
 char			*handle_precision(char *s, t_flag *flags, char c);
 char			*neg_prec(char *s, t_flag *flags, char c);
 void			flag_del(t_flag **flags);

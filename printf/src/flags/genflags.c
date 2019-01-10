@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 15:18:32 by dromansk          #+#    #+#             */
-/*   Updated: 2019/01/09 15:26:53 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/01/10 15:19:23 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,12 +67,13 @@ int		set_more_flags(t_flag **flags, char *format, va_list *args)
 
 int		set_flags(t_flag **flags, char *format, va_list *args)
 {
-	if (*format == '-' || *format == ' ' || *format == '0' || *format == '#')
+	if (*format == '-' || *format == ' ' || *format == '0' || *format == '#'
+			|| *format == '+')
 	{
 		if (!set_first(flags, format))
 			return (0);
 		while (*format == '-' || *format == ' ' || *format == '0' ||
-				*format == '#')
+				*format == '#' || *format == '+')
 		{
 			if (*format == '0' && *(format + 1) != '0')
 				format++;
@@ -106,6 +107,7 @@ int		initflags(t_flag **input)
 		new->sharp = 0;
 		new->zero = 0;
 		new->dash = 0;
+		new->plus = 0;
 		new->space = 0;
 		new->dot = 0;
 		new->prec = 0;

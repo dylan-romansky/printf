@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/19 15:12:25 by dromansk          #+#    #+#             */
-/*   Updated: 2019/01/09 15:28:00 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/01/10 15:19:08 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int		set_first(t_flag **input, char *format)
 
 	flags = *input;
 	while (*format && (*format == '-' || *format == ' ' || *format == '0' ||
-				*format == '#'))
+				*format == '#' || *format == '+'))
 	{
 		if (*format == '-')
 			flags->dash = 1;
@@ -50,6 +50,8 @@ int		set_first(t_flag **input, char *format)
 			flags->zero = 1;
 		if (*format == '#')
 			flags->sharp = 1;
+		if (*format == '+')
+			flags->plus = 1;
 		format++;
 	}
 	return (1);
