@@ -12,67 +12,53 @@
 
 #include "libft.h"
 
-static size_t	ft_skipdelim(char const *st, char d)
+static char		**array_join(char **sentence, char *word)
 {
-	size_t i;
+	char	**old;
+	char	**new;
+	int		i;
+
+	old = *sentence;
+	new = NULL;
+	i = 0;
+	while (old[i])
+		i++;
+	i = -1;
+	if ((new = (char **)malloc(sizeof(char *) * (i + 2))))
+		while (old[++i])
+			new[i] = old[i];
+	free (sentence);
+	return (new);
+}
+
+static int		wordlen(char const *str, char d)
+{
+	int		i;
 
 	i = 0;
-	while (st[i] == d)
+	while (str[i] != d)
 		i++;
 	return (i);
 }
 
-static size_t	ft_wordlen(char const *str, char e)
-{
-	size_t j;
-
-	j = 0;
-	while (str[j] && str[j] != e)
-		j++;
-	return (j);
-}
-
-static size_t	ft_wordcount(char const *rts, char f)
-{
-	size_t wee;
-
-	wee = 0;
-	while (*rts)
-	{
-		rts += ft_skipdelim(rts, f);
-		if (*rts)
-		{
-			rts += ft_wordlen(rts, f);
-			wee++;
-		}
-	}
-	return (wee);
-}
-
 char			**ft_strsplit(char const *s, char c)
 {
-	int		a;
 	char	**n;
-	int		lim;
+	int		len;
 
-	a = 0;
-	if (s == NULL)
+	if (s == NULL || !(n = (char **)malloc(sizeof(char *))))
 		return (NULL);
-	lim = (int)ft_wordcount(s, c);
-	if ((n = (char **)malloc(sizeof(char *) * (lim + 1))))
+	*n = NULL;
+	while (*s)
 	{
-		while (lim--)
+		if (*s == c)
+			s++;
+		else
 		{
-			while (*s == c && *s)
-				s++;
-			n[a] = ft_strsub(s, 0, ft_wordlen(s, c));
-			if (n[a] == NULL)
-				return (NULL);
-			s += ft_wordlen(s, c);
-			a++;
+			len = wordlen(s, c);
+			n = array_join(n, ft_strndup(s, (size_t)len));
+			s += len;
 		}
-		n[a] = 0;
-		return (n);
 	}
-	return (NULL);
+	return (n);
 }
