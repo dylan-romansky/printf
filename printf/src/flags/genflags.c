@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 15:18:32 by dromansk          #+#    #+#             */
-/*   Updated: 2019/01/08 20:51:16 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/01/09 15:26:53 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,27 +18,21 @@ int		percentflag(char *format)
 	int		i;
 
 	i = 0;
-	if (*format == '%')
+	if (format[i] == '%')
 	{
-		if (*(format + 1) == '%')
+		if (format[i + 1] == '%')
 			return (1);
-		else if (*(format - 1) == '%')
+		else if (format[i - 1] == '%')
 			return (-1);
 		else
-		{
-			format++;
 			i++;
-		}
 	}
-	while (*format && !(*format == 'd' || *format == 'i' || *format == 'u' ||
-				*format == 'o' || *format == 'x' || *format == 'X' ||
-				*format == 'c' || *format == 's' || *format == 'p' ||
-				*format == 'f' || *format == '%'))
-	{
-		format++;
+	while (format[i] && !(format[i] == 'd' || format[i] == 'i' ||
+				format[i] == 'u' || format[i] == 'o' || format[i] == 'x' ||
+				format[i] == 'X' || format[i] == 'c' || format[i] == 's' ||
+				format[i] == 'p' || format[i] == 'f' || format[i] == '%'))
 		i++;
-	}
-	if (*format == '%')
+	if (format[i] == '%')
 		return (i);
 	return (0);
 }
@@ -105,7 +99,7 @@ int		initflags(t_flag **input)
 		new->hh = 0;
 		new->l = 0;
 		new->ll = 0;
-		new->L = 0;
+		new->el = 0;
 		new->j = 0;
 		new->f = 0;
 		new->percent = 0;

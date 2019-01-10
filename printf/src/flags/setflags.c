@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/19 15:12:25 by dromansk          #+#    #+#             */
-/*   Updated: 2019/01/08 20:51:40 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/01/09 15:28:00 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int		flag_skip(char *format)
 {
 	int		i;
 
-	i = 0;//percentflag(format);
+	i = 0;
 	if (*format == '%' && *(format - 1) != '%')
 	{
 		format++;
@@ -106,7 +106,7 @@ int		set_length(t_flag **input, char *format)
 			flags->l = 1;
 	}
 	if (*format == 'L')
-		flags->L = 1;
+		flags->el = 1;
 	if (*format == 'j')
 		flags->j = 1;
 	return (1);

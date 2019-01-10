@@ -6,15 +6,12 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/12 14:34:10 by dromansk          #+#    #+#             */
-/*   Updated: 2019/01/08 20:30:56 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/01/09 16:00:26 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "printf.h"
-
-/* verify pointer works as intended. Debug precision and width. */
-/* bigger issue, doesn't handle % properly */
 
 char	*str_to_arg(char *format)
 {
@@ -59,7 +56,7 @@ char	*get_data(va_list *args, char *format)
 	return (s);
 }
 
-int		ft_printf(const char * restrict format, ...)
+int		ft_printf(const char *restrict format, ...)
 {
 	va_list	args;
 	char	*string;
@@ -78,11 +75,11 @@ int		ft_printf(const char * restrict format, ...)
 			break ;
 		buf = get_data(&args, (char *)format);
 		string = swap_n_free(ft_strjoin(string, buf), &string);
-		free (buf);
+		free(buf);
 		format += flag_skip((char *)format) + 1;
 	}
 	va_end(args);
 	printed = putstr_printed(string);
-	free (string);
+	free(string);
 	return (printed);
 }

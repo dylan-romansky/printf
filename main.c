@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/13 14:34:29 by dromansk          #+#    #+#             */
-/*   Updated: 2019/01/08 21:47:27 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/01/09 17:24:28 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 #include <stdio.h>
 
 int		main(void){
-
-	intmax_t	i = 4294967296;
-	printf("expected:\n%jx\n\n", i);
-	ft_printf("result:\n%jx\n", i);
+	printf("expected:\n%#8x\n\n", 42);
+	ft_printf("result:\n%#8x\n", 42);
 	return (0);}

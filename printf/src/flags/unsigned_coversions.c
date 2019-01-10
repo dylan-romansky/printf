@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/04 00:06:38 by dromansk          #+#    #+#             */
-/*   Updated: 2019/01/08 21:46:19 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/01/09 15:04:25 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,18 +16,18 @@
 int		unumlen(unsigned long long value, unsigned int base)
 {
 	int					i;
-	
+
 	i = 1;
 	while (value /= base)
 		i++;
 	return (i);
 }
 
-char		*ft_uimaxtoa_base(uintmax_t n, int base)
+char	*ft_uimaxtoa_base(uintmax_t n, int base)
 {
-	char		*s;
-	uintmax_t	v;
-	long		i;
+	char				*s;
+	uintmax_t			v;
+	long				i;
 
 	v = n;
 	i = unumlen(n, base);
@@ -83,7 +83,7 @@ char	*ft_uitoa_base(unsigned int value, int base)
 char	*choose_ustring_maker(intmax_t i, t_flag *flags, int base)
 {
 	if (flags->j)
-		return (ft_uimaxtoa_base((unsigned)i, base));
+		return (ft_uimaxtoa_base((uintmax_t)i, base));
 	if (flags->l)
 		return (ft_ultoa_base((unsigned long)i, base));
 	if (flags->ll)

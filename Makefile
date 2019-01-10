@@ -6,7 +6,7 @@
 #    By: dromansk <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/10/22 14:53:52 by dromansk          #+#    #+#              #
-#    Updated: 2019/01/02 17:33:14 by dromansk         ###   ########.fr        #
+#    Updated: 2019/01/09 17:07:10 by dromansk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ I = -I ./libft/includes -I ./printf/includes
 
 O = *.o
 
-L = -L ./libft -lft
+L = -L ./ -lftprintf
 
 all: $(NAME)
 
@@ -39,5 +39,5 @@ reclean: re
 	rm -rf $(O)
 
 test: reclean
-	gcc main.c -I ./printf/includes -L ./ -lftprintf
+	gcc main.c -I ./printf/includes $(L)
 	./a.out

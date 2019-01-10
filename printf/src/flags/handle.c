@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/27 14:19:16 by dromansk          #+#    #+#             */
-/*   Updated: 2019/01/08 21:38:17 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/01/09 15:12:19 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,10 @@ char	*get_num(char c, intmax_t i, t_flag *flags)
 	if (c == 'x')
 		return (format_string(choose_ustring_maker(i, flags, 16), flags, c));
 	if (c == 'X')
+	{
 		return (ft_strupper(format_string(choose_ustring_maker(i, flags, 16),
-						flags,c)));
+						flags, c)));
+	}
 	return (NULL);
 }
 

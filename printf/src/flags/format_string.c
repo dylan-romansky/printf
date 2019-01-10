@@ -6,39 +6,33 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/27 15:32:04 by dromansk          #+#    #+#             */
-/*   Updated: 2019/01/08 20:47:54 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/01/09 17:24:08 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "printf.h"
 
-/* make sure this handles all the formatting variables */
-/* something's wrong with the width return			   */
-
-char	*handle_width(char *s, t_flag *flags)
+char	*handle_width(char *s, t_flag *flags, char c)
 {
-	char	*c;
+	char	*p;
 	char	*n;
 	int		len;
 
 	len = (int)ft_strlen(s);
 	n = NULL;
-	if (flags->zero && !flags->dash && ((len < flags->prec && flags->dot) ||
-				(!flags->dot)))
-		c = ft_strdup("0");
-	else
-		c = ft_strdup(" ");
+	p = (flags->zero && !flags->dash && ((len < flags->prec && flags->dot) ||
+				(!flags->dot))) ? ft_strdup("0") : ft_strdup(" ");
 	n = ft_strdup(s);
 	while (len < flags->width)
 	{
 		if (flags->dash)
-			n = swap_n_free(ft_strjoin(n, c), &n);
+			n = swap_n_free(ft_strjoin(n, p), &n);
 		else
-			n = swap_n_free(ft_strjoin(c, n), &n);
+			n = swap_n_free(ft_strjoin(p, n), &n);
 		len++;
 	}
-	free (c);
+	free(p);
 	return (n);
 }
 
@@ -60,7 +54,6 @@ char	*handle_space(char *s)
 char	*handle_precision(char *s, t_flag *flags, char c)
 {
 	char	*t;
-	char	*tmp;
 	char	*n;
 	int		len;
 
@@ -68,39 +61,32 @@ char	*handle_precision(char *s, t_flag *flags, char c)
 		return (neg_prec(s, flags, c));
 	t = ft_strdup("0");
 	n = ft_strdup(s);
-	tmp = NULL;
 	len = (int)ft_strlen(s);
 	if (len < flags->prec)
 		if (c != 'c' && c != 's')
 			while (len < flags->prec)
 			{
-				tmp = ft_strjoin(t, n);
-				free (n);
-				n = tmp;
-				tmp = NULL;
-				free (tmp);
+				n = swap_n_free(ft_strjoin(t, n), &n);
 				len++;
 			}
 	if (len > flags->prec && (c == 'f' || c == 's'))
-		tmp = ft_strndup(n, flags->prec);
-	free (t);
-	free (tmp);
+		n = swap_n_free(ft_strndup(n, flags->prec), &n);
+	free(t);
 	return (n);
 }
 
-char	*alt(char *s, char c)
+char	*alt(char *s, t_flag *flags, char c)
 {
 	char	*n;
 
-	n = NULL;
+	n = ft_strdup(s);
 	if (ft_strequ(s, "0"))
 		return (ft_strdup(s));
 	if (s[0] != '0' && c == 'o')
-		 n = ft_strjoin("0", s);
-	else if ((c == 'x' || c == 'X' || c == 'p') && !(s[1] == 'x' || s[1] == 'X'))
-		n = ft_strjoin("0x", s);
-	else
-		n = ft_strdup(s);
+		n = swap_n_free(ft_strjoin("0", s), &n);
+	else if ((c == 'x' || c == 'X' || c == 'p') &&
+			!(s[1] == 'x' || s[1] == 'X'))
+		n = swap_n_free(ft_strjoin("0x", s), &n);
 	return (n);
 }
 
@@ -108,21 +94,21 @@ char	*format_string(char *s, t_flag *flags, char c)
 {
 	char	*n;
 
-	n = s;
-	if (!n && c == 's')
-		return (ft_strdup("(null)"));
-	if (!n && c == 'p')
-		return (ft_strdup("0x0"));
-	if (!n && c == 'c')
-		return (ft_strdup(""));
+	if (!s)
+		return (null_cases(c));
 	if (float_check(s))
 		return (s);
+	n = s;
 	if (flags->dot && c != 'f')
 		n = swap_n_free(handle_precision(n, flags, c), &n);
 	if (flags->sharp)
-		n = swap_n_free(alt(n, c), &n);
+	{
+		if (flags->zero)
+			n = swap_n_free(format_alt(n, flags, c), &n);
+		n = swap_n_free(alt(n, flags, c), &n);
+	}
 	if (flags->width)
-		n = swap_n_free(handle_width(n, flags), &n);
+		n = swap_n_free(handle_width(n, flags, c), &n);
 	if (flags->space && c != '%')
 		n = swap_n_free(handle_space(n), &n);
 	return (n);

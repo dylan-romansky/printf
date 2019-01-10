@@ -6,14 +6,14 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/08 21:02:36 by dromansk          #+#    #+#             */
-/*   Updated: 2019/01/08 21:44:52 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/01/09 15:09:15 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "printf.h"
 #include "libft.h"
 
- long		numlen(int n)
+long		numlen(int n)
 {
 	long		i;
 
@@ -23,7 +23,7 @@
 	return (i);
 }
 
-static long unumlen(uintmax_t n, int base)
+static long	unumlen(uintmax_t n, int base)
 {
 	long long	i;
 

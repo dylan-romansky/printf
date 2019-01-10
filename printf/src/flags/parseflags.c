@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/27 13:50:27 by dromansk          #+#    #+#             */
-/*   Updated: 2019/01/08 20:52:16 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/01/09 17:08:27 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ char	*parse_chars(char c, t_flag *flags, va_list *args)
 	}
 	if (c == 's')
 	{
-		free(s);
-		return (format_string(va_arg(*args, char *), flags, c));
+		s = va_arg(*args, char *);
+		return (format_string(ft_strdup(s), flags, c));
 	}
 	return (NULL);
 }
@@ -46,7 +46,7 @@ char	*parse_float(char c, t_flag *flags, va_list *args)
 {
 	long double	f;
 
-	if (flags->L)
+	if (flags->el)
 		f = va_arg(*args, long double);
 	else
 		f = va_arg(*args, double);
@@ -64,6 +64,8 @@ char	*parse_pointer(char c, t_flag *flags, va_list *args)
 	char		*s;
 
 	s = va_arg(*args, char *);
+	if (!s)
+		return (format_string(NULL, flags, c));
 	p = (size_t)s;
 	ft_strclr(s);
 	free(s);
