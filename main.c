@@ -14,6 +14,6 @@
 #include <stdio.h>
 
 int		main(void){
-	printf("expected:\n%#8x\n\n", 42);
-	ft_printf("result:\n%#8x\n", 42);
+	printf("expected:\n%#12.x\n%#12.0x\n", 0, 0);
+	ft_printf("result:\n%#12.x\n%#12.0x\n", 0, 0);
 	return (0);}

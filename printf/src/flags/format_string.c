@@ -69,7 +69,7 @@ char	*handle_precision(char *s, t_flag *flags, char c)
 				n = swap_n_free(ft_strjoin(t, n), &n);
 				len++;
 			}
-	if (len > flags->prec && (c == 'f' || c == 's'))
+	if (len > flags->prec && c != 'p') /* make sure you didn't break things by checking more than f s */
 		n = swap_n_free(ft_strndup(n, flags->prec), &n);
 	free(t);
 	return (n);
@@ -101,7 +101,7 @@ char	*format_string(char *s, t_flag *flags, char c)
 	n = s;
 	if (flags->dot && c != 'f')
 		n = swap_n_free(handle_precision(n, flags, c), &n);
-	if (flags->sharp)
+	if (flags->sharp && !flags->dot)
 	{
 		if (flags->zero)
 			n = swap_n_free(format_alt(n, flags, c), &n);
