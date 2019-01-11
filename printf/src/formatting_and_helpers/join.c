@@ -36,6 +36,7 @@ char	*joining(char **string, char *buf, int len, int buflen)
 		return (NULL);
 	new = force_copy(new, *string, len);
 	new = (force_copy(new + len, buf, buflen) - len);
+	free(*string);
 	return (new);
 }
 
