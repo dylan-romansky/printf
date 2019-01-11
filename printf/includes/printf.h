@@ -70,7 +70,7 @@ int				float_check(char *s);
 char			*null_cases(char c);
 char			*format_alt(char *s, t_flag *flags, char c);
 char			*handle_width(char *s, t_flag *flags, char c);
-char			*join_n_free(char **string, char *buf, int len, int buflen);
+char			*joining(char **string, char *buf, int len, int buflen);
 int				find_size(t_flag *flags, char *str, char c);
 
 #endif

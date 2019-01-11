@@ -77,7 +77,7 @@ int		make_string(const char *restrict format, va_list *args, int fd)
 		skip = ft_strlen(buf);
 		format += skip;
 		printf("seg2\n");//clear
-		string = join_n_free(&string, buf, len, skip);
+		string = joining(&string, buf, len, skip);
 		printf("%s\n", string);
 		len += skip;
 		free(buf);
@@ -86,7 +86,7 @@ int		make_string(const char *restrict format, va_list *args, int fd)
 		printf("seg3\n");//clear
 		skip = get_data(args, (char *)format, &buf);
 		printf("seg4\n");//clear
-		string = join_n_free(&string, buf, len, skip);
+		string = joining(&string, buf, len, skip);
 		printf("seg5\n");//clear
 		free(buf);
 		len += skip;

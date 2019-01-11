@@ -13,31 +13,29 @@
 #include "printf.h"
 #include "libft.h"
 
-char	*join_n_free(char **string, char *buf, int len, int buflen)
+char	*force_copy(char *dst, const char *src, size_t len)
+{
+	size_t	i;
+	
+	i = 0;
+	while (i < len)
+	{
+		dst[i] = src[i];
+		i++;
+	}
+	return (dst);
+}
+
+char	*joining(char **string, char *buf, int len, int buflen)
 {
 	char	*new;
-	int		i;
-	int		j;
 
-	if (!string || !*string)
+	if (!(string && *string))
 		return (buf);
-	printf("string %s\nbuf %s\nlen %d\n buflen %d\n", *string, buf, len, buflen);//clear`
-	new = ft_strnew(len + buflen);
-	i = -1;
-	j = 0;
-	printf("i %d\n", i);
-	while (++i < len)
-	{
-		printf("add %c\n", *string[i]);
-		new[i] = *string[i];
-	}
-	printf("i %d\n", i);
-	while (j < buflen)
-	{printf("add %c\n", buf[j]);
-		new[i++] = buf[j++];
-	}
-	printf("nuh\n");
-	free(*string);
+	if (!(new = ft_strnew(len + buflen)))
+		return (NULL);
+	new = force_copy(new, *string, len);
+	new = (force_copy(new + len, buf, buflen) - len);
 	return (new);
 }
 
