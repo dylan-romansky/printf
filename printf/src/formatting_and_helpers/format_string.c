@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/27 15:32:04 by dromansk          #+#    #+#             */
-/*   Updated: 2019/01/10 18:50:54 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/01/10 19:04:45 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,6 +117,8 @@ int		format_string(char *s, t_flag *flags, char c, char **buf)
 		n = swap_n_free(handle_width(n, flags, c), &n);
 	if ((flags->space || flags->plus) && (c == 'i' || c == 'd'))
 		n = swap_n_free(handle_space(n, flags), &n);
+	if (c == 'X')
+		n = ft_strupper(n);//make sure no leak
 	*buf = n;
 	size = find_size(flags, n, c);
 	return (size);
