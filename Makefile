@@ -6,14 +6,14 @@
 #    By: dromansk <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/10/22 14:53:52 by dromansk          #+#    #+#              #
-#    Updated: 2019/01/10 15:17:51 by dromansk         ###   ########.fr        #
+#    Updated: 2019/01/10 15:34:21 by dromansk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libftprintf.a
 
 SRCS = ./printf/src/*.c ./printf/src/conversion/*.c \
-./printf/src/handling_and_checks/*.c ./printf/src/flags/*.c \
+./printf/src/parsing_and_handling/*.c ./printf/src/flags/*.c \
 ./printf/src/formatting_and_helpers/*.c ./libft/src/*.c
 
 I = -I ./libft/includes -I ./printf/includes

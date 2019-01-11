@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/27 13:50:27 by dromansk          #+#    #+#             */
-/*   Updated: 2019/01/09 17:08:27 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/01/10 16:43:55 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,12 @@ char	*parse_chars(char c, t_flag *flags, va_list *args)
 		s = (char *)malloc(sizeof(char) * 2);
 		s[0] = (char)va_arg(*args, int);
 		s[1] = 0;
-		return (format_string(s, flags, c));
+		return (s);
 	}
 	if (c == 's')
 	{
 		s = va_arg(*args, char *);
-		return (format_string(ft_strdup(s), flags, c));
+		return (ft_strdup(s));
 	}
 	return (NULL);
 }
@@ -55,7 +55,7 @@ char	*parse_float(char c, t_flag *flags, va_list *args)
 		flags->dot = 1;
 		flags->prec = 6;
 	}
-	return (format_string(ft_ftoa(f, flags->prec), flags, c));
+	return (ft_ftoa(f, flags->prec));
 }
 
 char	*parse_pointer(char c, t_flag *flags, va_list *args)
@@ -65,9 +65,9 @@ char	*parse_pointer(char c, t_flag *flags, va_list *args)
 
 	s = va_arg(*args, char *);
 	if (!s)
-		return (format_string(NULL, flags, c));
+		return (NULL);
 	p = (size_t)s;
 	ft_strclr(s);
 	free(s);
-	return (format_string(ft_ltoa_base(p, 16), flags, c));
+	return (ft_ltoa_base(p, 16));
 }

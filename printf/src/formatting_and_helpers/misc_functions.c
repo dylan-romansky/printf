@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/04 00:06:38 by dromansk          #+#    #+#             */
-/*   Updated: 2019/01/10 14:35:13 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/01/10 16:53:28 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,13 @@ void	flag_del(t_flag **flags)
 		free(*flags);
 }
 
-int		putstr_printed(char *s, int fd)
+void	putnstr_fd(char *s, int fd, size_t len)
 {
 	int		i;
 
 	i = 0;
-	while (s[i])
+	while (len--)
 		write(1, s + i++, fd);
-	return (i);
 }
 
 char	*neg_prec(char *s, t_flag *flags, char c)
@@ -66,7 +65,5 @@ char	*null_cases(char c)
 		return (ft_strdup("(null)"));
 	if (c == 'p')
 		return (ft_strdup("0x0"));
-	if (c == 'c')
-		return (ft_strdup(""));
 	return (NULL);
 }

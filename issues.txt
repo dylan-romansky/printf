@@ -1,19 +1,14 @@
-# 0073 (NULL)
-  ft_printf("@moulitest: %s", NULL);
-includes/projects/ft_printf/ft_printf_main.sh: line 198: printf: includes/projects/ft_printf/ft_printf_main.sh: line 151: 61754 Segmentation fault: 11  ./tmp/ft_printf_s sN "@moulitest: %s" ""$: invalid number
-  1. (    0) -->includes/projects/ft_printf/ft_printf_main.sh: line 151: 61754 Segmentation fault: 11  ./tmp/ft_printf_s sN "@moulitest: %s" "NULL"$<--
-  2. (   18) -->@moulitest: (null)<--
+FAILED TESTS:\n
+# TEST NUMBER (TYPE OF ARG)
+  INSTRUCTION();
+  1. your function ft_printf
+  2. unix function printf
+     (returned value) -->written on stdout<--
 
-# 0074 (NULL)
+# 0074 
   ft_printf("%.2c", NULL);
   1. (    0) --><--
   2. (    1) -->^@<--
-
-# 0075 (NULL)
-  ft_printf("%s %s", NULL, string);
-includes/projects/ft_printf/ft_printf_main.sh: line 198: printf: includes/projects/ft_printf/ft_printf_main.sh: line 151: 61917 Segmentation fault: 11  ./tmp/ft_printf_s sN "%s %s" "" "string"$: invalid number
-  1. (    0) -->includes/projects/ft_printf/ft_printf_main.sh: line 151: 61917 Segmentation fault: 11  ./tmp/ft_printf_s sN "%s %s" "NULL" "string"$<--
-  2. (   13) -->(null) string<--
 
 # 0079 (char)
   ft_printf("@moulitest: %c", 0);

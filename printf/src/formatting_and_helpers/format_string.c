@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/27 15:32:04 by dromansk          #+#    #+#             */
-/*   Updated: 2019/01/10 15:26:35 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/01/10 18:10:55 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,8 @@ char	*handle_precision(char *s, t_flag *flags, char c)
 				n = swap_n_free(ft_strjoin(t, n), &n);
 				len++;
 			}
-	if ((c == 's' || ft_strequ(n, "0")) && len > flags->prec) /* make sure you didn't break things by checking more than f s */
+	if ((c == 's' || ft_strequ(n, "0")) && len > flags->prec)
+		/* make sure you didn't break things by checking more than f s */
 		n = swap_n_free(ft_strndup(n, flags->prec), &n);
 	free(t);
 	return (n);
@@ -79,6 +80,8 @@ char	*alt(char *s, t_flag *flags, char c)
 {
 	char	*n;
 
+	if (flags->zero)
+		return (format_alt(s, flags, c));
 	n = ft_strdup(s);
 	if (ft_strequ(s, "0"))
 		return (ft_strdup(s));
@@ -90,26 +93,32 @@ char	*alt(char *s, t_flag *flags, char c)
 	return (n);
 }
 
-char	*format_string(char *s, t_flag *flags, char c)
+int		format_string(char *s, t_flag *flags, char c, char **buf)
 {
 	char	*n;
+	size_t	size;
 
 	if (!s)
-		return (null_cases(c));
-	if (float_check(s))
-		return (s);
+	{
+		*buf = null_cases(c);
+		return (ft_strlen(*buf));
+	}
+	if (c == 'f' && float_check(s))
+	{
+		*buf = s;
+		return (ft_strlen(s));
+	}
 	n = s;
 	if (flags->dot && c != 'f')
 		n = swap_n_free(handle_precision(n, flags, c), &n);
 	if (flags->sharp && !flags->dot)
-	{
-		if (flags->zero)
-			n = swap_n_free(format_alt(n, flags, c), &n);
 		n = swap_n_free(alt(n, flags, c), &n);
-	}
 	if (flags->width)
 		n = swap_n_free(handle_width(n, flags, c), &n);
 	if ((flags->space || flags->plus) && (c == 'i' || c == 'd'))
 		n = swap_n_free(handle_space(n, flags), &n);
-	return (n);
+	*buf = n;
+	size = find_size(flags, n, c);
+	printf("strlen %d\nprec %d\nwidth %d\n", ft_strlen(n), flags->prec, flags->width);
+	return (size);
 }
