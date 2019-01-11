@@ -5,16 +5,6 @@ FAILED TESTS:\n
   2. unix function printf
      (returned value) -->written on stdout<--
 
-# 0044 (int)
-  ft_printf("%#08x", 42);
-  1. (    8) -->0000002a<--
-  2. (    8) -->0x00002a<--
-
-# 0045 (int)
-  ft_printf("%#-08x", 42);
-  1. (    8) -->2a      <--
-  2. (    8) -->0x2a    <--
-
 # 0046 (int)
   ft_printf("@moulitest: %#.x %#.0x", 0, 0);
   1. (   15) -->@moulitest: ^@ ^@<--

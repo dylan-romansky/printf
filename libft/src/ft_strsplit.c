@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/23 23:06:12 by dromansk          #+#    #+#             */
-/*   Updated: 2018/11/08 16:38:18 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/01/10 20:27:55 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static char		**array_join(char **sentence, char *word)
 		new[i++] = word;
 		new[i] = NULL;
 	}
-	free (sentence);
+	free(sentence);
 	return (new);
 }
 

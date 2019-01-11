@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/13 14:34:29 by dromansk          #+#    #+#             */
-/*   Updated: 2019/01/10 18:13:44 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/01/10 20:44:33 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,6 @@
 #include <stdio.h>
 
 int		main(void){
-	printf("expected:\n%.2c\n", NULL);
-	ft_printf("result:\n%.2c\n", NULL);
+//	printf("expected:\n%.2s is a string", "");
+	ft_printf("result:\n%.2s is a string", "");
 	return (0);}

@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/12 14:34:10 by dromansk          #+#    #+#             */
-/*   Updated: 2019/01/10 18:45:41 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/01/10 20:33:24 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,14 +75,12 @@ int		make_string(const char *restrict format, va_list *args, int fd)
 		buf = str_to_arg((char *)format);
 		skip = ft_strlen(buf);
 		format += skip;
-		string = joining(&string, buf, len, skip);
+		string = joining(&string, &buf, len, skip);
 		len += skip;
-		free(buf);
 		if (!(*format))
 			break ;
 		skip = get_data(args, (char *)format, &buf);
-		string = joining(&string, buf, len, skip);
-		free(buf);
+		string = joining(&string, &buf, len, skip);
 		len += skip;
 		format += flag_skip((char *)format) + 1;
 	}

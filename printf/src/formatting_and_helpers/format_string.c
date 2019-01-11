@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/27 15:32:04 by dromansk          #+#    #+#             */
-/*   Updated: 2019/01/10 19:04:45 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/01/10 20:43:38 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,6 @@ char	*handle_precision(char *s, t_flag *flags, char c)
 				len++;
 			}
 	if ((c == 's' || ft_strequ(n, "0")) && len > flags->prec)
-		/* make sure you didn't break things by checking more than f s */
 		n = swap_n_free(ft_strndup(n, flags->prec), &n);
 	free(t);
 	return (n);
@@ -80,23 +79,23 @@ char	*alt(char *s, t_flag *flags, char c)
 {
 	char	*n;
 
-	if (flags->zero)
-		return (format_alt(s, flags, c));
-	n = ft_strdup(s);
 	if (ft_strequ(s, "0"))
 		return (ft_strdup(s));
-	if (s[0] != '0' && c == 'o')
-		n = swap_n_free(ft_strjoin("0", s), &n);
+	if (flags->zero)
+		n = format_alt(s, flags, c);
+	else
+		n = ft_strdup(s);
+	if (n[0] != '0' && c == 'o')
+		n = swap_n_free(ft_strjoin("0", n), &n);
 	else if ((c == 'x' || c == 'X' || c == 'p') &&
-			!(s[1] == 'x' || s[1] == 'X'))
-		n = swap_n_free(ft_strjoin("0x", s), &n);
+			!(n[1] == 'x' || n[1] == 'X'))
+		n = swap_n_free(ft_strjoin("0x", n), &n);
 	return (n);
 }
 
 int		format_string(char *s, t_flag *flags, char c, char **buf)
 {
 	char	*n;
-	size_t	size;
 
 	if (!s)
 	{
@@ -118,8 +117,7 @@ int		format_string(char *s, t_flag *flags, char c, char **buf)
 	if ((flags->space || flags->plus) && (c == 'i' || c == 'd'))
 		n = swap_n_free(handle_space(n, flags), &n);
 	if (c == 'X')
-		n = ft_strupper(n);//make sure no leak
+		n = ft_strupper(n);
 	*buf = n;
-	size = find_size(flags, n, c);
-	return (size);
+	return (find_size(flags, n, c));
 }
