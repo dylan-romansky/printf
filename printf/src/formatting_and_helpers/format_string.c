@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/27 15:32:04 by dromansk          #+#    #+#             */
-/*   Updated: 2019/01/10 18:10:55 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/01/10 18:50:54 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,6 +119,5 @@ int		format_string(char *s, t_flag *flags, char c, char **buf)
 		n = swap_n_free(handle_space(n, flags), &n);
 	*buf = n;
 	size = find_size(flags, n, c);
-	printf("strlen %d\nprec %d\nwidth %d\n", ft_strlen(n), flags->prec, flags->width);
 	return (size);
 }

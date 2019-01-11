@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/10 14:33:12 by dromansk          #+#    #+#             */
-/*   Updated: 2019/01/10 16:24:12 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/01/10 18:44:53 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int		ft_printf(const char *restrict format, ...)
 	int		printed;
 
 	va_start(args, format);
-	printed = make_string(format, &args, 0);
+	printed = make_string(format, &args, 1);
 	va_end(args);
 	return (printed);
 }

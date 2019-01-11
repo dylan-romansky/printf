@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/12 14:34:10 by dromansk          #+#    #+#             */
-/*   Updated: 2019/01/10 18:08:55 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/01/10 18:45:41 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,27 +72,20 @@ int		make_string(const char *restrict format, va_list *args, int fd)
 	skip = 0;
 	while (*format)
 	{
-		printf("seg1\n");//clear
 		buf = str_to_arg((char *)format);
 		skip = ft_strlen(buf);
 		format += skip;
-		printf("seg2\n");//clear
 		string = joining(&string, buf, len, skip);
-		printf("%s\n", string);
 		len += skip;
 		free(buf);
 		if (!(*format))
 			break ;
-		printf("seg3\n");//clear
 		skip = get_data(args, (char *)format, &buf);
-		printf("seg4\n");//clear
 		string = joining(&string, buf, len, skip);
-		printf("seg5\n");//clear
 		free(buf);
 		len += skip;
 		format += flag_skip((char *)format) + 1;
 	}
-	printf("seg\n");//clear
 	putnstr_fd(string, fd, len);
 	free(string);
 	return (len);
