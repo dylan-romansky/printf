@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/04 00:06:38 by dromansk          #+#    #+#             */
-/*   Updated: 2019/01/09 15:04:25 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/01/11 17:55:41 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ char	*ft_uitoa_base(unsigned int value, int base)
 	s[i] = '\0';
 	while (i--)
 	{
+	//	printf("int %d\nrelated char %c\n", (int)(n % base), base_table((int)(n % base)));
 		s[i] = base_table((int)(n % base));
 		n /= base;
 	}

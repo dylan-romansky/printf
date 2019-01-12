@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 15:47:32 by dromansk          #+#    #+#             */
-/*   Updated: 2019/01/10 20:33:06 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/01/11 16:13:49 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,5 +72,6 @@ char			*format_alt(char *s, t_flag *flags, char c);
 char			*handle_width(char *s, t_flag *flags, char c);
 char			*joining(char **string, char **buf, int len, int buflen);
 int				find_size(t_flag *flags, char *str, char c);
+int				nullcheck(char *s);
 
 #endif

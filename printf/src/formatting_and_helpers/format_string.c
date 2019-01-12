@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/27 15:32:04 by dromansk          #+#    #+#             */
-/*   Updated: 2019/01/10 20:43:38 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/01/11 18:33:39 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ char	*handle_width(char *s, t_flag *flags, char c)
 	char	*n;
 	int		len;
 
-	len = (int)ft_strlen(s);
+	len = (c == 'c') ? 1 : (int)ft_strlen(s);
 	n = NULL;
 	p = (flags->zero && !flags->dash && ((len < flags->prec && flags->dot) ||
 				(!flags->dot))) ? ft_strdup("0") : ft_strdup(" ");
@@ -27,7 +27,8 @@ char	*handle_width(char *s, t_flag *flags, char c)
 	while (len < flags->width)
 	{
 		if (flags->dash)
-			n = swap_n_free(ft_strjoin(n, p), &n);
+			n = swap_n_free((nullcheck(s)) ?  ft_strjoin_len(n, p, len, 1) :
+					ft_strjoin(n, p), &n);
 		else
 			n = swap_n_free(ft_strjoin(p, n), &n);
 		len++;
@@ -62,6 +63,8 @@ char	*handle_precision(char *s, t_flag *flags, char c)
 	t = ft_strdup("0");
 	n = ft_strdup(s);
 	len = (int)ft_strlen(s);
+	if (len > flags->prec && (c == 's' || c == 'p' || ft_strequ("0", s)))
+		n = swap_n_free(ft_strndup(n, flags->prec), &n);
 	if (len < flags->prec)
 		if (c != 'c' && c != 's')
 			while (len < flags->prec)
@@ -69,9 +72,6 @@ char	*handle_precision(char *s, t_flag *flags, char c)
 				n = swap_n_free(ft_strjoin(t, n), &n);
 				len++;
 			}
-	if ((c == 's' || ft_strequ(n, "0")) && len > flags->prec)
-		n = swap_n_free(ft_strndup(n, flags->prec), &n);
-	free(t);
 	return (n);
 }
 
@@ -108,9 +108,9 @@ int		format_string(char *s, t_flag *flags, char c, char **buf)
 		return (ft_strlen(s));
 	}
 	n = s;
-	if (flags->dot && c != 'f')
+	if (flags->dot && c != 'f' && c != '%')
 		n = swap_n_free(handle_precision(n, flags, c), &n);
-	if (flags->sharp && !flags->dot)
+	if (flags->sharp && (!flags->dot || c == 'o'))
 		n = swap_n_free(alt(n, flags, c), &n);
 	if (flags->width)
 		n = swap_n_free(handle_width(n, flags, c), &n);

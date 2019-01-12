@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/08 21:02:36 by dromansk          #+#    #+#             */
-/*   Updated: 2019/01/09 15:09:15 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/01/11 18:36:19 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,6 @@ long		numlen(int n)
 
 	i = 1;
 	while (n /= 10)
-		i++;
-	return (i);
-}
-
-static long	unumlen(uintmax_t n, int base)
-{
-	long long	i;
-
-	i = 1;
-	while (n /= base)
 		i++;
 	return (i);
 }
