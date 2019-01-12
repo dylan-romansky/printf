@@ -6,12 +6,24 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/10 16:12:22 by dromansk          #+#    #+#             */
-/*   Updated: 2019/01/11 16:17:45 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/01/11 19:19:55 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "printf.h"
 #include "libft.h"
+
+char	*neg_width(char *s, t_flag *flags, char c)
+{
+	char *neg;
+	char *dig;
+
+	neg = ft_strdup("-");
+	flags->width -= 1;
+	dig = handle_width(s + 1, flags, c);
+	flags->width += 1;
+	return (ft_strjoin(neg, dig));
+}
 
 char	*force_copy(char *dst, const char *src, size_t len)
 {

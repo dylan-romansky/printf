@@ -6,14 +6,14 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/08 21:02:36 by dromansk          #+#    #+#             */
-/*   Updated: 2019/01/11 18:36:19 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/01/11 20:59:45 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "printf.h"
 #include "libft.h"
 
-long		numlen(int n)
+long		numlen(intmax_t n)
 {
 	long		i;
 
@@ -38,7 +38,7 @@ char		*ft_imaxtoa(intmax_t n)
 		s[i] = '\0';
 		while (i--)
 		{
-			s[i + neg] = (unsigned)(v % 10) + '0';
+			s[i + neg] = v < 0 ? -(v % 10) + '0' : (v % 10) + '0';
 			v /= 10;
 		}
 		if (neg)
@@ -50,6 +50,8 @@ char		*ft_imaxtoa(intmax_t n)
 
 char		*choose_string_maker(intmax_t i, t_flag *flags)
 {
+	if (flags->z)
+		return (ft_uimaxtoa_base(i, 10));
 	if (flags->j)
 		return (ft_imaxtoa(i));
 	if (flags->l)

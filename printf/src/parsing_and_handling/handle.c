@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/27 14:19:16 by dromansk          #+#    #+#             */
-/*   Updated: 2019/01/10 16:27:27 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/01/11 20:59:24 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ char	*get_num(char c, intmax_t i, t_flag *flags)
 		return (choose_string_maker(i, flags));
 	if (c == 'o')
 		return (choose_ustring_maker(i, flags, 8));
-	if (c == 'u')
+	if (c == 'u' || c == 'U')
 		return (choose_ustring_maker(i, flags, 10));
 	if (c == 'x' || c == 'X')
 		return (choose_ustring_maker(i, flags, 16));
@@ -44,11 +44,12 @@ char	*handle_h(char c, t_flag *flags, va_list *args)
 	return (NULL);
 }
 
-char	*handle_lj(char c, t_flag *flags, va_list *args)
+char	*handle_ljz(char c, t_flag *flags, va_list *args)
 {
 	long		i;
 	long long	j;
 	intmax_t	m;
+	ssize_t		z;
 
 	if (flags->l)
 	{
@@ -64,6 +65,13 @@ char	*handle_lj(char c, t_flag *flags, va_list *args)
 	{
 		m = va_arg(*args, intmax_t);
 		return (get_num(c, m, flags));
+	}
+	if (flags->z)
+	{
+		z = va_arg(*args, ssize_t);
+		if (z == -1)
+			return (ft_strdup("-1"));
+		return (get_num(c, z, flags));
 	}
 	return (NULL);
 }

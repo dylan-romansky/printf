@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/24 00:03:00 by dromansk          #+#    #+#             */
-/*   Updated: 2019/01/11 18:43:55 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/01/11 19:08:25 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,16 @@ char		*ft_itoa(int n)
 	char	*s;
 	long	v;
 	int		i;
+	int		c;
 
-	v = (n < 0) ? -n : n;
+	v = n;
 	i = (n < 0) ? numlen(n) + 1 : numlen(n);
 	if ((s = ft_strnew(i)))
 	{
 		while (i--)
 		{
-			s[i] = (v % 10) + '0';
+			c = v % 10;
+			s[i] = c < 0 ? -c + '0' : c + '0';
 			v /= 10;
 		}
 		if (n < 0)

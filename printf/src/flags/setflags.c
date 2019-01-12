@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/19 15:12:25 by dromansk          #+#    #+#             */
-/*   Updated: 2019/01/10 15:19:08 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/01/11 21:09:43 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int		flag_skip(char *format)
 	while (!(*format == 'd' || *format == 'i' || *format == 'u' ||
 				*format == 'o' || *format == 'x' || *format == 'X' ||
 				*format == 'c' || *format == 's' || *format == 'p' ||
-				*format == 'f' || *format == '%'))
+				*format == 'f' || *format == '%' || *format == 'U'))
 	{
 		format++;
 		i++;
@@ -100,13 +100,16 @@ int		set_length(t_flag **input, char *format)
 	t_flag	*flags;
 
 	flags = *input;
-	if (*format == 'l')
-	{
-		if (*(format + 1) == 'l')
-			flags->ll = 1;
-		else
+	if (*format == 'l' && *(format + 1) == 'l')
+		flags->ll = 1;
+	else if (*format == 'l' && *(format + 1) != 'l')
 			flags->l = 1;
-	}
+	if (*format == 'h' && *(format + 1) == 'h')
+		flags->hh = 1;
+	else if (*format == 'h' && *(format + 1) != 'h')
+		flags->h = 1;
+	if (*format == 'z')
+		flags->z = 1;
 	if (*format == 'L')
 		flags->el = 1;
 	if (*format == 'j')

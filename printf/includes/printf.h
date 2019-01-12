@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 15:47:32 by dromansk          #+#    #+#             */
-/*   Updated: 2019/01/11 16:13:49 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/01/11 20:52:23 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ typedef struct	s_flag
 	int			ll;
 	int			el;
 	int			j;
+	int			z;
 	int			f;
 	int			percent;
 	int			sharp;
@@ -47,7 +48,7 @@ int				set_width_and_prec(char *format, va_list *args);
 int				set_width(t_flag **input, char *format, va_list *args);
 int				set_length(t_flag **input, char *format);
 int				flag_skip(char *format);
-long			numlen(int n);
+long			numlen(intmax_t n);
 char			*ft_uimaxtoa(uintmax_t n, int base);
 char			*parse_numbers(char c, t_flag *flags, va_list *args);
 char			*parse_chars(char c, t_flag *flags, va_list *args);
@@ -55,7 +56,7 @@ char			*parse_float(char c, t_flag *flags, va_list *args);
 char			*parse_pointer(char c, t_flag *flags, va_list *args);
 char			*get_num(char c, intmax_t i, t_flag *flags);
 char			*handle_h(char c, t_flag *flags, va_list *args);
-char			*handle_lj(char c, t_flag *flags, va_list *args);
+char			*handle_ljz(char c, t_flag *flags, va_list *args);
 int				format_string(char *s, t_flag *flags, char c, char **buf);
 int				skip_nums(char *format);
 int				prec(char *format, va_list *args, t_flag **input);
@@ -73,5 +74,10 @@ char			*handle_width(char *s, t_flag *flags, char c);
 char			*joining(char **string, char **buf, int len, int buflen);
 int				find_size(t_flag *flags, char *str, char c);
 int				nullcheck(char *s);
+char			*handle_width(char *s, t_flag *flags, char c);
+char			*neg_width(char *s, t_flag *flags, char c);
+char			*ft_uimaxtoa_base(uintmax_t n, int base);
+char			*ft_sizetoa_base(size_t n, int base);
+char			*space_z(char *s, t_flag *flags, char c);
 
 #endif

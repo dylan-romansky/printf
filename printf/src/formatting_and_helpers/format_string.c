@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/27 15:32:04 by dromansk          #+#    #+#             */
-/*   Updated: 2019/01/11 18:33:39 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/01/11 20:57:52 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ char	*handle_width(char *s, t_flag *flags, char c)
 	char	*n;
 	int		len;
 
+	if (s[0] == '-' && flags->zero)
+		return (neg_width(s, flags, c));
 	len = (c == 'c') ? 1 : (int)ft_strlen(s);
 	n = NULL;
 	p = (flags->zero && !flags->dash && ((len < flags->prec && flags->dot) ||
@@ -37,18 +39,20 @@ char	*handle_width(char *s, t_flag *flags, char c)
 	return (n);
 }
 
-char	*handle_space(char *s, t_flag *flags)
+char	*handle_space(char *s, t_flag *flags, char c)
 {
-	char	*c;
+	char	*nc;
 	char	*n;
 
-	c = (flags->plus) ? ft_strdup("+") : ft_strdup(" ");
-	n = NULL;
+	n = ft_strdup(s);
+	if (flags->zero)
+		n = swap_n_free(space_z(s, flags, c), &n);
+	nc = (flags->plus) ? ft_strdup("+") : ft_strdup(" ");
 	if (s[0] != ' ' && s[0] != '-' && s[0] != '+')
-		n = ft_strjoin(c, s);
-	else
-		n = ft_strdup(s);
-	free(c);
+	{
+		n = swap_n_free(ft_strjoin(nc, n), &n);
+	}
+	free(nc);
 	return (n);
 }
 
@@ -112,10 +116,10 @@ int		format_string(char *s, t_flag *flags, char c, char **buf)
 		n = swap_n_free(handle_precision(n, flags, c), &n);
 	if (flags->sharp && (!flags->dot || c == 'o'))
 		n = swap_n_free(alt(n, flags, c), &n);
+	if ((flags->space || flags->plus) && (c == 'i' || c == 'd'))
+		n = swap_n_free(handle_space(n, flags, c), &n);
 	if (flags->width)
 		n = swap_n_free(handle_width(n, flags, c), &n);
-	if ((flags->space || flags->plus) && (c == 'i' || c == 'd'))
-		n = swap_n_free(handle_space(n, flags), &n);
 	if (c == 'X')
 		n = ft_strupper(n);
 	*buf = n;
