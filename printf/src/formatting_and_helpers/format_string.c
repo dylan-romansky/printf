@@ -76,6 +76,7 @@ char	*handle_precision(char *s, t_flag *flags, char c)
 				n = swap_n_free(ft_strjoin(t, n), &n);
 				len++;
 			}
+	free (t);
 	return (n);
 }
 
