@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/19 15:12:25 by dromansk          #+#    #+#             */
-/*   Updated: 2019/01/15 19:39:59 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/01/16 14:38:10 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,13 @@ int		flag_skip(char *format)
 	i = 0;
 	if (*format == '%' && *(format - 1) != '%')
 		i++;
-	while (!(format[i] == 'd' || format[i] == 'i' || format[i] == 'u' ||
-				format[i] == 'o' || format[i] == 'x' || format[i] == 'X' ||
-				format[i] == 'c' || format[i] == 's' || format[i] == 'p' ||
-				format[i] == 'f' || format[i] == '%' || format[i] == 'U'))
+	while (format[i] && !(format[i] == 'd' || format[i] == 'i' ||
+				format[i] == 'u' || format[i] == 'o' || format[i] == 'x' ||
+				format[i] == 'X' || format[i] == 'c' || format[i] == 's' ||
+				format[i] == 'p' || format[i] == 'f' || format[i] == '%' ||
+				format[i] == 'U' || format[i] == 'b'))
 		i++;
-	if (!check_flag(++format))
+	if (!check_flag(format))
 		i--;
 	return (i);
 }
