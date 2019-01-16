@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/12 14:34:10 by dromansk          #+#    #+#             */
-/*   Updated: 2019/01/11 21:14:34 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/01/15 19:47:38 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,12 +48,9 @@ int		get_data(va_list *args, char *format, char **buf)
 	t_flag	*flags;
 	int		b;
 
-	if (!(flags = (t_flag *)malloc(sizeof(t_flag))))
-		return (0);
-	if (!initflags(&flags))
-		return (0);
-	if (!set_flags(&flags, ++format, args))
-		return (0);
+	if (!(flags = (t_flag *)malloc(sizeof(t_flag))) || !initflags(&flags)
+			|| !set_flags(&flags, ++format, args) || !check_flag(format))
+		return (error_handle(buf));
 	format += flag_skip((format));
 	b = parse_arg(flags, format, args, buf);
 	flag_del(&flags);
@@ -72,6 +69,7 @@ int		make_string(const char *restrict format, va_list *args, int fd)
 	skip = 0;
 	while (*format)
 	{
+		printf("%c\n", *format);
 		buf = str_to_arg((char *)format);
 		skip = ft_strlen(buf);
 		format += skip;
@@ -79,6 +77,7 @@ int		make_string(const char *restrict format, va_list *args, int fd)
 		len += skip;
 		if (!(*format))
 			break ;
+		printf("%c\n", *format);
 		skip = get_data(args, (char *)format, &buf);
 		string = joining(&string, &buf, len, skip);
 		len += skip;

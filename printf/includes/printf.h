@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 15:47:32 by dromansk          #+#    #+#             */
-/*   Updated: 2019/01/11 20:52:23 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/01/15 19:00:27 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,5 +79,7 @@ char			*neg_width(char *s, t_flag *flags, char c);
 char			*ft_uimaxtoa_base(uintmax_t n, int base);
 char			*ft_sizetoa_base(size_t n, int base);
 char			*space_z(char *s, t_flag *flags, char c);
+int				check_flag(char *format);
+int				error_handle(char **buf);
 
 #endif

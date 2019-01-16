@@ -6,14 +6,15 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/13 14:34:29 by dromansk          #+#    #+#             */
-/*   Updated: 2019/01/11 21:13:51 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/01/15 19:45:11 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "printf.h"
 #include <stdio.h>
+#include <limits.h>
 
 int		main(void){
-	printf("expected:\n%+10.5d\n", 42);
-	ft_printf("result:\n%+10.5d\n", 42);
-	return (0);}
+	printf("e: %x", 42);
+	ft_printf("r: %x\n", 42);
+return (0);}

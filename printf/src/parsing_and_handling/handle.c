@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/27 14:19:16 by dromansk          #+#    #+#             */
-/*   Updated: 2019/01/11 20:59:24 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/01/15 19:44:39 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,8 +69,6 @@ char	*handle_ljz(char c, t_flag *flags, va_list *args)
 	if (flags->z)
 	{
 		z = va_arg(*args, ssize_t);
-		if (z == -1)
-			return (ft_strdup("-1"));
 		return (get_num(c, z, flags));
 	}
 	return (NULL);

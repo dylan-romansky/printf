@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/19 15:12:25 by dromansk          #+#    #+#             */
-/*   Updated: 2019/01/11 21:09:43 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/01/15 19:39:59 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,18 +19,14 @@ int		flag_skip(char *format)
 
 	i = 0;
 	if (*format == '%' && *(format - 1) != '%')
-	{
-		format++;
 		i++;
-	}
-	while (!(*format == 'd' || *format == 'i' || *format == 'u' ||
-				*format == 'o' || *format == 'x' || *format == 'X' ||
-				*format == 'c' || *format == 's' || *format == 'p' ||
-				*format == 'f' || *format == '%' || *format == 'U'))
-	{
-		format++;
+	while (!(format[i] == 'd' || format[i] == 'i' || format[i] == 'u' ||
+				format[i] == 'o' || format[i] == 'x' || format[i] == 'X' ||
+				format[i] == 'c' || format[i] == 's' || format[i] == 'p' ||
+				format[i] == 'f' || format[i] == '%' || format[i] == 'U'))
 		i++;
-	}
+	if (!check_flag(++format))
+		i--;
 	return (i);
 }
 
