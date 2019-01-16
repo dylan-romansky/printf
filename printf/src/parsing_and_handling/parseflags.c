@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/27 13:50:27 by dromansk          #+#    #+#             */
-/*   Updated: 2019/01/11 21:09:56 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/01/16 13:57:33 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ char	*parse_chars(char c, t_flag *flags, va_list *args)
 	return (NULL);
 }
 
-char	*parse_float(char c, t_flag *flags, va_list *args)
+char	*parse_float(t_flag *flags, va_list *args)
 {
 	long double	f;
 

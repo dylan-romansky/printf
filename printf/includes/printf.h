@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 15:47:32 by dromansk          #+#    #+#             */
-/*   Updated: 2019/01/15 19:00:27 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/01/16 13:55:28 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ long			numlen(intmax_t n);
 char			*ft_uimaxtoa(uintmax_t n, int base);
 char			*parse_numbers(char c, t_flag *flags, va_list *args);
 char			*parse_chars(char c, t_flag *flags, va_list *args);
-char			*parse_float(char c, t_flag *flags, va_list *args);
+char			*parse_float(t_flag *flags, va_list *args);
 char			*parse_pointer(char c, t_flag *flags, va_list *args);
 char			*get_num(char c, intmax_t i, t_flag *flags);
 char			*handle_h(char c, t_flag *flags, va_list *args);

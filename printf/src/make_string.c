@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/12 14:34:10 by dromansk          #+#    #+#             */
-/*   Updated: 2019/01/15 21:02:34 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/01/16 13:58:31 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,12 @@ int		parse_arg(t_flag *flags, char *format, va_list *args, char **buf)
 	if (*format == '%')
 		return (format_string(ft_strdup("%"), flags, '%', buf));
 	if (*format == 'd' || *format == 'i' || *format == 'o' || *format == 'u'
-			|| *format == 'x' || *format == 'X' || *format == 'U')
+			|| *format == 'x' || *format == 'X' || *format == 'U'
+			|| *format == 'b')
 		return (format_string(parse_numbers(*format, flags, args), flags,
 					*format, buf));
 	if (*format == 'f')
-		return (format_string(parse_float(*format, flags, args), flags,
+		return (format_string(parse_float(flags, args), flags,
 				*format, buf));
 	if (*format == 'c' || *format == 's')
 		return (format_string(parse_chars(*format, flags, args), flags,

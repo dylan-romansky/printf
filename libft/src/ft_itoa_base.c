@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 20:32:12 by dromansk          #+#    #+#             */
-/*   Updated: 2019/01/08 16:51:00 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/01/16 13:30:34 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ char		*ft_itoa_base(int n, int base)
 	long	v;
 	int		i;
 
+	if (base == 10)
+		return (ft_itoa(n));
 	v = n;
 	i = numlen_base(n, base);
 	if ((s = ft_strnew(i)))
