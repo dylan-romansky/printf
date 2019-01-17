@@ -6,7 +6,7 @@
 #    By: dromansk <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/10/22 14:53:52 by dromansk          #+#    #+#              #
-#    Updated: 2019/01/10 15:34:21 by dromansk         ###   ########.fr        #
+#    Updated: 2019/01/16 15:43:05 by dromansk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,4 +42,8 @@ reclean: re
 
 test: reclean
 	gcc main.c -I ./printf/includes $(L)
+	./a.out
+
+run:
+	gcc main.c -I ./printf/include $(L)
 	./a.out

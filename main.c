@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/13 14:34:29 by dromansk          #+#    #+#             */
-/*   Updated: 2019/01/16 14:39:18 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/01/16 16:25:48 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,6 @@
 #include <limits.h>
 
 int		main(void){
-//	printf("e: %x", 42);
-	ft_printf("r: %x\n", 255);
+	printf("e: %zu %zu", 0, ULLONG_MAX);
+	ft_printf("r: %zu %zu\n", 0, ULLONG_MAX);
 return (0);}

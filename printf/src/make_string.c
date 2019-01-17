@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/12 14:34:10 by dromansk          #+#    #+#             */
-/*   Updated: 2019/01/16 14:38:45 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/01/16 15:44:52 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,8 @@ int		get_data(va_list *args, char *format, char **buf)
 	t_flag	*flags;
 	int		b;
 
-	if (!(flags = (t_flag *)malloc(sizeof(t_flag))) || !initflags(&flags)
-			|| !set_flags(&flags, ++format, args) || !check_flag(format))
+	if (!check_flag(format) || !(flags = (t_flag *)malloc(sizeof(t_flag))) ||
+			!initflags(&flags) || !set_flags(&flags, ++format, args))
 		return (error_handle(buf));
 	format += flag_skip((format));
 	b = parse_arg(flags, format, args, buf);
