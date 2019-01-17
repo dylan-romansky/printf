@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/08 21:02:36 by dromansk          #+#    #+#             */
-/*   Updated: 2019/01/11 20:59:45 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/01/16 18:40:57 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,10 @@ char		*ft_imaxtoa(intmax_t n)
 
 char		*choose_string_maker(intmax_t i, t_flag *flags)
 {
-	if (flags->z)
+	if (flags->z && i != -1)
 		return (ft_uimaxtoa_base(i, 10));
+	else
+		return (ft_imaxtoa(i));
 	if (flags->j)
 		return (ft_imaxtoa(i));
 	if (flags->l)

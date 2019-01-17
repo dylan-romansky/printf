@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/15 18:32:37 by dromansk          #+#    #+#             */
-/*   Updated: 2019/01/16 14:38:56 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/01/16 19:36:59 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int		check_flag(char *format)
 				*format == 'o' || *format == 'x' || *format == 'X' ||
 				*format == 'c' || *format == 's' || *format == 'p' ||
 				*format == 'f' || *format == '%' || *format == 'U' ||
-				*format == 'b'))
+				*format == 'b' || *format == 'O'))
 		return (0);
 	return (1);
 }
