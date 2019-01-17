@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/27 15:32:04 by dromansk          #+#    #+#             */
-/*   Updated: 2019/01/16 20:00:06 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/01/16 20:19:51 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,7 @@ int		format_string(char *s, t_flag *flags, char c, char **buf)
 		n = s;
 	if (flags->dot && c != 'f' && c != '%')
 		n = swap_n_free(handle_precision(n, flags, c), &n);
-	if (flags->sharp && (!flags->dot || c == 'o'))
+	if ((flags->sharp && (!flags->dot || c == 'o')) || c == 'p')
 		n = swap_n_free(alt(n, flags, c), &n);
 	if ((flags->space || flags->plus) && (c == 'i' || c == 'd'))
 		n = swap_n_free(handle_space(n, flags, c), &n);
