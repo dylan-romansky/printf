@@ -6,35 +6,21 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 15:18:32 by dromansk          #+#    #+#             */
-/*   Updated: 2019/01/19 16:40:06 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/01/19 22:56:20 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "printf.h"
 
-int		percentflag(char *format)
+int		skip_nums(char *format)
 {
-	int		i;
+	int			i;
 
 	i = 0;
-	if (format[i] == '%')
-	{
-		if (format[i + 1] == '%')
-			return (1);
-		else if (format[i - 1] == '%')
-			return (-1);
-		else
-			i++;
-	}
-	while (format[i] && !(format[i] == 'd' || format[i] == 'i' ||
-				format[i] == 'u' || format[i] == 'o' || format[i] == 'x' ||
-				format[i] == 'X' || format[i] == 'c' || format[i] == 's' ||
-				format[i] == 'p' || format[i] == 'f' || format[i] == '%'))
+	while (('0' <= format[i] && format[i] <= '9') || format [i] == '*')
 		i++;
-	if (format[i] == '%')
-		return (i);
-	return (0);
+	return (i);
 }
 
 int		prec(char *format, va_list *args, t_flag **input)
@@ -43,8 +29,26 @@ int		prec(char *format, va_list *args, t_flag **input)
 
 	flags = *input;
 	flags->dot = 1;
-	flags->prec = set_width_and_prec(++format, args);
-	return (skip_nums(format));
+	format++;
+	if (*format >= '0' && *format <= '9')
+	{
+		flags->prec = ft_atoi(format);
+		while ('0' <= *format && *format <= '9')
+			format++;
+	}
+	if (*format == '*')
+	{
+		flags->prec = va_arg(*args, int);
+		format++;
+	}
+	if (*format >= '0' && *format <= '9')
+		flags->prec = ft_atoi(format);
+	if (flags->prec < 0)
+	{
+		flags->dot = 0;
+		flags->prec = 0;
+	}
+	return (skip_nums(format) + 1);
 }
 
 int		set_more_flags(t_flag **flags, char *format, va_list *args)

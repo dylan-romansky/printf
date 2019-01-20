@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/19 15:12:25 by dromansk          #+#    #+#             */
-/*   Updated: 2019/01/19 19:59:20 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/01/20 00:28:40 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int		flag_skip(char *format)
 				(format[i] >= '0' && format[i] <= '9') || format[i] == '#' ||
 				format[i] == 'h' || format[i] == 'l' || format[i] == 'L' ||
 				format[i] == 'z' || format[i] == 'j' || format[i] == '.' ||
-				format[i] == '-' || format[i] == '*'))
+				format[i] == '-' || format[i] == '*' || format[i] == 'F'))
 		i++;
 	if (!check_flag(format))
 		i--;
@@ -54,6 +54,28 @@ int		set_first(t_flag **input, char *format)
 	return (1);
 }
 
+void	get_width(char *format, va_list *args, t_flag **flags)
+{
+	if (*format >= '0' && *format <= '9')
+	{
+		(*flags)->width = ft_atoi(format);
+		while ('0' <= *format && *format <= '9')
+			format++;
+	}
+	if (*format == '*')
+	{
+		(*flags)->width = va_arg(*args, int);
+		format++;
+	}
+	if (*format >= '0' && *format <= '9')
+		(*flags)->width = ft_atoi(format);
+	if ((*flags)->width < 0)
+	{
+		(*flags)->dash = 1;
+		(*flags)->width = -((*flags)->width);
+	}
+}
+
 int		set_width(t_flag **input, char *format, va_list *args)
 {
 	t_flag	*flags;
@@ -64,7 +86,7 @@ int		set_width(t_flag **input, char *format, va_list *args)
 	{
 		if (('0' <= *format && *format <= '9') || *format == '*')
 		{
-			flags->width = set_width_and_prec(format, args);
+			get_width(format, args, &flags);
 			format += skip_nums(format);
 		}
 		if (*format == '.')
@@ -81,27 +103,6 @@ int		set_width(t_flag **input, char *format, va_list *args)
 		format++;
 	}
 	return (1);
-}
-
-int		set_width_and_prec(char *format, va_list *args)
-{
-	int		d;
-
-	d = 0;
-	if (*format >= '0' && *format <= '9')
-	{
-		d = ft_atoi(format);
-		while ('0' <= *format && *format <= '9')
-			format++;
-	}
-	if (*format == '*')
-	{
-		d = va_arg(*args, int);
-		format++;
-	}
-	if (*format >= '0' && *format <= '9')
-		d = atoi(format);
-	return (d);
 }
 
 int		set_length(t_flag **input, char *format)

@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 15:47:32 by dromansk          #+#    #+#             */
-/*   Updated: 2019/01/16 13:55:28 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/01/19 22:42:43 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ int				make_string(const char *restrict format, va_list *args, int fd);
 int				initflags(t_flag **input);
 int				set_flags(t_flag **flags, char *format, va_list *args);
 int				set_first(t_flag **input, char *format);
-int				set_width_and_prec(char *format, va_list *args);
 int				set_width(t_flag **input, char *format, va_list *args);
 int				set_length(t_flag **input, char *format);
 int				flag_skip(char *format);
@@ -60,7 +59,6 @@ char			*handle_ljz(char c, t_flag *flags, va_list *args);
 int				format_string(char *s, t_flag *flags, char c, char **buf);
 int				skip_nums(char *format);
 int				prec(char *format, va_list *args, t_flag **input);
-int				percentflag(char *format);
 char			*choose_ustring_maker(intmax_t i, t_flag *flags, int base);
 char			*choose_string_maker(intmax_t i, t_flag *flags);
 void			putnstr_fd(char *s, int fd, size_t len);

@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/12 14:34:10 by dromansk          #+#    #+#             */
-/*   Updated: 2019/01/19 19:14:33 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/01/20 00:42:51 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,11 @@ int		parse_arg(t_flag *flags, char *format, va_list *args, char **buf)
 		return (format_string(ft_strdup("%"), flags, '%', buf));
 	if (*format == 'd' || *format == 'i' || *format == 'o' || *format == 'u'
 			|| *format == 'x' || *format == 'X' || *format == 'U'
-			|| *format == 'b' || *format == 'O' || *format == 'D')
+			|| *format == 'b' || *format == 'O' || *format == 'D'
+			|| *format == 'F')
 		return (format_string(parse_numbers(*format, flags, args), flags,
 					*format, buf));
-	if (*format == 'f')
+	if (*format == 'f' || *format == 'F')
 		return (format_string(parse_float(flags, args), flags,
 				*format, buf));
 	if (*format == 'c' || *format == 's')
@@ -85,6 +86,7 @@ int		make_string(const char *restrict format, va_list *args, int fd)
 		skip = get_data(args, (char *)format, &buf);
 		string = joining(&string, &buf, len, skip);
 		len += skip;
+		format++;
 		format += flag_skip((char *)format) + 1;
 	}
 	putnstr_fd(string, fd, len);

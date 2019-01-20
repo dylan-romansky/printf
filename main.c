@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/13 14:34:29 by dromansk          #+#    #+#             */
-/*   Updated: 2019/01/19 19:58:59 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/01/20 00:27:41 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,6 @@
 #include <limits.h>
 
 int		main(void){
-	printf("e: %*3d\n", 0, 42);
-	ft_printf("r: %*3d\n", 0, 42);
+	printf("%f %F\n", 1.42, 1.42);
+	ft_printf("%f %F\n", 1.42, 1.42);
 return (0);}

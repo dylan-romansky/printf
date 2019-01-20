@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/27 14:19:16 by dromansk          #+#    #+#             */
-/*   Updated: 2019/01/19 19:54:02 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/01/20 00:19:30 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,9 @@ char	*get_num(char c, intmax_t i, t_flag *flags)
 
 char	*handle_h(char c, t_flag *flags, va_list *args)
 {
-	short		i;
-	char		g;
+	short				i;
+	char				g;
+	unsigned char		u;
 
 	if (flags->h)
 	{
@@ -40,18 +41,27 @@ char	*handle_h(char c, t_flag *flags, va_list *args)
 	}
 	if (flags->hh)
 	{
-		g = (char)va_arg(*args, int);
-		return (get_num(c, (int)g, flags));
+		if (c == 'o' || c == 'O' || c == 'u' || c == 'U' ||
+				c == 'D' || c == 'x' || c == 'X' || c == 'b')
+		{
+			u = (char)va_arg(*args, int);
+			return (get_num(c, u, flags));
+		}
+		else
+		{
+			g = (char)va_arg(*args, int);
+			return (get_num(c, g, flags));
+		}
 	}
 	return (NULL);
 }
 
 char	*handle_ljz(char c, t_flag *flags, va_list *args)
 {
-	long		i;
-	long long	j;
-	intmax_t	m;
-	ssize_t		z;
+	long				i;
+	long long			j;
+	intmax_t			m;
+	ssize_t				z;
 
 	if (flags->l)
 	{
@@ -74,14 +84,4 @@ char	*handle_ljz(char c, t_flag *flags, va_list *args)
 		return (get_num(c, z, flags));
 	}
 	return (NULL);
-}
-
-int		skip_nums(char *format)
-{
-	int			i;
-
-	i = 0;
-	while (('0' <= format[i] && format[i] <= '9') || format [i] == '*')
-		i++;
-	return (i);
 }

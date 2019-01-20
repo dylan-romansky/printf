@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/27 15:32:04 by dromansk          #+#    #+#             */
-/*   Updated: 2019/01/19 18:39:57 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/01/20 00:38:41 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,14 +104,16 @@ int		format_string(char *s, t_flag *flags, char c, char **buf)
 
 	if (!s)
 		n = null_cases(c);
-	else if (c == 'f' && float_check(s))
+	else if ((c == 'F' || c == 'f') && float_check(s))
 	{
+		if (c == 'F')
+			s = ft_strupper(s);
 		*buf = s;
 		return (ft_strlen(s));
 	}
 	else
 		n = s;
-	if (flags->dot && c != 'f' && c != '%')
+	if (flags->dot && c != 'f' && c != 'F'&& c != '%')
 		n = swap_n_free(handle_precision(n, flags, c), &n);
 	if ((flags->sharp && (!flags->dot || c == 'o')) || c == 'p')
 		n = swap_n_free(alt(n, flags, c), &n);
