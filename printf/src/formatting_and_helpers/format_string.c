@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/27 15:32:04 by dromansk          #+#    #+#             */
-/*   Updated: 2019/01/20 00:50:26 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/01/20 04:13:16 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,17 +83,17 @@ char	*handle_precision(char *s, t_flag *flags, char c)
 char	*alt(char *s, t_flag *flags, char c)
 {
 	char	*n;
-
+	
 	if (ft_strequ(s, "0"))
 		return (ft_strdup(s));
 	if (flags->zero)
 		n = format_alt(s, flags, c);
 	else
 		n = ft_strdup(s);
-	if (n[0] != '0' && c == 'o')
+	if (n[0] != '0' && (c == 'o' || c == 'O'))
 		n = swap_n_free(ft_strjoin("0", n), &n);
 	else if ((c == 'x' || c == 'X' || c == 'p') &&
-			!(n[1] == 'x' || n[1] == 'X'))
+			(ft_strlen(n) < 2 || !(n[1] == 'x' || n[1] == 'X')))
 		n = swap_n_free(ft_strjoin("0x", n), &n);
 	return (n);
 }

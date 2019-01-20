@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/12 14:34:10 by dromansk          #+#    #+#             */
-/*   Updated: 2019/01/20 00:45:40 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/01/20 03:58:06 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ char	*str_to_arg(char *format)
 	i = 0;
 	while (format[i] && format[i] != '%')
 		i++;
-	return (ft_strsub(format, 0, i));
+	return (ft_strndup(format, i));
 }
 
 int		parse_arg(t_flag *flags, char *format, va_list *args, char **buf)
@@ -53,7 +53,10 @@ int		get_data(va_list *args, char *format, char **buf)
 			!initflags(&flags) || !set_flags(&flags, ++format, args))
 		return (error_handle(buf));
 	if (!check_flag(format))
-		b = format_string(ft_strdup(""), flags, 'c', buf);
+	{
+		format += flag_skip(format);
+		b = format_string(ft_strndup(format, 1), flags, 's', buf);
+	}
 	else
 	{
 		format += flag_skip(format);

@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/28 20:19:02 by dromansk          #+#    #+#             */
-/*   Updated: 2019/01/20 00:48:29 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/01/20 03:08:12 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,15 +33,17 @@ char		*ft_ftoa(double f, size_t prec)
 {
 	long long	num;
 	long long	dec;
+	long double	d;
 	char		*s;
 
-	if (f < DBL_MIN || f > DBL_MAX)
+	if (f > DBL_MAX)
 		return (ft_strdup("inf"));
 	if (nan_comp(f))
 		return (ft_strdup("nan"));
 	num = (long long)f;
 	s = ft_ltoa_base(num, 10);
-	dec = precision((f - num), prec);
+	d = f < 0 ? -(f - num) : f - num;
+	dec = precision(d, prec);
 	if (dec)
 	{
 		s = ft_strjoin(s, ".");
