@@ -7,21 +7,15 @@
 >>>> 70_precision_for_diu.spec.c - [Ok !] ..............................
 >>>> 01_conv_s_simple.spec.c ----- [Ok !] ......
 >>>> 12_conv_u.spec.c ------------ [Ok !] .....
->>>> 50_min_width.spec.c --------- [FAIL] .......BBFFF [BUS!] pZero_minus13MinWidth -> (null)
+>>>> 50_min_width.spec.c --------- [FAIL] .........FFF [FAIL] invalidConvSpec_withMinWith -> printf("{%10R}")
 >>>> bonus_03_wildcard_flag_mix.sp [FAIL] FFFF [FAIL] digit_wildcard_and_min_width_value1 -> printf("{%3*d}", 0, 0)
 >>>> 51_min_width_flag_minus.spec. [Ok !] ...
 >>>> 02_conv_s_multiple.spec.c --- [Ok !] ...
 >>>> 11_conv_O.spec.c ------------ [Ok !] .....
-ft_printf_test(74542,0x7fff98a03340) malloc: *** error for object 0x7ffee45cb604: pointer being freed was not allocated
-*** set a breakpoint in malloc_error_break to debug
-ft_printf_test(74542,0x7fff98a03340) malloc: *** error for object 0x7ffee45cb600: pointer being freed was not allocated
-*** set a breakpoint in malloc_error_break to debug
-ft_printf_test(74542,0x7fff98a03340) malloc: *** error for object 0x7ffee45cb600: pointer being freed was not allocated
-*** set a breakpoint in malloc_error_break to debug
->>>> 04_conv_p.spec.c ------------ [FAIL] AAAB. [ABRT] test_int_pointer -> (null)
+>>>> 04_conv_p.spec.c ------------ [Ok !] .....
 >>>> bonus_01_wildcard.spec.c ---- [FAIL] FFFFFFFFFFFFF [FAIL] wildcard_for_min_width_positive -> printf("%*d", 5, 42)
 >>>> 15_conv_X.spec.c ------------ [Ok !] .....
->>>> 45_length_modif_edge_cases.sp [FAIL] S [SEGV] ignore_length_modifiers_with_p_conv -> (null)
+>>>> 45_length_modif_edge_cases.sp [Ok !] .
 >>>> 43_length_modif_hh.spec.c --- [FAIL] ..........FFFF.......FF [FAIL] test_hhu_max -> printf("%hhu, %hhu", 0, UCHAR_MAX)
 >>>> 53_min_width_non_valid_conv.s [FAIL] F [FAIL] nonValidConv_negativeMinWidth -> printf("{%-15Z}", 123)
 >>>> 13_conv_U.spec.c ------------ [Ok !] ...
@@ -29,16 +23,14 @@ ft_printf_test(74542,0x7fff98a03340) malloc: *** error for object 0x7ffee45cb600
 >>>> bonus_10_conv_fF.spec.c ----- [FAIL] FFFF [FAIL] simple_small_nbr -> printf("{%f}{%F}", 1.42, 1.42)
 >>>> 61_flag_plus.spec.c --------- [FAIL] .....F....... [FAIL] test_plus_c_up_zero -> printf("%+C", 0)
 >>>> 60_flag_sharp.spec.c -------- [FAIL] ...F....... [FAIL] test_octalUppercase_max -> printf("%#O", 1)
->>>> 06_mix_sdp_percent.spec.c --- [FAIL] BB [BUS!] test_simple_mix -> (null)
+>>>> 06_mix_sdp_percent.spec.c --- [Ok !] ..
 >>>> 10_conv_o.spec.c ------------ [Ok !] ....
 >>>> 40_length_modif_l.spec.c ---- [FAIL] ..............FF... [FAIL] test_lc_wchar -> printf("%lc, %lc", L'ÊM-^ZM-^V', L'ÿ≠')
-ft_printf_test(74542,0x7fff98a03340) malloc: *** error for object 0x7ffee45cb5ff: pointer being freed was not allocated
-*** set a breakpoint in malloc_error_break to debug
->>>> 18_mix_all_previous.spec.c -- [FAIL] SA [SEGV] test_simple -> (null)
+>>>> 18_mix_all_previous.spec.c -- [FAIL] FF [FAIL] test_simple -> printf("%s %C %d %p %x %% %S", "bonjour ", L'Ë©≤', 42, &free, 42, L"ŸM-^Dÿ≠ŸM-^E ÿÆŸM-^Fÿ...
 >>>> 79_precision_mixed_with_flags [FAIL] ..FFFFFF.F [FAIL] test_precision_p_zero -> printf("%.p, %.0p", 0, 0)
 >>>> 42_length_modif_h.spec.c ---- [FAIL] ......FFFF... [FAIL] test_hu_max -> printf("%hu, %hu", 0, USHRT_MAX)
 >>>> 17_conv_C.spec.c ------------ [FAIL] FFFFFFFFF [FAIL] test_simple_char -> printf("%C", 'c')
->>>> 52_min_width_flag_zero.spec.c [FAIL] ........FFB [FAIL] wide_str_posMinWidth_zeroFlag -> printf("{%030S}", L"ÊM-M-^QÊM-^XØ‰∏M-ÂM-^O™ÁM-^L´„M-M-^B")
+>>>> 52_min_width_flag_zero.spec.c [FAIL] ........FF. [FAIL] wide_str_posMinWidth_zeroFlag -> printf("{%030S}", L"ÊM-M-^QÊM-^XØ‰∏M-ÂM-^O™ÁM-^L´„M-M-^B")
 >>>> 75_precision_for_percent.spec [FAIL] F [FAIL] percent_point3precision -> printf("%.3%")
 >>>> 05_percent_escape.spec.c ---- [FAIL] ..F..... [FAIL] test_many_percent -> printf("%%%%%%%%%%")
 >>>> 41_length_modif_ll.spec.c --- [Ok !] .............
@@ -47,12 +39,12 @@ ft_printf_test(74542,0x7fff98a03340) malloc: *** error for object 0x7ffee45cb5ff
 >>>> 09_conv_i.spec.c ------------ [Ok !] .....
 >>>> 03_conv_d.spec.c ------------ [Ok !] .......
 >>>> 00_no_conv.spec.c ----------- [Ok !] ....
->>>> 74_precision_for_p.spec.c --- [FAIL] FFSSSS [FAIL] pNullPointer_zeroPrecision -> printf("%.0p, %.p", 0, 0)
+>>>> 74_precision_for_p.spec.c --- [FAIL] FFFF.. [FAIL] pNullPointer_zeroPrecision -> printf("%.0p, %.p", 0, 0)
 >>>> 91_incomptbl_values_uUSDcC.sp [FAIL] .....F [FAIL] test_hhu -> printf("%hhu / %hhu", SHRT_MAX - 42, SHRT_MAX - 4200)
 >>>> 92_incomptbl_values_oOxX.spec [FAIL] F...... [FAIL] test_octal_neg -> printf("%o, %ho, %hho", -42, -42, -42)
 >>>> 72_precision_for_sS.spec.c -- [FAIL] .........FFFFF [FAIL] test_precision_S -> printf("%.4S", L"ÊM-M-^QÊM-^XØ‰∏M-ÂM-^O™ÁM-^L´„M-M-^B")
 >>>> 62_flag_space.spec.c -------- [FAIL] ..........FFFFF [FAIL] test_space_C_zero -> printf("{% C}", 0)
 >>>> 69_flag_mix.spec.c ---------- [FAIL] ........F [FAIL] octalUppercase_precision_sharpFlag_zeroValue -> printf("%#.O", 0)
->>>> 90_incomptbl_values_sdpi.spec [FAIL] .FFS [FAIL] test_zi -> printf("%zi", LLONG_MIN)
+>>>> 90_incomptbl_values_sdpi.spec [FAIL] .FF. [FAIL] test_zi -> printf("%zi", LLONG_MIN)
 >>>> 08_conv_D.spec.c ------------ [FAIL] F.F. [FAIL] test_simple -> printf("%D", -1L)
 [ ----------END OF UNIT TESTS---------- ]
