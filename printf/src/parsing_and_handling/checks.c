@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/15 18:32:37 by dromansk          #+#    #+#             */
-/*   Updated: 2019/01/19 16:38:03 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/01/19 19:14:54 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ int		check_flag(char *format)
 	while (*format && (*format == '-' || *format == '+' || *format == ' ' ||
 				(*format >= '0' && *format <= '9') || *format == '#' ||
 				*format == 'h' || *format == 'l' || *format == 'L' ||
-				*format == 'z' || *format == 'j' || *format == '.'))
+				*format == 'z' || *format == 'j' || *format == '.' ||
+				*format == '*'))
 		format++;
 	if (!(*format == 'd' || *format == 'i' || *format == 'u' ||
 				*format == 'o' || *format == 'x' || *format == 'X' ||

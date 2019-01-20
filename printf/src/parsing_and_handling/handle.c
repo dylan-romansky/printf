@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/27 14:19:16 by dromansk          #+#    #+#             */
-/*   Updated: 2019/01/19 16:43:34 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/01/19 19:54:02 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ int		skip_nums(char *format)
 	int			i;
 
 	i = 0;
-	while ('0' <= format[i] && format[i] <= '9')
+	while (('0' <= format[i] && format[i] <= '9') || format [i] == '*')
 		i++;
 	return (i);
 }
