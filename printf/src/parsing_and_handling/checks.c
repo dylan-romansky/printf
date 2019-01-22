@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/15 18:32:37 by dromansk          #+#    #+#             */
-/*   Updated: 2019/01/20 00:29:54 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/01/22 13:39:33 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,4 +37,44 @@ int		error_handle(char **buf)
 {
 	*buf = ft_strdup("");
 	return (0);
+}
+
+char	*neg_prec(char *s, t_flag *flags, char c)
+{
+	char	*neg;
+	char	*dig;
+	char	*ret;
+
+	dig = ft_strsub(s, 1, (int)ft_strlen(s) - 1);
+	neg = ft_strdup("-");
+	dig = swap_n_free(handle_precision(dig, flags, c), &dig);
+	ret = ft_strjoin(neg, dig);
+	free(dig);
+	free(neg);
+	return (ret);
+}
+
+char	*format_alt(char *s, t_flag *flags, char c)
+{
+	char	*n;
+
+	if (c == 'x' || c == 'X' || c == 'p')
+		flags->width -= 2;
+	else if (c == 'o')
+		flags->width -= 1;
+	n = handle_width(s, flags, c);
+	if (c == 'x' || c == 'X' || c == 'p')
+		flags->width += 2;
+	else if (c == 'o')
+		flags->width += 1;
+	return (n);
+}
+
+char	*null_cases(char c)
+{
+	if (c == 's')
+		return (ft_strdup("(null)"));
+	if (c == 'p')
+		return (ft_strdup("0"));
+	return (NULL);
 }

@@ -5,28 +5,36 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/19 15:12:25 by dromansk          #+#    #+#             */
-/*   Updated: 2019/01/20 02:50:05 by dromansk         ###   ########.fr       */
+/*   Created: 2019/01/22 14:04:16 by dromansk          #+#    #+#             */
+/*   Updated: 2019/01/22 14:07:45 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printf.h"
 #include "libft.h"
+#include "printf.h"
 
-int		flag_skip(char *format)
+int		set_flags(t_flag **flags, char *format, va_list *args)
 {
-	int		i;
-
-	i = 0;
-	if (*format == '%' && *(format - 1) != '%')
-		i++;
-	while (format[i] && (format[i] == '+' || format[i] == ' ' ||
-				(format[i] >= '0' && format[i] <= '9') || format[i] == '#' ||
-				format[i] == 'h' || format[i] == 'l' || format[i] == 'L' ||
-				format[i] == 'z' || format[i] == 'j' || format[i] == '.' ||
-				format[i] == '-' || format[i] == '*'))
-		i++;
-	return (i);
+	if (*format == '-' || *format == ' ' || *format == '0' || *format == '#'
+			|| *format == '+')
+	{
+		if (!set_first(flags, format))
+			return (0);
+		while (*format == '-' || *format == ' ' || *format == '0' ||
+				*format == '#' || *format == '+')
+		{
+			if (*format == '0' && *(format + 1) != '0')
+				format++;
+			else if (*format == '0' && *(format + 1) == '0')
+			{
+				format++;
+				break ;
+			}
+			else
+				format++;
+		}
+	}
+	return (set_more_flags(flags, format, args));
 }
 
 int		set_first(t_flag **input, char *format)
@@ -52,75 +60,49 @@ int		set_first(t_flag **input, char *format)
 	return (1);
 }
 
-void	get_width(char *format, va_list *args, t_flag **flags)
+int		prec(char *format, va_list *args, t_flag **input)
 {
+	t_flag	*flags;
+
+	flags = *input;
+	flags->dot = 1;
+	format++;
 	if (*format >= '0' && *format <= '9')
 	{
-		(*flags)->width = ft_atoi(format);
+		flags->prec = ft_atoi(format);
 		while ('0' <= *format && *format <= '9')
 			format++;
 	}
 	if (*format == '*')
 	{
-		(*flags)->width = va_arg(*args, int);
+		flags->prec = va_arg(*args, int);
 		format++;
 	}
 	if (*format >= '0' && *format <= '9')
-		(*flags)->width = ft_atoi(format);
-	if ((*flags)->width < 0)
+		flags->prec = ft_atoi(format);
+	if (flags->prec < 0)
 	{
-		(*flags)->dash = 1;
-		(*flags)->width = -((*flags)->width);
+		flags->dot = 0;
+		flags->prec = 0;
 	}
+	return (skip_nums(format) + 1);
 }
 
-int		set_width(t_flag **input, char *format, va_list *args)
+int		set_more_flags(t_flag **flags, char *format, va_list *args)
 {
-	t_flag	*flags;
-
-	flags = *input;
-	while (*format && (('0' <= *format && *format <= '9') ||
-				*format == '*' || *format == '.'))
+	if (*format == '*' || *format == '.' || ('0' <= *format && *format <= '9'))
 	{
-		if (('0' <= *format && *format <= '9') || *format == '*')
-		{
-			get_width(format, args, &flags);
-			format += skip_nums(format);
-		}
-		if (*format == '.')
-			format += prec(format, args, input);
-		if (*format == '-')
-			flags->dash = 1;
-		if (*format == ' ')
-			flags->space = 1;
-		if (*format == '#')
-			flags->sharp = 1;
-		if (!(*format && (('0' <= *format && *format <= '9') ||
-						*format == '*' || *format == '.')))
-			break ;
-		format++;
+		if (!set_width(flags, format, args))
+			return (0);
+		while (*format == '*' || *format == '.' || ('0' <= *format &&
+					*format <= '9'))
+			format++;
 	}
-	return (1);
-}
-
-int		set_length(t_flag **input, char *format)
-{
-	t_flag	*flags;
-
-	flags = *input;
-	if (*format == 'l' && *(format + 1) == 'l')
-		flags->ll = 1;
-	else if (*format == 'l' && *(format + 1) != 'l')
-			flags->l = 1;
-	if (*format == 'h' && *(format + 1) == 'h')
-		flags->hh = 1;
-	else if (*format == 'h' && *(format + 1) != 'h')
-		flags->h = 1;
-	if (*format == 'z')
-		flags->z = 1;
-	if (*format == 'L')
-		flags->el = 1;
-	if (*format == 'j')
-		flags->j = 1;
+	if (*format == 'h' || *format == 'l' || *format == 'L' || *format == 'j'
+			|| *format == 'z')
+	{
+		if (!set_length(flags, format++))
+			return (0);
+	}
 	return (1);
 }
