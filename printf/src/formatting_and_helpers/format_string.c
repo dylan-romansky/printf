@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/27 15:32:04 by dromansk          #+#    #+#             */
-/*   Updated: 2019/01/20 04:13:16 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/01/21 16:55:54 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ char	*handle_width(char *s, t_flag *flags, char c)
 		return (neg_width(s, flags, c));
 	len = (c == 'c') ? 1 : (int)ft_strlen(s);
 	n = NULL;
-	p = (flags->zero && !flags->dash && ((len < flags->prec && flags->dot) ||
-				(!flags->dot))) ? ft_strdup("0") : ft_strdup(" ");
+	p = (flags->zero && !flags->dash && ((len < flags->prec	&& flags->dot) ||
+			   (!flags->dot || !flags->prec))) ? ft_strdup("0") : ft_strdup(" ");
 	n = ft_strdup(s);
 	while (len < flags->width)
 	{

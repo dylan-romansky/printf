@@ -6,9 +6,11 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 15:47:32 by dromansk          #+#    #+#             */
-/*   Updated: 2019/01/19 22:42:43 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/01/20 05:26:51 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+/* YYYYMMDDhhmm.ss date/time format*/
 
 #ifndef PRINTF_H
 # define PRINTF_H
