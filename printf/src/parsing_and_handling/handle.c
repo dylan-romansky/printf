@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/27 14:19:16 by dromansk          #+#    #+#             */
-/*   Updated: 2019/01/20 00:19:30 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/01/22 13:02:54 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,18 @@ char	*get_num(char c, intmax_t i, t_flag *flags)
 char	*handle_h(char c, t_flag *flags, va_list *args)
 {
 	short				i;
+	unsigned short		s;
 	char				g;
 	unsigned char		u;
 
 	if (flags->h)
 	{
+		if (c == 'o' || c == 'O' || c == 'u' || c == 'U' ||
+				c == 'D' || c == 'x' || c == 'X' || c == 'b')
+		{
+			s = (short)va_arg(*args, int);
+			return (get_num(c, (int)s, flags));
+		}
 		i = (short)va_arg(*args, int);
 		return (get_num(c, (int)i, flags));
 	}
@@ -47,11 +54,8 @@ char	*handle_h(char c, t_flag *flags, va_list *args)
 			u = (char)va_arg(*args, int);
 			return (get_num(c, u, flags));
 		}
-		else
-		{
-			g = (char)va_arg(*args, int);
-			return (get_num(c, g, flags));
-		}
+		g = (char)va_arg(*args, int);
+		return (get_num(c, g, flags));
 	}
 	return (NULL);
 }

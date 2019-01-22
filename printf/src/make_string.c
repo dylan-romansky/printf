@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/12 14:34:10 by dromansk          #+#    #+#             */
-/*   Updated: 2019/01/21 16:42:41 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/01/21 21:03:47 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int		get_data(va_list *args, char *format, char **buf)
 	if (!check_flag(format))
 	{
 		format += flag_skip(format);
-		b = format_string(ft_strndup(format, 1), flags, 's', buf);
+		b = format_string(ft_strndup(format, 1), flags, 'c', buf);
 	}
 	else
 	{
