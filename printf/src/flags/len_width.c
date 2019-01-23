@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/19 15:12:25 by dromansk          #+#    #+#             */
-/*   Updated: 2019/01/22 14:18:42 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/01/22 19:07:09 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ void	get_width(char *format, va_list *args, t_flag **flags)
 int		set_width(t_flag **input, char *format, va_list *args)
 {
 	t_flag	*flags;
+		int i = 1;
 
 	flags = *input;
 	while (*format && (('0' <= *format && *format <= '9') ||
@@ -48,7 +49,6 @@ int		set_width(t_flag **input, char *format, va_list *args)
 			get_width(format, args, &flags);
 			format += skip_nums(format);
 		}
-		printf("%d %c\n", flags->dot, *format);
 		if (*format == '.')
 			format += prec(format, args, input);
 		if (*format == '-')

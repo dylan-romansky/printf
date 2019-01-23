@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/22 14:04:16 by dromansk          #+#    #+#             */
-/*   Updated: 2019/01/22 14:07:45 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/01/22 19:07:11 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,25 @@ int		set_first(t_flag **input, char *format)
 	return (1);
 }
 
+int		set_more_flags(t_flag **flags, char *format, va_list *args)
+{
+	if (*format == '*' || *format == '.' || ('0' <= *format && *format <= '9'))
+	{
+		if (!set_width(flags, format, args))
+			return (0);
+		while (*format == '*' || *format == '.' || ('0' <= *format &&
+					*format <= '9'))
+			format++;
+	}
+	if (*format == 'h' || *format == 'l' || *format == 'L' || *format == 'j'
+			|| *format == 'z')
+	{
+		if (!set_length(flags, format++))
+			return (0);
+	}
+	return (1);
+}
+
 int		prec(char *format, va_list *args, t_flag **input)
 {
 	t_flag	*flags;
@@ -85,24 +104,5 @@ int		prec(char *format, va_list *args, t_flag **input)
 		flags->dot = 0;
 		flags->prec = 0;
 	}
-	return (skip_nums(format) + 1);
-}
-
-int		set_more_flags(t_flag **flags, char *format, va_list *args)
-{
-	if (*format == '*' || *format == '.' || ('0' <= *format && *format <= '9'))
-	{
-		if (!set_width(flags, format, args))
-			return (0);
-		while (*format == '*' || *format == '.' || ('0' <= *format &&
-					*format <= '9'))
-			format++;
-	}
-	if (*format == 'h' || *format == 'l' || *format == 'L' || *format == 'j'
-			|| *format == 'z')
-	{
-		if (!set_length(flags, format++))
-			return (0);
-	}
-	return (1);
+	return (skip_nums(format) + 2);
 }
