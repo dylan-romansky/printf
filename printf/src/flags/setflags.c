@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/22 14:04:16 by dromansk          #+#    #+#             */
-/*   Updated: 2019/01/22 19:07:11 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/01/22 19:16:16 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,27 +82,27 @@ int		set_more_flags(t_flag **flags, char *format, va_list *args)
 int		prec(char *format, va_list *args, t_flag **input)
 {
 	t_flag	*flags;
+	int		i;
 
 	flags = *input;
 	flags->dot = 1;
-	format++;
-	if (*format >= '0' && *format <= '9')
+	i = 1;
+	if (format[i] >= '0' && format[i] <= '9')
 	{
-		flags->prec = ft_atoi(format);
-		while ('0' <= *format && *format <= '9')
-			format++;
+		flags->prec = ft_atoi(format + i);
+		i += skip_nums(format + i);
 	}
-	if (*format == '*')
+	if (format[i] == '*')
 	{
 		flags->prec = va_arg(*args, int);
-		format++;
+		i++;
 	}
-	if (*format >= '0' && *format <= '9')
-		flags->prec = ft_atoi(format);
+	if (format[i] >= '0' && format[i] <= '9')
+		flags->prec = ft_atoi(format + i);
 	if (flags->prec < 0)
 	{
 		flags->dot = 0;
 		flags->prec = 0;
 	}
-	return (skip_nums(format) + 2);
+	return (skip_nums(format + i) + i);
 }

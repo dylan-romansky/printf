@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/13 14:34:29 by dromansk          #+#    #+#             */
-/*   Updated: 2019/01/22 18:50:16 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/01/22 19:22:04 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,6 @@
 #include <limits.h>
 
 int		main(void){
-	printf("e %4.15s\n", "42");
-	ft_printf("r %4.15s\n", "42");
+	printf("e %.0p %.p\n", 0, 0);
+	ft_printf("r %.0p %.p\n", 0, 0);
 return (0);}
