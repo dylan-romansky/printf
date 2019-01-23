@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/27 15:32:04 by dromansk          #+#    #+#             */
-/*   Updated: 2019/01/22 19:07:13 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/01/22 19:30:39 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ char	*handle_precision(char *s, t_flag *flags, char c)
 	t = ft_strdup("0");
 	n = ft_strdup(s);
 	len = (int)ft_strlen(s);
-	if (len > flags->prec && (c == 's' || c == 'p' || ft_strequ("0", s)))
+	if (len > flags->prec && (c == 's' || ft_strequ("0", s)))
 		n = swap_n_free(ft_strndup(n, flags->prec), &n);
 	if (len < flags->prec)
 		if (c != 'c' && c != 's')
@@ -115,7 +115,8 @@ int		format_string(char *s, t_flag *flags, char c, char **buf)
 	}
 	else
 		n = s;
-	if (flags->dot && c != 'f' && c != 'F' && c != '%' && c != 'p')
+	if (flags->dot && ((c != 'f' && c != 'F' && c != '%') ||
+				!(c == 'p' && flags->prec == 0)))
 		n = swap_n_free(handle_precision(n, flags, c), &n);
 	if (flags->sharp || c == 'p')
 		n = swap_n_free(alt(n, flags, c), &n);
