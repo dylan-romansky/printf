@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 15:47:32 by dromansk          #+#    #+#             */
-/*   Updated: 2019/01/23 17:24:44 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/01/23 18:00:23 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 typedef enum	e_argtype
 {
 	d = 0, i = 0, o = 1, O = 1, u = 2, U = 2, D = 2, x = 3, X = 4, b = 5, p = 6,
-	s = 7, c = 8, f = 9, F = 10, % = 11
+	s = 7, c = 8, f = 9, F = 10, per = 11
 }				t_argtype;
 
 typedef enum	e_argsize
@@ -111,7 +111,7 @@ t_types g_types[] =
 	{'c', c},
 	{'f', f},
 	{'F', F},
-	{'%', %}
+	{'%', per}
 };
 
 typedef struct	s_types

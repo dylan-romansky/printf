@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/27 15:32:04 by dromansk          #+#    #+#             */
-/*   Updated: 2019/01/23 17:41:44 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/01/23 18:00:19 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,7 +117,7 @@ int		format_string(char *str, t_flag *flags, char **buf)
 	}
 	else
 		n = str;
-	if (flags->dot && ((t != f && t != F && t != %) ||
+	if (flags->dot && ((t != f && t != F && t != per) ||
 				!(t == p && flags->prec == 0)))
 		n = swap_n_free(handle_precision(n, flags, t), &n);
 	if (flags->sharp || t == p)
