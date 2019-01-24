@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 15:18:32 by dromansk          #+#    #+#             */
-/*   Updated: 2019/01/22 14:15:12 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/01/23 17:11:02 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,14 +52,7 @@ int		initflags(t_flag **input)
 	new = *input;
 	if (new != NULL)
 	{
-		new->h = 0;
-		new->hh = 0;
-		new->l = 0;
-		new->ll = 0;
-		new->el = 0;
-		new->j = 0;
-		new->z = 0;
-		new->f = 0;
+
 		new->percent = 0;
 		new->sharp = 0;
 		new->zero = 0;
@@ -69,6 +62,8 @@ int		initflags(t_flag **input)
 		new->dot = 0;
 		new->prec = 0;
 		new->width = 0;
+		new->size = 0;
+		new->type = 0;
 		return (1);
 	}
 	return (0);

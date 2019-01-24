@@ -6,21 +6,21 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/10 16:12:22 by dromansk          #+#    #+#             */
-/*   Updated: 2019/01/11 19:19:55 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/01/23 17:33:54 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "printf.h"
 #include "libft.h"
 
-char	*neg_width(char *s, t_flag *flags, char c)
+char	*neg_width(char *s, t_flag *flags, int t)
 {
 	char *neg;
 	char *dig;
 
 	neg = ft_strdup("-");
 	flags->width -= 1;
-	dig = handle_width(s + 1, flags, c);
+	dig = handle_width(s + 1, flags, t);
 	flags->width += 1;
 	return (ft_strjoin(neg, dig));
 }
@@ -53,29 +53,29 @@ char	*joining(char **string, char **buf, int len, int buflen)
 	return (new);
 }
 
-int		find_size(t_flag *flags, char *str, char c)
+int		find_size(t_flag *flags, char *str, int t)
 {
 	int		len;
 
 	len = (int)ft_strlen(str);
-	if ((len > flags->prec && len > flags->width) || c == 's')
+	if ((len > flags->prec && len > flags->width) || t == s)
 		return (len);
-	else if (flags->dot && flags->prec > flags->width && c != 'f' && c != 'c')
+	else if (flags->dot && flags->prec > flags->width && t != f && t != c)
 		return (flags->prec);
 	else if ((!flags->dot && flags->width) || (flags->prec < flags->width))
 		return (flags->width);
-	if (c == 'c')
+	if (t == c)
 		return (1);
 	return (0);
 }
 
-int		nullcheck(char *s)
+int		nullcheck(char *str)
 {
 	int i;
 
 	i = -1;
-	while (s[++i])
-		if (s[i] != ' ' && s[i] != '\0')
+	while (str[++i])
+		if (str[i] != ' ' && str[i] != '\0')
 			return (0);
 	return (1);
 }

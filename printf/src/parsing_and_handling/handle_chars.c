@@ -1,35 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   handle.c                                           :+:      :+:    :+:   */
+/*   handle_chars.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/27 14:19:16 by dromansk          #+#    #+#             */
-/*   Updated: 2019/01/23 16:12:58 by dromansk         ###   ########.fr       */
+/*   Created: 2019/01/23 16:35:01 by dromansk          #+#    #+#             */
+/*   Updated: 2019/01/23 17:09:23 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printf.h"
 #include "libft.h"
+#include "printf.h"
 
-intmax_t	get_normal(va_list *args)
+char	*get_char(va_list *args)
 {
-	return(va_arg(*args, int));
-}
-
-intmax_t	get_h(va_list *args)
-{
-	int		s;
-
-	s = (short)va_arg(*args, int);
+	char	*s;
+	
+	s = ft_strnew(1);
+	*s = (char)va_arg(*args, int);
 	return (s);
 }
 
-intmax_t	get_hh(va_list *args)
+char	*get_string(va_list *args)
 {
-	int		c;
+	return (va_arg(*args, char *));
+}
 
-	c = (char)va_arg(*args, int);
-	return (c);
+int		convert_type_num(int i)
+{
+	if (i < 6)
+		return (0);
+	if (i == 6)
+		return (1);
+	if (i == 7 || i = 8)
+		return (2);
+	if (i == 9 || i = 10)
+		return (3);
+	if (i == 11)
+		return (4);
 }

@@ -6,24 +6,24 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/08 21:02:36 by dromansk          #+#    #+#             */
-/*   Updated: 2019/01/16 20:05:14 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/01/23 16:00:21 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "printf.h"
 #include "libft.h"
 
-long		numlen(intmax_t n)
+long		numlen(intmax_t n, int base)
 {
 	long		i;
 
 	i = 1;
-	while (n /= 10)
+	while (n /= base)
 		i++;
 	return (i);
 }
 
-char		*ft_imaxtoa(intmax_t n)
+char		*ft_imaxtoa_base(intmax_t n, int base)
 {
 	char		*s;
 	intmax_t	v;
@@ -38,8 +38,8 @@ char		*ft_imaxtoa(intmax_t n)
 		s[i] = '\0';
 		while (i--)
 		{
-			s[i + neg] = v < 0 ? -(v % 10) + '0' : (v % 10) + '0';
-			v /= 10;
+			s[i + neg] = v < 0 ? base_tabe(-(v % base)) : base_table((v % base));
+			v /= base;
 		}
 		if (neg)
 			s[0] = '-';

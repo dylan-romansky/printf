@@ -6,26 +6,26 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/27 15:32:04 by dromansk          #+#    #+#             */
-/*   Updated: 2019/01/22 19:30:39 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/01/23 17:41:44 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "printf.h"
 
-char	*handle_width(char *s, t_flag *flags, char c)
+char	*handle_width(char *str, t_flag *flags, int t)
 {
 	char	*p;
 	char	*n;
 	int		len;
 
 	if (s[0] == '-' && flags->zero)
-		return (neg_width(s, flags, c));
-	len = (c == 'c') ? 1 : (int)ft_strlen(s);
+		return (neg_width(str, flags, t));
+	len = (t == c) ? 1 : (int)ft_strlen(str);
 	n = NULL;
 	p = (flags->zero && !flags->dash && ((len < flags->prec	&& flags->dot) ||
 			   (!flags->dot || !flags->prec))) ? ft_strdup("0") : ft_strdup(" ");
-	n = ft_strdup(s);
+	n = ft_strdup(str);
 	while (len < flags->width)
 	{
 		if (flags->dash)
@@ -39,12 +39,12 @@ char	*handle_width(char *s, t_flag *flags, char c)
 	return (n);
 }
 
-char	*handle_space(char *s, t_flag *flags, char c)
+char	*handle_space(char *str, t_flag *flags)
 {
 	char	*nc;
 	char	*n;
 
-	n = ft_strdup(s);
+	n = ft_strdup(str);
 	if (flags->zero)
 		n = swap_n_free(space_z(s, flags, c), &n);
 	nc = (flags->plus) ? ft_strdup("+") : ft_strdup(" ");
@@ -56,21 +56,21 @@ char	*handle_space(char *s, t_flag *flags, char c)
 	return (n);
 }
 
-char	*handle_precision(char *s, t_flag *flags, char c)
+char	*handle_precision(char *str, t_flag *flags, int ty)
 {
 	char	*t;
 	char	*n;
 	int		len;
 
 	if (*s == '-')
-		return (neg_prec(s, flags, c));
+		return (neg_prec(str, flags, c));
 	t = ft_strdup("0");
-	n = ft_strdup(s);
-	len = (int)ft_strlen(s);
-	if (len > flags->prec && (c == 's' || ft_strequ("0", s)))
+	n = ft_strdup(str);
+	len = (int)ft_strlen(str);
+	if (len > flags->prec && (ty == s || ft_strequ("0", str)))
 		n = swap_n_free(ft_strndup(n, flags->prec), &n);
 	if (len < flags->prec)
-		if (c != 'c' && c != 's')
+		if (ty != c && ty != s)
 			while (len < flags->prec)
 			{
 				n = swap_n_free(ft_strjoin(t, n), &n);
@@ -80,52 +80,54 @@ char	*handle_precision(char *s, t_flag *flags, char c)
 	return (n);
 }
 
-char	*alt(char *s, t_flag *flags, char c)
+char	*alt(char *str, t_flag *flags, int t)
 {
 	char	*n;
 
-	if ((c == 'x' || c == 'X') && !ft_strlen(s))
+	if ((t == x || t == X) && !ft_strlen(str))
 		return (s);
-	if (c != 'p' && ft_strequ(s, "0"))
-		return (ft_strdup(s));
+	if (t != p && ft_strequ(str, "0"))
+		return (ft_strdup(str));
 	if (flags->zero)
-		n = format_alt(s, flags, c);
+		n = format_alt(str, flags, t);
 	else
-		n = ft_strdup(s);
-	if (n[0] != '0' && (c == 'o' || c == 'O'))
+		n = ft_strdup(str);
+	if (n[0] != '0' && (t == o || c == O))
 		n = swap_n_free(ft_strjoin("0", n), &n);
-	else if ((c == 'x' || c == 'X' || c == 'p') &&
+	else if ((t == x || t == X || t == p) &&
 			(ft_strlen(n) < 2 || !(n[1] == 'x' || n[1] == 'X')))
 		n = swap_n_free(ft_strjoin("0x", n), &n);
 	return (n);
 }
 
-int		format_string(char *s, t_flag *flags, char c, char **buf)
+int		format_string(char *str, t_flag *flags, char **buf)
 {
 	char	*n;
+	int		t;
 
-	if (!s)
-		n = null_cases(c);
-	else if ((c == 'F' || c == 'f') && float_check(s))
+	t = flags->type;
+	if (!str)
+		n = null_cases(t);
+	else if ((t == F || t == f) && float_check(str))
 	{
-		if (c == 'F')
-			s = ft_strupper(s);
-		*buf = s;
-		return (ft_strlen(s));
+		if (t == F)
+			str = ft_strupper(str);
+		*buf = str;
+		return (ft_strlen(str));
 	}
 	else
-		n = s;
-	if (flags->dot && ((c != 'f' && c != 'F' && c != '%') ||
-				!(c == 'p' && flags->prec == 0)))
-		n = swap_n_free(handle_precision(n, flags, c), &n);
-	if (flags->sharp || c == 'p')
-		n = swap_n_free(alt(n, flags, c), &n);
-	if ((flags->space || flags->plus) && (c == 'i' || c == 'd'))
-		n = swap_n_free(handle_space(n, flags, c), &n);
+		n = str;
+	if (flags->dot && ((t != f && t != F && t != %) ||
+				!(t == p && flags->prec == 0)))
+		n = swap_n_free(handle_precision(n, flags, t), &n);
+	if (flags->sharp || t == p)
+		n = swap_n_free(alt(n, flags, t), &n);
+	if ((flags->space || flags->plus) && (t == i || t == d))
+		n = swap_n_free(handle_space(n, flags, t), &n);
 	if (flags->width)
-		n = swap_n_free(handle_width(n, flags, c), &n);
-	if (c == 'X')
+		n = swap_n_free(handle_width(n, flags, t), &n);
+	if (t == X)
 		n = ft_strupper(n);
 	*buf = n;
-	return (find_size(flags, n, c));
+	return (find_size(flags, n, t));
 }

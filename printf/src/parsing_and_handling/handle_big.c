@@ -1,35 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   handle.c                                           :+:      :+:    :+:   */
+/*   handle_big.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/27 14:19:16 by dromansk          #+#    #+#             */
-/*   Updated: 2019/01/23 16:12:58 by dromansk         ###   ########.fr       */
+/*   Created: 2019/01/23 16:08:32 by dromansk          #+#    #+#             */
+/*   Updated: 2019/01/23 16:12:52 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "printf.h"
 #include "libft.h"
 
-intmax_t	get_normal(va_list *args)
+intmax_t	get_l(va_list *args)
 {
-	return(va_arg(*args, int));
+	return (va_arg(*args, long));
 }
 
-intmax_t	get_h(va_list *args)
+intmax_t	get_ll(va_list *args)
 {
-	int		s;
-
-	s = (short)va_arg(*args, int);
-	return (s);
+	return (va_arg(*args, long long));
 }
 
-intmax_t	get_hh(va_list *args)
+intmax_t	get_j(va_list *args)
 {
-	int		c;
+	return (va_arg(*args, intmax_t));
+}
 
-	c = (char)va_arg(*args, int);
-	return (c);
+intmax_t	get_z(va_list *args)
+{
+	return (va_arg(*args, ssize_t));
 }

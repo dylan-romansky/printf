@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/19 15:12:25 by dromansk          #+#    #+#             */
-/*   Updated: 2019/01/22 19:12:35 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/01/23 17:30:30 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ void	get_width(char *format, va_list *args, t_flag **flags)
 int		set_width(t_flag **input, char *format, va_list *args)
 {
 	t_flag	*flags;
-		int i = 1;
 
 	flags = *input;
 	while (*format && (('0' <= *format && *format <= '9') ||
@@ -71,18 +70,39 @@ int		set_length(t_flag **input, char *format)
 
 	flags = *input;
 	if (*format == 'l' && *(format + 1) == 'l')
-		flags->ll = 1;
+		flags->size = ll;
 	else if (*format == 'l' && *(format + 1) != 'l')
-			flags->l = 1;
+			flags->size = l;
 	if (*format == 'h' && *(format + 1) == 'h')
-		flags->hh = 1;
+		flags->size = hh;
 	else if (*format == 'h' && *(format + 1) != 'h')
-		flags->h = 1;
+		flags->size = h;
 	if (*format == 'z')
-		flags->z = 1;
+		flags->size = z;
 	if (*format == 'L')
-		flags->el = 1;
+		flags->size = el;
 	if (*format == 'j')
-		flags->j = 1;
+		flags->size = j;
 	return (1);
+}
+
+int		set_type(t_flag **input, char *format)
+{
+	int		i;
+
+	i = 0;
+	if (!check_flag(format))
+	{
+		flags->type = c;
+		return (1);
+	}
+	else
+	{
+		format += flag_skip(format);
+		while (g_types[i].type != *format)
+			i++;
+		flags->type = g_types[i].num;
+		return (1);
+	}
+	return (0);
 }

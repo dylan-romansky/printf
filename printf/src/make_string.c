@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/12 14:34:10 by dromansk          #+#    #+#             */
-/*   Updated: 2019/01/21 21:03:47 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/01/23 17:08:23 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,17 @@ char	*str_to_arg(char *format)
 	return (ft_strndup(format, i));
 }
 
-int		parse_arg(t_flag *flags, char *format, va_list *args, char **buf)
+int		parse_arg(t_flag *flags, va_list *args, char **buf)
 {
-	if (*format == '%')
+	int		i;
+
+	i = convert_type_num(flags->type);
+	if (i == 4)
+		return (format_string(ft_strdup("%"), flags, buf));
+	return (format_string(g_string[i].string(flags, args), flags, buf));
+}
+
+/*	if (*format == '%')
 		return (format_string(ft_strdup("%"), flags, '%', buf));
 	if (*format == 'd' || *format == 'i' || *format == 'o' || *format == 'u'
 			|| *format == 'x' || *format == 'X' || *format == 'U'
@@ -42,7 +50,7 @@ int		parse_arg(t_flag *flags, char *format, va_list *args, char **buf)
 		return (format_string(parse_pointer(*format, flags, args), flags,
 				*format, buf));
 	return (0);
-}
+}*/
 
 int		get_data(va_list *args, char *format, char **buf)
 {
@@ -60,7 +68,7 @@ int		get_data(va_list *args, char *format, char **buf)
 	else
 	{
 		format += flag_skip(format);
-		b = parse_arg(flags, format, args, buf);
+		b = parse_arg(flags, args, buf);
 	}
 	flag_del(&flags);
 	return (b);
