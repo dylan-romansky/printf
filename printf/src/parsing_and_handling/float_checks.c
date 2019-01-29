@@ -6,35 +6,35 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/08 20:00:58 by dromansk          #+#    #+#             */
-/*   Updated: 2019/01/09 15:02:31 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/01/29 00:02:37 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "printf.h"
 #include "libft.h"
 
-int		float_check(char *s)
+int		float_check(char *st)
 {
-	if (ft_strequ("inf", s) || ft_strequ("nan", s))
+	if (ft_strequ("inf", st) || ft_strequ("nan", st))
 		return (1);
 	return (0);
 }
 
-int		is_nan(char *s)
+int		is_nan(char *st)
 {
 	int		neg;
 	int		dot;
 	int		i;
 
 	i = 0;
-	while (s[i])
+	while (st[i])
 	{
-		if (s[i] == '.')
+		if (st[i] == '.')
 			dot++;
-		if (s[i] == '-')
+		if (st[i] == '-')
 			neg++;
-		if (dot > 1 || neg > 1 || (!ft_isdigit(s[i]) && s[i] != '.'
-					&& s[i] != '-'))
+		if (dot > 1 || neg > 1 || (!ft_isdigit(st[i]) && st[i] != '.'
+					&& st[i] != '-'))
 			return (1);
 		i++;
 	}

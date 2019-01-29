@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/08 21:02:36 by dromansk          #+#    #+#             */
-/*   Updated: 2019/01/23 16:00:21 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/01/29 00:05:17 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ long		numlen(intmax_t n, int base)
 
 char		*ft_imaxtoa_base(intmax_t n, int base)
 {
-	char		*s;
+	char		*st;
 	intmax_t	v;
 	long		i;
 	int			neg;
@@ -35,19 +35,50 @@ char		*ft_imaxtoa_base(intmax_t n, int base)
 	i = numlen(n);
 	if ((s = ft_strnew(neg + i)))
 	{
-		s[i] = '\0';
+		st[i] = '\0';
 		while (i--)
 		{
-			s[i + neg] = v < 0 ? base_tabe(-(v % base)) : base_table((v % base));
+			st[i + neg] = v < 0 ? base_tabe(-(v % base)) : base_table((v % base));
 			v /= base;
 		}
 		if (neg)
-			s[0] = '-';
-		return (s);
+			st[0] = '-';
+		return (st);
 	}
 	return (NULL);
 }
 
+int		unumlen(unsigned long long value, unsigned int base)
+{
+	int					i;
+
+	i = 1;
+	while (value /= base)
+		i++;
+	return (i);
+}
+
+char	*ft_uimaxtoa_base(uintmax_t n, int base)
+{
+	char				*s;
+	uintmax_t			v;
+	long				i;
+
+	v = n;
+	i = unumlen(n, base);
+	if ((s = ft_strnew(i)))
+	{
+		s[i] = '\0';
+		while (i--)
+		{
+			s[i] = base_table((unsigned int)(v % base));
+			v /= base;
+		}
+		return (s);
+	}
+	return (NULL);
+}
+/*
 char		*choose_string_maker(intmax_t i, t_flag *flags)
 {
 	if (flags->z && i != -1)
@@ -61,4 +92,4 @@ char		*choose_string_maker(intmax_t i, t_flag *flags)
 	if (flags->ll)
 		return (ft_ltoa((long long)i));
 	return (ft_itoa((int)i));
-}
+}*/

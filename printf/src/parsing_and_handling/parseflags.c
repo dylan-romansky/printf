@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/27 13:50:27 by dromansk          #+#    #+#             */
-/*   Updated: 2019/01/23 17:30:11 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/01/29 00:03:32 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,11 +69,11 @@ char	*parse_float(t_flag *flags, va_list *args)
 char	*parse_pointer(t_flag *flags, va_list *args)
 {
 	size_t		p;
-	void		*s;
+	void		*st;
 
-	s = va_arg(*args, void *);
-	if (!s)
+	st = va_arg(*args, void *);
+	if (!st)
 		return (NULL);
-	p = (size_t)s;
+	p = (size_t)st;
 	return (ft_ltoa_base(p, 16));
 }
