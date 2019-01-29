@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 15:47:32 by dromansk          #+#    #+#             */
-/*   Updated: 2019/01/23 18:00:23 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/01/29 00:15:27 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,46 +33,16 @@ typedef enum	e_argsize
 	none = 0, h = 1, hh = 2, l = 3, ll = 4, j = 5, z = 6, el = 7
 }				t_argsize;
 
-s_stringmake g_string
-{
-	{&parse_numbers},
-	{&parse_pointer},
-	{&parse_chars},
-	{&parse_float}
-};
-
 typedef struct	s_stringmake
 {
 	char *		(*string)(t_flag, va_list);
 }				t_stringmake;
-
-t_numcon g_numconvert[] =
-{
-	{&ft_imaxtoa_base, 10},
-	{&ft_imaxtoa_base, 8},
-	{&ft_uimaxtoa_base, 10},
-	{&ft_uimaxtoa_base, 16},
-	{&ft_uimaxtoa_base, 16},
-	{&ft_uimaxtoa_base, 2},
-	{&ft_uimaxtoa_base, 16}
-};
 
 typedef struct	s_numcon
 {
 	char *		(*data)(intmax_t, int);
 	int			base;
 }				t_numcon;
-
-t_arglen g_arglen[] =
-{
-	{&get_normal},
-	{&get_h},
-	{&get_hh},
-	{&get_l},
-	{&get_ll},
-	{&get_j},
-	{&get_z}
-};
 
 typedef struct	s_arglen
 {
@@ -94,6 +64,42 @@ typedef struct	s_flag
 	t_argtype	type;
 }				t_flag;
 
+typedef struct	s_types
+{
+	char		type;
+	int			num;
+}				t_types;
+
+s_stringmake g_string
+{
+	{&parse_numbers},
+	{&parse_pointer},
+	{&parse_chars},
+	{&parse_float}
+};
+
+t_numcon g_numconvert[] =
+{
+	{&ft_imaxtoa_base, 10},
+	{&ft_imaxtoa_base, 8},
+	{&ft_uimaxtoa_base, 10},
+	{&ft_uimaxtoa_base, 16},
+	{&ft_uimaxtoa_base, 16},
+	{&ft_uimaxtoa_base, 2},
+	{&ft_uimaxtoa_base, 16}
+};
+
+t_arglen g_arglen[] =
+{
+	{&get_normal},
+	{&get_h},
+	{&get_hh},
+	{&get_l},
+	{&get_ll},
+	{&get_j},
+	{&get_z}
+};
+
 t_types g_types[] =
 {
 	{'d', d},
@@ -113,12 +119,6 @@ t_types g_types[] =
 	{'F', F},
 	{'%', per}
 };
-
-typedef struct	s_types
-{
-	char		type;
-	int			num;
-}				t_types;
 
 int				ft_printf(const char *restrict format, ...);
 int				ft_dprintf(int fd, const char *restrict format, ...);
