@@ -6,12 +6,12 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/27 14:19:16 by dromansk          #+#    #+#             */
-/*   Updated: 2019/01/23 16:12:58 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/01/29 13:18:17 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printf.h"
-#include "libft.h"
+#include "printffun.h"
+#include "printfstruct.h"
 
 intmax_t	get_normal(va_list *args)
 {

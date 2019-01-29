@@ -6,12 +6,12 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/12 14:34:10 by dromansk          #+#    #+#             */
-/*   Updated: 2019/01/23 17:08:23 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/01/29 13:13:58 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include "printf.h"
+#include "printffun.h"
+#include "printfstruct.h"
 
 char	*str_to_arg(char *format)
 {

@@ -6,12 +6,12 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 15:18:32 by dromansk          #+#    #+#             */
-/*   Updated: 2019/01/23 17:11:02 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/01/29 13:15:32 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include "printf.h"
+#include "printffun.h"
+#include "printfstruct.h"
 
 int		skip_nums(char *format)
 {

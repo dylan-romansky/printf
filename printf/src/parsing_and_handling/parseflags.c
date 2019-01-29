@@ -6,12 +6,12 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/27 13:50:27 by dromansk          #+#    #+#             */
-/*   Updated: 2019/01/29 00:03:32 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/01/29 13:20:11 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include "printf.h"
+#include "printffun.h"
+#include "printfstruct.h"
 
 char	*parse_numbers(t_flag *flags, va_list *args)
 {

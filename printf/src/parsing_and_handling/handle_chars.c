@@ -6,12 +6,12 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/23 16:35:01 by dromansk          #+#    #+#             */
-/*   Updated: 2019/01/29 00:01:58 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/01/29 13:19:53 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include "printf.h"
+#include "printffun.h"
+#include "printfstruct.h"
 
 char	*get_char(va_list *args)
 {

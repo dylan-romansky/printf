@@ -6,12 +6,12 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/10 16:12:22 by dromansk          #+#    #+#             */
-/*   Updated: 2019/01/23 17:33:54 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/01/29 13:16:30 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printf.h"
-#include "libft.h"
+#include "printffun.h"
+#include "printfstruct.h"
 
 char	*neg_width(char *s, t_flag *flags, int t)
 {

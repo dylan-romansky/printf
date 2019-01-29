@@ -6,12 +6,12 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/27 15:32:04 by dromansk          #+#    #+#             */
-/*   Updated: 2019/01/23 18:00:19 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/01/29 13:16:15 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include "printf.h"
+#include "printffun.h"
+#include "printfstruct.h"
 
 char	*handle_width(char *str, t_flag *flags, int t)
 {
