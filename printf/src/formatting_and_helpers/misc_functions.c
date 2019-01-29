@@ -6,12 +6,11 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/04 00:06:38 by dromansk          #+#    #+#             */
-/*   Updated: 2019/01/29 13:13:43 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/01/29 15:05:53 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printffun.h"
-#include "printfstruct.h"
+#include "printf.h"
 
 void	putnstr_fd(char *str, int fd, size_t len)
 {
@@ -22,12 +21,12 @@ void	putnstr_fd(char *str, int fd, size_t len)
 		write(1, str + i++, fd);
 }
 
-char	*space_z(char *str, t_flag *flags, int t)
+char	*space_z(char *str, t_flag *flags)
 {
 	char *n;
 
 	flags->width -= 1;
-	n = handle_width(str, flags, t);
+	n = handle_width(str, flags, flags->type);
 	flags->width += 1;
 	return (n);
 }

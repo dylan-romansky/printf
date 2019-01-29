@@ -6,12 +6,11 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/10 14:33:12 by dromansk          #+#    #+#             */
-/*   Updated: 2019/01/29 13:14:15 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/01/29 15:06:49 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printffun.h"
-#include "printfstruct.h"
+#include <printf.h>
 
 int		ft_printf(const char *restrict format, ...)
 {

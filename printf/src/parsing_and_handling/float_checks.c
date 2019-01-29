@@ -6,12 +6,11 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/08 20:00:58 by dromansk          #+#    #+#             */
-/*   Updated: 2019/01/29 13:18:32 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/01/29 15:06:01 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printffun.h"
-#include "printfstruct.h"
+#include "printf.h"
 
 int		float_check(char *st)
 {

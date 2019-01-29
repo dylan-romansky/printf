@@ -6,12 +6,11 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/12 14:34:10 by dromansk          #+#    #+#             */
-/*   Updated: 2019/01/29 13:13:58 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/01/29 15:06:37 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printffun.h"
-#include "printfstruct.h"
+#include "printf.h"
 
 char	*str_to_arg(char *format)
 {
@@ -63,7 +62,7 @@ int		get_data(va_list *args, char *format, char **buf)
 	if (!check_flag(format))
 	{
 		format += flag_skip(format);
-		b = format_string(ft_strndup(format, 1), flags, 'c', buf);
+		b = format_string(ft_strndup(format, 1), flags, buf);
 	}
 	else
 	{

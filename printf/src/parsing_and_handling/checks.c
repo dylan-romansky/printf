@@ -6,12 +6,11 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/15 18:32:37 by dromansk          #+#    #+#             */
-/*   Updated: 2019/01/29 13:16:54 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/01/29 15:05:57 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printffun.h"
-#include "printfstruct.h"
+#include "printf.h"
 
 int		check_flag(char *format)
 {

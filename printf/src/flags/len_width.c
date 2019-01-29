@@ -6,12 +6,11 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/19 15:12:25 by dromansk          #+#    #+#             */
-/*   Updated: 2019/01/29 13:15:47 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/01/29 15:05:26 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printffun.h"
-#include "printfstruct.h"
+#include "printf.h"
 
 void	get_width(char *format, va_list *args, t_flag **flags)
 {
@@ -89,7 +88,9 @@ int		set_length(t_flag **input, char *format)
 int		set_type(t_flag **input, char *format)
 {
 	int		i;
+	t_flag *flags;
 
+	flags = *input;
 	i = 0;
 	if (!check_flag(format))
 	{

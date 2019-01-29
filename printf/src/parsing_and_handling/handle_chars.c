@@ -6,12 +6,11 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/23 16:35:01 by dromansk          #+#    #+#             */
-/*   Updated: 2019/01/29 13:19:53 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/01/29 15:05:17 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printffun.h"
-#include "printfstruct.h"
+#include "printf.h"
 
 char	*get_char(va_list *args)
 {
@@ -33,10 +32,9 @@ int		convert_type_num(int i)
 		return (0);
 	if (i == 6)
 		return (1);
-	if (i == 7 || i = 8)
+	if (i == 7 || i == 8)
 		return (2);
-	if (i == 9 || i = 10)
+	if (i == 9 || i == 10)
 		return (3);
-	if (i == 11)
-		return (4);
+	return (4);
 }

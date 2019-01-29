@@ -6,12 +6,11 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/27 15:32:04 by dromansk          #+#    #+#             */
-/*   Updated: 2019/01/29 13:16:15 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/01/29 15:05:43 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printffun.h"
-#include "printfstruct.h"
+#include "printf.h"
 
 char	*handle_width(char *str, t_flag *flags, int t)
 {
@@ -19,7 +18,7 @@ char	*handle_width(char *str, t_flag *flags, int t)
 	char	*n;
 	int		len;
 
-	if (s[0] == '-' && flags->zero)
+	if (str[0] == '-' && flags->zero)
 		return (neg_width(str, flags, t));
 	len = (t == c) ? 1 : (int)ft_strlen(str);
 	n = NULL;
@@ -29,7 +28,7 @@ char	*handle_width(char *str, t_flag *flags, int t)
 	while (len < flags->width)
 	{
 		if (flags->dash)
-			n = swap_n_free((nullcheck(s)) ?  ft_strjoin_len(n, p, len, 1) :
+			n = swap_n_free((nullcheck(str)) ?  ft_strjoin_len(n, p, len, 1) :
 					ft_strjoin(n, p), &n);
 		else
 			n = swap_n_free(ft_strjoin(p, n), &n);
@@ -46,9 +45,9 @@ char	*handle_space(char *str, t_flag *flags)
 
 	n = ft_strdup(str);
 	if (flags->zero)
-		n = swap_n_free(space_z(s, flags, c), &n);
+		n = swap_n_free(space_z(str, flags), &n);
 	nc = (flags->plus) ? ft_strdup("+") : ft_strdup(" ");
-	if (s[0] != ' ' && s[0] != '-' && s[0] != '+')
+	if (str[0] != ' ' && str[0] != '-' && str[0] != '+')
 	{
 		n = swap_n_free(ft_strjoin(nc, n), &n);
 	}
@@ -62,7 +61,7 @@ char	*handle_precision(char *str, t_flag *flags, int ty)
 	char	*n;
 	int		len;
 
-	if (*s == '-')
+	if (*str == '-')
 		return (neg_prec(str, flags, c));
 	t = ft_strdup("0");
 	n = ft_strdup(str);
@@ -85,7 +84,7 @@ char	*alt(char *str, t_flag *flags, int t)
 	char	*n;
 
 	if ((t == x || t == X) && !ft_strlen(str))
-		return (s);
+		return (str);
 	if (t != p && ft_strequ(str, "0"))
 		return (ft_strdup(str));
 	if (flags->zero)
@@ -100,30 +99,30 @@ char	*alt(char *str, t_flag *flags, int t)
 	return (n);
 }
 
-int		format_string(char *str, t_flag *flags, char **buf)
+int		format_string(char *st, t_flag *flags, char **buf)
 {
 	char	*n;
 	int		t;
 
 	t = flags->type;
-	if (!str)
+	if (!st)
 		n = null_cases(t);
-	else if ((t == F || t == f) && float_check(str))
+	else if ((t == F || t == f) && float_check(st))
 	{
 		if (t == F)
-			str = ft_strupper(str);
-		*buf = str;
-		return (ft_strlen(str));
+			st = ft_strupper(st);
+		*buf = st;
+		return (ft_strlen(st));
 	}
 	else
-		n = str;
+		n = st;
 	if (flags->dot && ((t != f && t != F && t != per) ||
 				!(t == p && flags->prec == 0)))
 		n = swap_n_free(handle_precision(n, flags, t), &n);
 	if (flags->sharp || t == p)
 		n = swap_n_free(alt(n, flags, t), &n);
 	if ((flags->space || flags->plus) && (t == i || t == d))
-		n = swap_n_free(handle_space(n, flags, t), &n);
+		n = swap_n_free(handle_space(n, flags), &n);
 	if (flags->width)
 		n = swap_n_free(handle_width(n, flags, t), &n);
 	if (t == X)

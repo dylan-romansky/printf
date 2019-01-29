@@ -6,12 +6,11 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/08 21:02:36 by dromansk          #+#    #+#             */
-/*   Updated: 2019/01/29 13:14:34 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/01/29 15:05:04 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printffun.h"
-#include "printfstruct.h"
+#include "printf.h"
 
 long		numlen(intmax_t n, int base)
 {
@@ -32,13 +31,13 @@ char		*ft_imaxtoa_base(intmax_t n, int base)
 
 	v = n;
 	neg = n < 0 ? 1 : 0;
-	i = numlen(n);
-	if ((s = ft_strnew(neg + i)))
+	i = numlen(n, base);
+	if ((st = ft_strnew(neg + i)))
 	{
 		st[i] = '\0';
 		while (i--)
 		{
-			st[i + neg] = v < 0 ? base_tabe(-(v % base)) : base_table((v % base));
+			st[i + neg] = v < 0 ? base_table(-(v % base)) : base_table((v % base));
 			v /= base;
 		}
 		if (neg)
@@ -58,14 +57,14 @@ int		unumlen(unsigned long long value, unsigned int base)
 	return (i);
 }
 
-char	*ft_uimaxtoa_base(uintmax_t n, int base)
+char	*ft_uimaxtoa_base(intmax_t n, int base)
 {
 	char				*s;
 	uintmax_t			v;
 	long				i;
 
 	v = n;
-	i = unumlen(n, base);
+	i = unumlen(v, base);
 	if ((s = ft_strnew(i)))
 	{
 		s[i] = '\0';
