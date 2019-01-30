@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/27 15:32:04 by dromansk          #+#    #+#             */
-/*   Updated: 2019/01/29 18:29:27 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/01/29 19:21:56 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,20 +116,15 @@ int		format_string(char *st, t_flag *flags, char **buf)
 	}
 	else
 		n = ft_strdup(st);
-	printf("format %s\n", n);
 	if (flags->dot && ((t != f && t != F && t != per) ||
 				!(t == p && flags->prec == 0)))
 		n = swap_n_free(handle_precision(n, flags, t), &n);
-	printf("prec %s\n", n);
 	if (flags->sharp || t == p)
 		n = swap_n_free(alt(n, flags, t), &n);
-	printf("alt %s\n", n);
 	if ((flags->space || flags->plus) && (t == i || t == d))
 		n = swap_n_free(handle_space(n, flags), &n);
-	printf("space %s\n", n);
 	if (flags->width)
 		n = swap_n_free(handle_width(n, flags, t), &n);
-	printf("width %s\n", n);
 	if (t == X)
 		n = ft_strupper(n);
 	*buf = n;

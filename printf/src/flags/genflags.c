@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 15:18:32 by dromansk          #+#    #+#             */
-/*   Updated: 2019/01/29 19:07:07 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/01/29 19:19:33 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,6 @@ int		flag_skip(char *format)
 	int		i;
 
 	i = 0;
-	if (*format == '%' && *(format - 1) != '%')
-		i++;
 	while (is_flag(format[i], "+ 0123456789#hlLzj.-*"))
 		i++;
 	return (i);

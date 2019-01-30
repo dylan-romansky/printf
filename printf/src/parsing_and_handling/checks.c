@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/15 18:32:37 by dromansk          #+#    #+#             */
-/*   Updated: 2019/01/29 19:06:40 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/01/29 19:20:31 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int		check_flag(char *format)
 {
 	while (*format && is_flag(*format, "-+ 0123456789#hlLzj.*"))
 			format++;
-	if (!is_flag(*format, "diuoxXcspf%%UbODF"))
+	if (!is_flag(*format, "diuoxXcspf%UbODF"))
 		return (0);
 	return (1);
 }
