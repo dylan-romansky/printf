@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/27 13:50:27 by dromansk          #+#    #+#             */
-/*   Updated: 2019/01/29 16:54:38 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/01/29 19:07:58 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int		parse_arg(t_flag *flags, va_list *args, char **buf)
 
 	i = convert_type_num(flags->type);
 	if (i == 4)
-		return (format_string(ft_strdup, flags, buf));
+		return (format_string(ft_strdup("%"), flags, buf));
 	return (format_string(g_string[i].string(flags, args), flags, buf));
 }
 

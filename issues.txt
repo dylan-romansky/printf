@@ -5,12 +5,6 @@ FAILED TESTS:\n
   2. unix function printf
      (returned value) -->written on stdout<--
 
-# 0006 
-  ft_printf("%%");
-includes/projects/ft_printf/ft_printf_main.sh: line 198: printf: ft_printf_0(67581,0x7fffa6118340) malloc: *** error for object 0x10e398830: pointer being freed was not allocated$[BR]*** set a breakpoint in malloc_error_break to debug$[BR]includes/projects/ft_printf/ft_printf_main.sh: line 151: 67581 Abort trap: 6           ./tmp/ft_printf_0 0 "%%"$: invalid number
-  1. (    0) -->ft_printf_0(67581,0x7fffa6118340) malloc: *** error for object 0x10e398830: pointer being freed was not allocated$\n*** set a breakpoint in malloc_error_break to debug$\nincludes/projects/ft_printf/ft_printf_main.sh: line 151: 67581 Abort trap: 6           ./tmp/ft_printf_0 0 "%%"$<--
-  2. (    1) -->%<--
-
 # 0007 
   ft_printf("%5%");
   1. (    5) -->    r<--
@@ -24,12 +18,6 @@ includes/projects/ft_printf/ft_printf_main.sh: line 198: printf: ft_printf_0(675
 # 0009 
   ft_printf("%.0%");
   1. (    1) -->j<--
-  2. (    1) -->%<--
-
-# 0010 (char *)
-  ft_printf("%%", "test");
-includes/projects/ft_printf/ft_printf_main.sh: line 198: printf: ft_printf_s(67918,0x7fffa6118340) malloc: *** error for object 0x10a32e830: pointer being freed was not allocated$[BR]*** set a breakpoint in malloc_error_break to debug$[BR]includes/projects/ft_printf/ft_printf_main.sh: line 151: 67918 Abort trap: 6           ./tmp/ft_printf_s s "%%" "test"$: invalid number
-  1. (    0) -->ft_printf_s(67918,0x7fffa6118340) malloc: *** error for object 0x10a32e830: pointer being freed was not allocated$\n*** set a breakpoint in malloc_error_break to debug$\nincludes/projects/ft_printf/ft_printf_main.sh: line 151: 67918 Abort trap: 6           ./tmp/ft_printf_s s "%%" "test"$<--
   2. (    1) -->%<--
 
 # 0011 (char *)
@@ -299,7 +287,7 @@ includes/projects/ft_printf/ft_printf_main.sh: line 198: printf: ft_printf_s(679
 
 # 0173 (int)
   ft_printf("@moulitest: %.10d", -42);
-  1. (    0) --><--
+  1. (   22) -->@moulitest: -42^@^@^@^@M-^@^@^@<--
   2. (   23) -->@moulitest: -0000000042<--
 
 # 0179 (unsigned int)
@@ -357,3 +345,4 @@ includes/projects/ft_printf/ft_printf_main.sh: line 198: printf: ft_printf_s(679
   1. (    1) -->0<--
   2. (   10) -->4294967296<--
 \n--------------\n
+SUCCESS TESTS:\n 

@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 15:47:32 by dromansk          #+#    #+#             */
-/*   Updated: 2019/01/29 16:42:51 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/01/29 18:17:18 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,8 @@ int				set_width(t_flag **input, char *format, va_list *args);
 int				set_length(t_flag **input, char *format);
 int				set_first(t_flag **input, char *format);
 int				set_more_flags(t_flag **flags, char *format, va_list *args);
+int				set_type(t_flag **input, char *format);
+int				is_flag(char form, char *flags);
 int				skip_nums(char *format);
 int				flag_skip(char *format);
 int				convert_type_num(int i);

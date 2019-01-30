@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/15 18:32:37 by dromansk          #+#    #+#             */
-/*   Updated: 2019/01/29 15:05:57 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/01/29 19:06:40 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,9 @@
 
 int		check_flag(char *format)
 {
-	if (*format == '%' && *(format - 1) != '%')
-		format++;
-	while (*format && (*format == '-' || *format == '+' || *format == ' ' ||
-				(*format >= '0' && *format <= '9') || *format == '#' ||
-				*format == 'h' || *format == 'l' || *format == 'L' ||
-				*format == 'z' || *format == 'j' || *format == '.' ||
-				*format == '*'))
-		format++;
-	if (!(*format == 'd' || *format == 'i' || *format == 'u' ||
-				*format == 'o' || *format == 'x' || *format == 'X' ||
-				*format == 'c' || *format == 's' || *format == 'p' ||
-				*format == 'f' || *format == '%' || *format == 'U' ||
-				*format == 'b' || *format == 'O' || *format == 'D' ||
-				*format == 'F'))
+	while (*format && is_flag(*format, "-+ 0123456789#hlLzj.*"))
+			format++;
+	if (!is_flag(*format, "diuoxXcspf%%UbODF"))
 		return (0);
 	return (1);
 }

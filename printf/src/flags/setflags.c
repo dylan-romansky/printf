@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/22 14:04:16 by dromansk          #+#    #+#             */
-/*   Updated: 2019/01/29 17:00:31 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/01/29 18:19:02 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,11 @@
 
 int		set_flags(t_flag **flags, char *format, va_list *args)
 {
-	if (*format == '-' || *format == ' ' || *format == '0' || *format == '#'
-			|| *format == '+')
+	if (is_flag(*format, "- 0#+"))
 	{
 		if (!set_first(flags, format))
 			return (0);
-		while (*format == '-' || *format == ' ' || *format == '0' ||
-				*format == '#' || *format == '+')
+		while (is_flag(*format, "- 0#+"))
 		{
 			if (*format == '0' && *(format + 1) != '0')
 				format++;
@@ -41,8 +39,7 @@ int		set_first(t_flag **input, char *format)
 	t_flag	*flags;
 
 	flags = *input;
-	while (*format && (*format == '-' || *format == ' ' || *format == '0' ||
-				*format == '#' || *format == '+'))
+	while (is_flag(*format, "- 0#+"))
 	{
 		if (*format == '-')
 			flags->dash = 1;
@@ -61,16 +58,14 @@ int		set_first(t_flag **input, char *format)
 
 int		set_more_flags(t_flag **flags, char *format, va_list *args)
 {
-	if (*format == '*' || *format == '.' || ('0' <= *format && *format <= '9'))
+	if (is_flag(*format, "*.0123456789"))
 	{
 		if (!set_width(flags, format, args))
 			return (0);
-		while (*format == '*' || *format == '.' || ('0' <= *format &&
-					*format <= '9'))
+		while (is_flag(*format, "*.0123456789"))
 			format++;
 	}
-	if (*format == 'h' || *format == 'l' || *format == 'L' || *format == 'j'
-			|| *format == 'z')
+	if (is_flag(*format, "hlLjz"))
 	{
 		if (!set_length(flags, format++))
 			return (0);

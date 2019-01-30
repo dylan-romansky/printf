@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/08 21:02:36 by dromansk          #+#    #+#             */
-/*   Updated: 2019/01/29 15:05:04 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/01/29 18:32:12 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,18 +77,3 @@ char	*ft_uimaxtoa_base(intmax_t n, int base)
 	}
 	return (NULL);
 }
-/*
-char		*choose_string_maker(intmax_t i, t_flag *flags)
-{
-	if (flags->z && i != -1)
-		return (ft_uimaxtoa_base(i, 10));
-	else
-		return (ft_imaxtoa(i));
-	if (flags->j)
-		return (ft_imaxtoa(i));
-	if (flags->l)
-		return (ft_ltoa((long)i));
-	if (flags->ll)
-		return (ft_ltoa((long long)i));
-	return (ft_itoa((int)i));
-}*/

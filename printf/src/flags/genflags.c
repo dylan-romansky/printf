@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 15:18:32 by dromansk          #+#    #+#             */
-/*   Updated: 2019/01/29 15:05:33 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/01/29 19:07:07 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,7 @@ int		flag_skip(char *format)
 	i = 0;
 	if (*format == '%' && *(format - 1) != '%')
 		i++;
-	while (format[i] && (format[i] == '+' || format[i] == ' ' ||
-				(format[i] >= '0' && format[i] <= '9') || format[i] == '#' ||
-				format[i] == 'h' || format[i] == 'l' || format[i] == 'L' ||
-				format[i] == 'z' || format[i] == 'j' || format[i] == '.' ||
-				format[i] == '-' || format[i] == '*'))
+	while (is_flag(format[i], "+ 0123456789#hlLzj.-*"))
 		i++;
 	return (i);
 }
@@ -65,5 +61,14 @@ int		initflags(t_flag **input)
 		new->type = 0;
 		return (1);
 	}
+	return (0);
+}
+
+int		is_flag(char form, char *flags)
+{
+	while (*flags && form != *flags)
+		flags++;
+	if (*flags == form)
+		return (1);
 	return (0);
 }
