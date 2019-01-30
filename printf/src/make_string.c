@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/12 14:34:10 by dromansk          #+#    #+#             */
-/*   Updated: 2019/01/29 15:06:37 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/01/29 16:43:32 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,35 +21,6 @@ char	*str_to_arg(char *format)
 		i++;
 	return (ft_strndup(format, i));
 }
-
-int		parse_arg(t_flag *flags, va_list *args, char **buf)
-{
-	int		i;
-
-	i = convert_type_num(flags->type);
-	if (i == 4)
-		return (format_string(ft_strdup("%"), flags, buf));
-	return (format_string(g_string[i].string(flags, args), flags, buf));
-}
-
-/*	if (*format == '%')
-		return (format_string(ft_strdup("%"), flags, '%', buf));
-	if (*format == 'd' || *format == 'i' || *format == 'o' || *format == 'u'
-			|| *format == 'x' || *format == 'X' || *format == 'U'
-			|| *format == 'b' || *format == 'O' || *format == 'D')
-		return (format_string(parse_numbers(*format, flags, args), flags,
-					*format, buf));
-	if (*format == 'f' || *format == 'F')
-		return (format_string(parse_float(flags, args), flags,
-				*format, buf));
-	if (*format == 'c' || *format == 's')
-		return (format_string(parse_chars(*format, flags, args), flags,
-				*format, buf));
-	if (*format == 'p')
-		return (format_string(parse_pointer(*format, flags, args), flags,
-				*format, buf));
-	return (0);
-}*/
 
 int		get_data(va_list *args, char *format, char **buf)
 {

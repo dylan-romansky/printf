@@ -6,11 +6,22 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/27 13:50:27 by dromansk          #+#    #+#             */
-/*   Updated: 2019/01/29 15:06:14 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/01/29 16:54:38 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "printf.h"
+#include "printstruct.h"
+
+int		parse_arg(t_flag *flags, va_list *args, char **buf)
+{
+	int			i;
+
+	i = convert_type_num(flags->type);
+	if (i == 4)
+		return (format_string(ft_strdup, flags, buf));
+	return (format_string(g_string[i].string(flags, args), flags, buf));
+}
 
 char	*parse_numbers(t_flag *flags, va_list *args)
 {
@@ -31,23 +42,6 @@ char	*parse_chars(t_flag *flags, va_list *args)
 		return (get_string(args));
 	return (get_char(args));
 }
-/*	char		*s;
-
-	s = NULL;
-	if (c == 'c')
-	{
-		s = (char *)malloc(sizeof(char) * 2);
-		s[0] = (char)va_arg(*args, int);
-		s[1] = 0;
-		return (s);
-	}
-	if (c == 's')
-	{
-		s = va_arg(*args, char *);
-		return (ft_strdup(s));
-	}
-	return (NULL);
-}*/
 
 char	*parse_float(t_flag *flags, va_list *args)
 {
@@ -67,12 +61,12 @@ char	*parse_float(t_flag *flags, va_list *args)
 
 char	*parse_pointer(t_flag *flags, va_list *args)
 {
-	size_t		p;
+	size_t		ptr;
 	void		*st;
 
 	st = va_arg(*args, void *);
 	if (!st)
 		return (NULL);
-	p = (size_t)st;
+	ptr = (size_t)st;
 	return (ft_ltoa_base(p, 16));
 }

@@ -1,52 +1,359 @@
-[ -------STARTING ALL UNIT TESTS------- ]
->>>> 44_length_modif_z.spec.c ---- [Ok !] ...........
->>>> 14_conv_x.spec.c ------------ [Ok !] .....
->>>> 07_conv_S.spec.c ------------ [FAIL] FFFFF [FAIL] test_simple -> printf("%S", L"Á±≥")
->>>> 43_length_modif_j.spec.c ---- [Ok !] .............
->>>> 73_precision_for_cC.spec.c -- [FAIL] ...FFF [FAIL] cUpperNullChar -> printf("%.C", 0)
->>>> 70_precision_for_diu.spec.c - [Ok !] ..............................
->>>> 01_conv_s_simple.spec.c ----- [Ok !] ......
->>>> 12_conv_u.spec.c ------------ [Ok !] .....
->>>> 50_min_width.spec.c --------- [FAIL] ..........FF [FAIL] wideString -> printf("{%30S}", L"ÊM-M-^QÊM-^XØ‰∏M-ÂM-^O™ÁM-^L´„M-M-^B")
->>>> bonus_03_wildcard_flag_mix.sp [Ok !] ....
->>>> 51_min_width_flag_minus.spec. [Ok !] ...
->>>> 02_conv_s_multiple.spec.c --- [Ok !] ...
->>>> 11_conv_O.spec.c ------------ [Ok !] .....
->>>> 04_conv_p.spec.c ------------ [Ok !] .....
->>>> bonus_01_wildcard.spec.c ---- [Ok !] .............
->>>> 15_conv_X.spec.c ------------ [Ok !] .....
->>>> 45_length_modif_edge_cases.sp [Ok !] .
->>>> 43_length_modif_hh.spec.c --- [FAIL] .....................FF [FAIL] test_err_hhc_up_max -> printf("%hhC, %hhC", 0, L'Á±≥')
->>>> 53_min_width_non_valid_conv.s [Ok !] .
->>>> 13_conv_U.spec.c ------------ [Ok !] ...
->>>> 16_conv_c.spec.c ------------ [Ok !] ....
->>>> bonus_10_conv_fF.spec.c ----- [Ok !] ....
->>>> 61_flag_plus.spec.c --------- [FAIL] .....F....... [FAIL] test_plus_c_up_zero -> printf("%+C", 0)
->>>> 60_flag_sharp.spec.c -------- [Ok !] ...........
->>>> 06_mix_sdp_percent.spec.c --- [Ok !] ..
->>>> 10_conv_o.spec.c ------------ [Ok !] ....
->>>> 40_length_modif_l.spec.c ---- [FAIL] ..............FF... [FAIL] test_lc_wchar -> printf("%lc, %lc", L'ÊM-^ZM-^V', L'ÿ≠')
->>>> 18_mix_all_previous.spec.c -- [FAIL] FF [FAIL] test_simple -> printf("%s %C %d %p %x %% %S", "bonjour ", L'Ë©≤', 42, &free, 42, L"ŸM-^Dÿ≠ŸM-^E ÿÆŸM-^Fÿ...
->>>> 79_precision_mixed_with_flags [FAIL] .........F [FAIL] wideString_precisionMinWidth_flagZero -> printf("{%05.S}", L"42 c est cool")
->>>> 42_length_modif_h.spec.c ---- [Ok !] .............
->>>> 17_conv_C.spec.c ------------ [FAIL] FFFFFFFFF [FAIL] test_simple_char -> printf("%C", 'c')
->>>> 52_min_width_flag_zero.spec.c [FAIL] ........F.. [FAIL] wide_str_posMinWidth_zeroFlag -> printf("{%030S}", L"ÊM-M-^QÊM-^XØ‰∏M-ÂM-^O™ÁM-^L´„M-M-^B")
->>>> 75_precision_for_percent.spec [FAIL] F [FAIL] percent_point3precision -> printf("%.3%")
->>>> 05_percent_escape.spec.c ---- [FAIL] ....F... [FAIL] test_modulo_without_valid_specifier -> printf("%")
->>>> 41_length_modif_ll.spec.c --- [Ok !] .............
->>>> 71_precision_for_oOxX.spec.c  [Ok !] ...............................
->>>> bonus_02_wildcard_multi.spec. [Ok !] .
->>>> 09_conv_i.spec.c ------------ [Ok !] .....
->>>> 03_conv_d.spec.c ------------ [Ok !] .......
->>>> 00_no_conv.spec.c ----------- [Ok !] ....
->>>> 74_precision_for_p.spec.c --- [Ok !] ......
->>>> 91_incomptbl_values_uUSDcC.sp [Ok !] ......
->>>> 92_incomptbl_values_oOxX.spec [Ok !] .......
->>>> 72_precision_for_sS.spec.c -- [FAIL] .........FFFFF [FAIL] test_precision_S -> printf("%.4S", L"ÊM-M-^QÊM-^XØ‰∏M-ÂM-^O™ÁM-^L´„M-M-^B")
->>>> 62_flag_space.spec.c -------- [FAIL] ..........FFFFF [FAIL] test_space_C_zero -> printf("{% C}", 0)
->>>> 69_flag_mix.spec.c ---------- [Ok !] .........
->>>> 90_incomptbl_values_sdpi.spec [FAIL] .FF. [FAIL] test_zi -> printf("%zi", LLONG_MIN)
->>>> 08_conv_D.spec.c ------------ [FAIL] F.F. [FAIL] test_simple -> printf("%D", -1L)
-[ ----------END OF UNIT TESTS---------- ]
+FAILED TESTS:\n
+# TEST NUMBER (TYPE OF ARG)
+  INSTRUCTION();
+  1. your function ft_printf
+  2. unix function printf
+     (returned value) -->written on stdout<--
 
->>>> Result: 32/48 test suites passed. 352/396 tests passed (dots).
+# 0006 
+  ft_printf("%%");
+includes/projects/ft_printf/ft_printf_main.sh: line 198: printf: ft_printf_0(67581,0x7fffa6118340) malloc: *** error for object 0x10e398830: pointer being freed was not allocated$[BR]*** set a breakpoint in malloc_error_break to debug$[BR]includes/projects/ft_printf/ft_printf_main.sh: line 151: 67581 Abort trap: 6           ./tmp/ft_printf_0 0 "%%"$: invalid number
+  1. (    0) -->ft_printf_0(67581,0x7fffa6118340) malloc: *** error for object 0x10e398830: pointer being freed was not allocated$\n*** set a breakpoint in malloc_error_break to debug$\nincludes/projects/ft_printf/ft_printf_main.sh: line 151: 67581 Abort trap: 6           ./tmp/ft_printf_0 0 "%%"$<--
+  2. (    1) -->%<--
+
+# 0007 
+  ft_printf("%5%");
+  1. (    5) -->    r<--
+  2. (    5) -->    %<--
+
+# 0008 
+  ft_printf("%-5%");
+  1. (    5) -->j    <--
+  2. (    5) -->%    <--
+
+# 0009 
+  ft_printf("%.0%");
+  1. (    1) -->j<--
+  2. (    1) -->%<--
+
+# 0010 (char *)
+  ft_printf("%%", "test");
+includes/projects/ft_printf/ft_printf_main.sh: line 198: printf: ft_printf_s(67918,0x7fffa6118340) malloc: *** error for object 0x10a32e830: pointer being freed was not allocated$[BR]*** set a breakpoint in malloc_error_break to debug$[BR]includes/projects/ft_printf/ft_printf_main.sh: line 151: 67918 Abort trap: 6           ./tmp/ft_printf_s s "%%" "test"$: invalid number
+  1. (    0) -->ft_printf_s(67918,0x7fffa6118340) malloc: *** error for object 0x10a32e830: pointer being freed was not allocated$\n*** set a breakpoint in malloc_error_break to debug$\nincludes/projects/ft_printf/ft_printf_main.sh: line 151: 67918 Abort trap: 6           ./tmp/ft_printf_s s "%%" "test"$<--
+  2. (    1) -->%<--
+
+# 0011 (char *)
+  ft_printf("%   %", "test");
+  1. (    1) -->r<--
+  2. (    1) -->%<--
+
+# 0012 (int)
+  ft_printf("%x", 42);
+  1. (    2) -->42<--
+  2. (    2) -->2a<--
+
+# 0013 (int)
+  ft_printf("%X", 42);
+  1. (    2) -->42<--
+  2. (    2) -->2A<--
+
+# 0016 (int)
+  ft_printf("%x", -42);
+  1. (   20) -->18446744073709551574<--
+  2. (    8) -->ffffffd6<--
+
+# 0017 (int)
+  ft_printf("%X", -42);
+  1. (   20) -->18446744073709551574<--
+  2. (    8) -->FFFFFFD6<--
+
+# 0021 (int)
+  ft_printf("%10x", 42);
+  1. (   10) -->        42<--
+  2. (   10) -->        2a<--
+
+# 0022 (int)
+  ft_printf("%-10x", 42);
+  1. (   10) -->42        <--
+  2. (   10) -->2a        <--
+
+# 0023 (int)
+  ft_printf("%lx", 4294967296);
+  1. (   10) -->4294967296<--
+  2. (    9) -->100000000<--
+
+# 0024 (int)
+  ft_printf("%llX", 4294967296);
+  1. (   10) -->4294967296<--
+  2. (    9) -->100000000<--
+
+# 0027 (int)
+  ft_printf("%jx", 4294967295);
+  1. (   10) -->4294967295<--
+  2. (    8) -->ffffffff<--
+
+# 0028 (int)
+  ft_printf("%jx", 4294967296);
+  1. (   10) -->4294967296<--
+  2. (    9) -->100000000<--
+
+# 0029 (int)
+  ft_printf("%jx", -4294967296);
+  1. (   20) -->18446744069414584320<--
+  2. (   16) -->ffffffff00000000<--
+
+# 0030 (int)
+  ft_printf("%jx", -4294967297);
+  1. (   20) -->18446744069414584319<--
+  2. (   16) -->fffffffeffffffff<--
+
+# 0031 (int)
+  ft_printf("%llx", 9223372036854775807);
+  1. (   19) -->9223372036854775807<--
+  2. (   16) -->7fffffffffffffff<--
+
+# 0032 (int)
+  ft_printf("%llx", 9223372036854775808);
+  1. (   19) -->9223372036854775807<--
+  2. (   16) -->7fffffffffffffff<--
+
+# 0033 (int)
+  ft_printf("%010x", 542);
+  1. (   10) -->0000000542<--
+  2. (   10) -->000000021e<--
+
+# 0034 (int)
+  ft_printf("%-15x", 542);
+  1. (   15) -->542            <--
+  2. (   15) -->21e            <--
+
+# 0035 (int)
+  ft_printf("%2x", 542);
+  1. (    3) -->542<--
+  2. (    3) -->21e<--
+
+# 0036 (int)
+  ft_printf("%.2x", 5427);
+  1. (    4) -->5427<--
+  2. (    4) -->1533<--
+
+# 0037 (int)
+  ft_printf("%5.2x", 5427);
+  1. (    5) --> 5427<--
+  2. (    5) --> 1533<--
+
+# 0038 (int)
+  ft_printf("%#x", 42);
+  1. (    4) -->0x42<--
+  2. (    4) -->0x2a<--
+
+# 0039 (int)
+  ft_printf("%#llx", 9223372036854775807);
+  1. (   21) -->0x9223372036854775807<--
+  2. (   18) -->0x7fffffffffffffff<--
+
+# 0041 (int)
+  ft_printf("%#x", 42);
+  1. (    4) -->0x42<--
+  2. (    4) -->0x2a<--
+
+# 0042 (int)
+  ft_printf("%#X", 42);
+  1. (    4) -->0X42<--
+  2. (    4) -->0X2A<--
+
+# 0043 (int)
+  ft_printf("%#8x", 42);
+  1. (    8) -->    0x42<--
+  2. (    8) -->    0x2a<--
+
+# 0044 (int)
+  ft_printf("%#08x", 42);
+  1. (    9) -->0x0000042<--
+  2. (    8) -->0x00002a<--
+
+# 0045 (int)
+  ft_printf("%#-08x", 42);
+  1. (    9) -->0x42     <--
+  2. (    8) -->0x2a    <--
+
+# 0049 (char *)
+  ft_printf("%s", "abc");
+  1. (    1) -->o<--
+  2. (    3) -->abc<--
+
+# 0050 (char *)
+  ft_printf("%s", "this is a string");
+  1. (    1) -->g<--
+  2. (   16) -->this is a string<--
+
+# 0051 (char *)
+  ft_printf("%s ", "this is a string");
+  1. (    2) -->` <--
+  2. (   17) -->this is a string <--
+
+# 0052 (char *)
+  ft_printf("%s  ", "this is a string");
+  1. (    3) -->a  <--
+  2. (   18) -->this is a string  <--
+
+# 0053 (char *)
+  ft_printf("this is a %s", "string");
+  1. (   11) -->this is a q<--
+  2. (   16) -->this is a string<--
+
+# 0054 (char *)
+  ft_printf("%s is a string", "this");
+  1. (   13) -->s is a string<--
+  2. (   16) -->this is a string<--
+
+# 0055 (char *)
+  ft_printf("Line Feed %s", "\\n");
+  1. (   11) -->Line Feed q<--
+  2. (   12) -->Line Feed \\n<--
+
+# 0056 (char *)
+  ft_printf("%10s is a string", "this");
+  1. (   22) -->         m is a string<--
+  2. (   22) -->      this is a string<--
+
+# 0057 (char *)
+  ft_printf("%.2s is a string", "this");
+  1. (   13) -->m is a string<--
+  2. (   14) -->th is a string<--
+
+# 0058 (char *)
+  ft_printf("%5.2s is a string", "this");
+  1. (   17) -->    n is a string<--
+  2. (   17) -->   th is a string<--
+
+# 0059 (char *)
+  ft_printf("%10s is a string", "");
+  1. (   22) -->         u is a string<--
+  2. (   22) -->           is a string<--
+
+# 0060 (char *)
+  ft_printf("%.2s is a string", "");
+  1. (   13) -->u is a string<--
+  2. (   12) --> is a string<--
+
+# 0061 (char *)
+  ft_printf("%5.2s is a string", "");
+  1. (   17) -->    v is a string<--
+  2. (   17) -->      is a string<--
+
+# 0062 (char *)
+  ft_printf("%-10s is a string", "this");
+  1. (   22) -->n          is a string<--
+  2. (   22) -->this       is a string<--
+
+# 0063 (char *)
+  ft_printf("%-.2s is a string", "this");
+  1. (   13) -->n is a string<--
+  2. (   14) -->th is a string<--
+
+# 0064 (char *)
+  ft_printf("%-5.2s is a string", "this");
+  1. (   17) -->o     is a string<--
+  2. (   17) -->th    is a string<--
+
+# 0065 (char *)
+  ft_printf("%-10s is a string", "");
+  1. (   22) -->v          is a string<--
+  2. (   22) -->           is a string<--
+
+# 0066 (char *)
+  ft_printf("%-.2s is a string", "");
+  1. (   13) -->v is a string<--
+  2. (   12) --> is a string<--
+
+# 0067 (char *)
+  ft_printf("%-5.2s is a string", "");
+  1. (   17) -->w     is a string<--
+  2. (   17) -->      is a string<--
+
+# 0068 (char *)
+  ft_printf("%s %s", "this", "is");
+  1. (    3) -->j o<--
+  2. (    7) -->this is<--
+
+# 0069 (char *)
+  ft_printf("%s %s %s", "this", "is", "a");
+  1. (    5) -->m r u<--
+  2. (    9) -->this is a<--
+
+# 0070 (char *)
+  ft_printf("%s %s %s %s", "this", "is", "a", "multi");
+  1. (    7) -->h m p r<--
+  2. (   15) -->this is a multi<--
+
+# 0071 (char *)
+  ft_printf("%s %s %s %s string. gg!", "this", "is", "a", "multi", "string");
+  1. (   19) -->\\ a d f string. gg!<--
+  2. (   27) -->this is a multi string. gg!<--
+
+# 0072 (char *)
+  ft_printf("%s%s%s%s%s", "this", "is", "a", "multi", "string");
+  1. (    5) -->_dgio<--
+  2. (   18) -->thisisamultistring<--
+
+# 0073 (NULL)
+  ft_printf("@moulitest: %s", NULL);
+  1. (   12) -->@moulitest: <--
+  2. (   18) -->@moulitest: (null)<--
+
+# 0075 (NULL)
+  ft_printf("%s %s", NULL, string);
+  1. (    2) --> p<--
+  2. (   13) -->(null) string<--
+
+# 0173 (int)
+  ft_printf("@moulitest: %.10d", -42);
+  1. (    0) --><--
+  2. (   23) -->@moulitest: -0000000042<--
+
+# 0179 (unsigned int)
+  ft_printf("%u", -1);
+  1. (   20) -->18446744073709551615<--
+  2. (   10) -->4294967295<--
+
+# 0180 (unsigned int)
+  ft_printf("%u", 4294967295);
+  1. (   20) -->18446744073709551615<--
+  2. (   10) -->4294967295<--
+
+# 0182 (unsigned int)
+  ft_printf("%5u", 4294967295);
+  1. (   20) -->18446744073709551615<--
+  2. (   10) -->4294967295<--
+
+# 0183 (unsigned int)
+  ft_printf("%15u", 4294967295);
+  1. (   20) -->18446744073709551615<--
+  2. (   15) -->     4294967295<--
+
+# 0184 (unsigned int)
+  ft_printf("%-15u", 4294967295);
+  1. (   20) -->18446744073709551615<--
+  2. (   15) -->4294967295     <--
+
+# 0185 (unsigned int)
+  ft_printf("%015u", 4294967295);
+  1. (   20) -->18446744073709551615<--
+  2. (   15) -->000004294967295<--
+
+# 0186 (unsigned int)
+  ft_printf("% u", 4294967295);
+  1. (   20) -->18446744073709551615<--
+  2. (   10) -->4294967295<--
+
+# 0187 (unsigned int)
+  ft_printf("%+u", 4294967295);
+  1. (   20) -->18446744073709551615<--
+  2. (   10) -->4294967295<--
+
+# 0194 (unsigned long)
+  ft_printf("%U", 4294967295);
+  1. (   20) -->18446744073709551615<--
+  2. (   10) -->4294967295<--
+
+# 0195 (unsigned long)
+  ft_printf("%hU", 4294967296);
+  1. (    1) -->0<--
+  2. (   10) -->4294967296<--
+
+# 0196 (unsigned long)
+  ft_printf("%U", 4294967296);
+  1. (    1) -->0<--
+  2. (   10) -->4294967296<--
+\n--------------\n

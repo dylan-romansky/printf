@@ -6,11 +6,12 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/19 15:12:25 by dromansk          #+#    #+#             */
-/*   Updated: 2019/01/29 15:05:26 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/01/29 16:38:43 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "printf.h"
+#include "typestruct.h"
 
 void	get_width(char *format, va_list *args, t_flag **flags)
 {

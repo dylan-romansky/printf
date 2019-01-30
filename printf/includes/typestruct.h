@@ -1,20 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   typestruct.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/13 14:34:29 by dromansk          #+#    #+#             */
-/*   Updated: 2019/01/29 16:28:20 by dromansk         ###   ########.fr       */
+/*   Created: 2019/01/29 16:37:05 by dromansk          #+#    #+#             */
+/*   Updated: 2019/01/29 16:37:44 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <limits.h>
-int		ft_printf(const char *restrict format, ...);
+#ifndef TYPESTRUCT_H
+# define TYPESTRUCT_H
 
-int		main(void){
-	printf("e %.5p\n", 0);
-	ft_printf("r %.5p\n", 0);
-return (0);}
+#include "printf.h"
+
+t_types g_types[] =
+{
+	{'d', d},
+	{'i', i},
+	{'o', o},
+	{'O', O},
+	{'u', u},
+	{'U', U},
+	{'D', D},
+	{'x', x},
+	{'X', X},
+	{'b', b},
+	{'p', p},
+	{'s', s},
+	{'c', c},
+	{'f', f},
+	{'F', F},
+	{'%', per}
+};
+
+#endif

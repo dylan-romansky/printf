@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/22 14:04:16 by dromansk          #+#    #+#             */
-/*   Updated: 2019/01/29 15:05:37 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/01/29 17:00:31 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,8 @@ int		set_more_flags(t_flag **flags, char *format, va_list *args)
 		if (!set_length(flags, format++))
 			return (0);
 	}
+	if (!set_type(flags, format))
+		return (0);
 	return (1);
 }
 

@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 15:47:32 by dromansk          #+#    #+#             */
-/*   Updated: 2019/01/29 15:04:46 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/01/29 16:42:51 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 /* possible optimization, array with va_list calls populating. enumerate flag types in order to call data by storing enumerated value */
 /* maybe enumerate the data type flags too and store those */
 
-#ifndef PRINTFFUN_H
-# define PRINTFFUN_H
+#ifndef PRINTF_H
+# define PRINTF_H
 # include <stdarg.h>
 # include <stdint.h>
 # include <stddef.h>
@@ -90,6 +90,7 @@ char			*ft_imaxtoa_base(intmax_t n, int base);
 char			*ft_sizetoa_base(size_t n, int base);
 
 int				conver_type_num(int i);
+int				parse_arg(t_flag *flags, va_list *args, char **buf);
 char			*parse_numbers(t_flag *flags, va_list *args);
 char			*parse_chars(t_flag *flags, va_list *args);
 char			*parse_float(t_flag *flags, va_list *args);
@@ -123,55 +124,5 @@ char			*neg_width(char *st, t_flag *flags, int t);
 char			*space_z(char *st, t_flag *flags);
 int				check_flag(char *format);
 int				error_handle(char **buf);
-
-t_stringmake g_string[] =
-{
-	{&parse_numbers},
-	{&parse_pointer},
-	{&parse_chars},
-	{&parse_float}
-};
-
-t_numcon g_numconvert[] =
-{
-	{10, &ft_imaxtoa_base},
-	{8, &ft_imaxtoa_base},
-	{10, &ft_uimaxtoa_base},
-	{10, &ft_uimaxtoa_base},
-	{10, &ft_uimaxtoa_base},
-	{10, &ft_uimaxtoa_base},
-	{10, &ft_uimaxtoa_base}
-};
-
-t_arglen g_arglen[] =
-{
-	{&get_normal},
-	{&get_h},
-	{&get_hh},
-	{&get_l},
-	{&get_ll},
-	{&get_j},
-	{&get_z}
-};
-
-t_types g_types[] =
-{
-	{'d', d},
-	{'i', i},
-	{'o', o},
-	{'O', O},
-	{'u', u},
-	{'U', U},
-	{'D', D},
-	{'x', x},
-	{'X', X},
-	{'b', b},
-	{'p', p},
-	{'s', s},
-	{'c', c},
-	{'f', f},
-	{'F', F},
-	{'%', per}
-};
 
 #endif
