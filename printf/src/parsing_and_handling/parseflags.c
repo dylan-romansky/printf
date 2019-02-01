@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/27 13:50:27 by dromansk          #+#    #+#             */
-/*   Updated: 2019/01/31 18:28:47 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/01/31 18:46:38 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ char	*parse_chars(t_flag *flags, va_list *args)
 {
 	int			i;
 
-	i = flags->size - 7;
+	i = flags->type - 7;
 	if (!i)
 		return (get_string(args));
 	return (get_char(args));

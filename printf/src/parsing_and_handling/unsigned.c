@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/27 14:19:16 by dromansk          #+#    #+#             */
-/*   Updated: 2019/01/31 17:19:53 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/01/31 18:57:46 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 intmax_t	uget_normal(va_list *args)
 {
-	return((unsigned int)va_arg(*args, int));
+	return(va_arg(*args, unsigned int));
 }
 
 intmax_t	uget_h(va_list *args)
