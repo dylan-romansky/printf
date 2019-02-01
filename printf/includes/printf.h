@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 15:47:32 by dromansk          #+#    #+#             */
-/*   Updated: 2019/01/29 18:17:18 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/01/31 17:21:07 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,6 +107,13 @@ intmax_t		get_l(va_list *args);
 intmax_t		get_ll(va_list *args);
 intmax_t		get_j(va_list *args);
 intmax_t		get_z(va_list *args);
+intmax_t		uget_normal(va_list *args);
+intmax_t		uget_h(va_list *args);
+intmax_t		uget_hh(va_list *args);
+intmax_t		uget_l(va_list *args);
+intmax_t		uget_ll(va_list *args);
+intmax_t		uget_j(va_list *args);
+intmax_t		uget_z(va_list *args);
 
 int				format_string(char *st, t_flag *flags, char **buf);
 int				prec(char *format, va_list *args, t_flag **input);

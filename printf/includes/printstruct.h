@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/29 16:34:34 by dromansk          #+#    #+#             */
-/*   Updated: 2019/01/29 19:28:04 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/01/31 18:29:30 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,17 @@ t_arglen g_arglen[] =
 	{&get_ll},
 	{&get_j},
 	{&get_z}
+};
+
+t_arglen g_uarglen[] =
+{
+	{&uget_normal},
+	{&uget_h},
+	{&uget_hh},
+	{&uget_l},
+	{&uget_ll},
+	{&uget_j},
+	{&uget_z}
 };
 
 #endif
