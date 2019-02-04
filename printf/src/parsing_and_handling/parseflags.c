@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/27 13:50:27 by dromansk          #+#    #+#             */
-/*   Updated: 2019/02/03 22:13:57 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/02/03 23:04:05 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ char	*parse_numbers(t_flag *flags, va_list *args)
 	intmax_t	num;
 	int			base;
 
-	if (flags->type == d || flags->type == D)
+	if (flags->type == d)
 	   num = g_arglen[flags->size].parse(args);
 	else
 		num = g_uarglen[flags->size].parse(args);
@@ -71,5 +71,5 @@ char	*parse_pointer(t_flag *flags, va_list *args)
 	if (!st)
 		return (NULL);
 	ptr = (size_t)st;
-	return (ft_ltoa_base(p, 16));
+	return (ft_ltoa_base(ptr, 16));
 }

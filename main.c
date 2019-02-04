@@ -3,6 +3,8 @@
 #include "printf.h"
 
 int		main(void){
-	printf("e %U\n", 4294967295);
-	ft_printf("r %U\n", 4294967295);
+	int strlen;
+	strlen = 6;
+	printf("e %.3%\n", &strlen);
+	ft_printf("r %.3%\n", &strlen);
 return (0);}

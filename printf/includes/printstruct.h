@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/29 16:34:34 by dromansk          #+#    #+#             */
-/*   Updated: 2019/01/31 18:29:30 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/02/03 22:50:12 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ t_stringmake g_string[] =
 t_numcon g_numconvert[] =
 {
 	{10, &ft_imaxtoa_base},
-	{8, &ft_imaxtoa_base},
+	{8, &ft_uimaxtoa_base},
 	{10, &ft_uimaxtoa_base},
 	{16, &ft_uimaxtoa_base},
 	{16, &ft_uimaxtoa_base},

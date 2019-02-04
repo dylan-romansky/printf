@@ -1,15 +1,4 @@
 [ -------STARTING ALL UNIT TESTS------- ]
->>>> 44_length_modif_z.spec.c ---- [FAIL] .....F..... [FAIL] test_zo_unsign_long_long_max -> printf("%zo, %zo", 0, ULLONG_MAX)
->>>> 43_length_modif_j.spec.c ---- [FAIL] .......F..... [FAIL] test_jo_unsign_long_long_max -> printf("%jo, %jo", 0, ULLONG_MAX)
->>>> 50_min_width.spec.c --------- [FAIL] .......FF.FF [FAIL] pZero_minus13MinWidth -> printf("{%-13p}", &strlen)
->>>> 04_conv_p.spec.c ------------ [FAIL] FFFF. [FAIL] test_int_pointer -> printf("%p", &i)
->>>> 45_length_modif_edge_cases.sp [FAIL] F [FAIL] ignore_length_modifiers_with_p_conv -> printf("%lp", 42)
->>>> 06_mix_sdp_percent.spec.c --- [FAIL] FF [FAIL] test_simple_mix -> printf("s: %s, p: %p, d:%d", "a string", &test_simple_mix, 42)
->>>> 40_length_modif_l.spec.c ---- [FAIL] ...........F..FF... [FAIL] test_lo_long_unsigned_max -> printf("%lo, %lo", 0, ULONG_MAX)
 >>>> 75_precision_for_percent.spec [FAIL] F [FAIL] percent_point3precision -> printf("%.3%")
 >>>> 05_percent_escape.spec.c ---- [FAIL] ....F... [FAIL] test_modulo_without_valid_specifier -> printf("%")
->>>> 41_length_modif_ll.spec.c --- [FAIL] .......F..... [FAIL] test_llo_unsign_long_long_max -> printf("%llo, %llo", 0, ULLONG_MAX)
->>>> 74_precision_for_p.spec.c --- [FAIL] ..FFFF [FAIL] Pointer_Precision_width_len_between_width_prec -> printf("%9.2p", 1234)
->>>> 92_incomptbl_values_oOxX.spec [FAIL] ..F.... [FAIL] test_octal_up_long_min -> printf("%O", LONG_MIN)
->>>> 90_incomptbl_values_sdpi.spec [FAIL] ...F [FAIL] test_p_incompatible_flags -> printf("% p|%+p", 42, 42)
 [ ----------END OF UNIT TESTS---------- ]
