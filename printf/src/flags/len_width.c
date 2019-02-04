@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/19 15:12:25 by dromansk          #+#    #+#             */
-/*   Updated: 2019/01/29 19:21:43 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/02/03 22:27:08 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,9 @@ int		set_type(t_flag **input, char *format)
 		while (g_types[i].type != *format)
 			i++;
 		flags->type = g_types[i].num;
+		if (ft_isupper(g_types[i].type) && l != flags->size &&
+				ll != flags->size && flags->type != X)
+			flags->size = l;
 		return (1);
 	}
 	return (0);

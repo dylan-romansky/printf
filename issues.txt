@@ -1,77 +1,15 @@
-FAILED TESTS:\n
-# TEST NUMBER (TYPE OF ARG)
-  INSTRUCTION();
-  1. your function ft_printf
-  2. unix function printf
-     (returned value) -->written on stdout<--
-
-# 0044 (int)
-  ft_printf("%#08x", 42);
-  1. (    9) -->0x000002a<--
-  2. (    8) -->0x00002a<--
-
-# 0045 (int)
-  ft_printf("%#-08x", 42);
-  1. (    9) -->0x2a     <--
-  2. (    8) -->0x2a    <--
-
-# 0173 (int)
-  ft_printf("@moulitest: %.10d", -42);
-  1. (    0) --><--
-  2. (   23) -->@moulitest: -0000000042<--
-
-# 0179 (unsigned int)
-  ft_printf("%u", -1);
-  1. (   20) -->18446744073709551615<--
-  2. (   10) -->4294967295<--
-
-# 0180 (unsigned int)
-  ft_printf("%u", 4294967295);
-  1. (   20) -->18446744073709551615<--
-  2. (   10) -->4294967295<--
-
-# 0182 (unsigned int)
-  ft_printf("%5u", 4294967295);
-  1. (   20) -->18446744073709551615<--
-  2. (   10) -->4294967295<--
-
-# 0183 (unsigned int)
-  ft_printf("%15u", 4294967295);
-  1. (   20) -->18446744073709551615<--
-  2. (   15) -->     4294967295<--
-
-# 0184 (unsigned int)
-  ft_printf("%-15u", 4294967295);
-  1. (   20) -->18446744073709551615<--
-  2. (   15) -->4294967295     <--
-
-# 0185 (unsigned int)
-  ft_printf("%015u", 4294967295);
-  1. (   20) -->18446744073709551615<--
-  2. (   15) -->000004294967295<--
-
-# 0186 (unsigned int)
-  ft_printf("% u", 4294967295);
-  1. (   20) -->18446744073709551615<--
-  2. (   10) -->4294967295<--
-
-# 0187 (unsigned int)
-  ft_printf("%+u", 4294967295);
-  1. (   20) -->18446744073709551615<--
-  2. (   10) -->4294967295<--
-
-# 0194 (unsigned long)
-  ft_printf("%U", 4294967295);
-  1. (   20) -->18446744073709551615<--
-  2. (   10) -->4294967295<--
-
-# 0195 (unsigned long)
-  ft_printf("%hU", 4294967296);
-  1. (    1) -->0<--
-  2. (   10) -->4294967296<--
-
-# 0196 (unsigned long)
-  ft_printf("%U", 4294967296);
-  1. (    1) -->0<--
-  2. (   10) -->4294967296<--
-\n--------------\n
+[ -------STARTING ALL UNIT TESTS------- ]
+>>>> 44_length_modif_z.spec.c ---- [FAIL] .....F..... [FAIL] test_zo_unsign_long_long_max -> printf("%zo, %zo", 0, ULLONG_MAX)
+>>>> 43_length_modif_j.spec.c ---- [FAIL] .......F..... [FAIL] test_jo_unsign_long_long_max -> printf("%jo, %jo", 0, ULLONG_MAX)
+>>>> 50_min_width.spec.c --------- [FAIL] .......FF.FF [FAIL] pZero_minus13MinWidth -> printf("{%-13p}", &strlen)
+>>>> 04_conv_p.spec.c ------------ [FAIL] FFFF. [FAIL] test_int_pointer -> printf("%p", &i)
+>>>> 45_length_modif_edge_cases.sp [FAIL] F [FAIL] ignore_length_modifiers_with_p_conv -> printf("%lp", 42)
+>>>> 06_mix_sdp_percent.spec.c --- [FAIL] FF [FAIL] test_simple_mix -> printf("s: %s, p: %p, d:%d", "a string", &test_simple_mix, 42)
+>>>> 40_length_modif_l.spec.c ---- [FAIL] ...........F..FF... [FAIL] test_lo_long_unsigned_max -> printf("%lo, %lo", 0, ULONG_MAX)
+>>>> 75_precision_for_percent.spec [FAIL] F [FAIL] percent_point3precision -> printf("%.3%")
+>>>> 05_percent_escape.spec.c ---- [FAIL] ....F... [FAIL] test_modulo_without_valid_specifier -> printf("%")
+>>>> 41_length_modif_ll.spec.c --- [FAIL] .......F..... [FAIL] test_llo_unsign_long_long_max -> printf("%llo, %llo", 0, ULLONG_MAX)
+>>>> 74_precision_for_p.spec.c --- [FAIL] ..FFFF [FAIL] Pointer_Precision_width_len_between_width_prec -> printf("%9.2p", 1234)
+>>>> 92_incomptbl_values_oOxX.spec [FAIL] ..F.... [FAIL] test_octal_up_long_min -> printf("%O", LONG_MIN)
+>>>> 90_incomptbl_values_sdpi.spec [FAIL] ...F [FAIL] test_p_incompatible_flags -> printf("% p|%+p", 42, 42)
+[ ----------END OF UNIT TESTS---------- ]

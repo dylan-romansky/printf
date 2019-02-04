@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/27 15:32:04 by dromansk          #+#    #+#             */
-/*   Updated: 2019/01/31 19:00:37 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/02/03 22:00:54 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,14 +62,13 @@ char	*handle_precision(char *str, t_flag *flags, int ty)
 	int		len;
 
 	if (*str == '-')
-		return (neg_prec(str, flags, c));
+		return (neg_prec(str, flags, ty));
 	t = ft_strdup("0");
 	n = ft_strdup(str);
 	len = (int)ft_strlen(str);
 	if (len > flags->prec && (ty == s || ft_strequ("0", str)))
 		n = swap_n_free(ft_strndup(n, flags->prec), &n);
-	if (len < flags->prec)
-		if (ty != c && ty != s)
+	if (len < flags->prec && ty != c && ty != s)
 			while (len < flags->prec)
 			{
 				n = swap_n_free(ft_strjoin(t, n), &n);

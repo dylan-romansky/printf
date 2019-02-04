@@ -1,32 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   misc_functions.c                                   :+:      :+:    :+:   */
+/*   ft_isupper.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/04 00:06:38 by dromansk          #+#    #+#             */
-/*   Updated: 2019/01/29 15:05:53 by dromansk         ###   ########.fr       */
+/*   Created: 2019/02/03 22:17:07 by dromansk          #+#    #+#             */
+/*   Updated: 2019/02/03 22:18:09 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printf.h"
+#include "libft.h"
 
-void	putnstr_fd(char *str, int fd, size_t len)
+int		ft_isupper(char c)
 {
-	int		i;
-
-	i = 0;
-	while (len--)
-		write(1, str + i++, fd);
-}
-
-char	*space_z(char *str, t_flag *flags)
-{
-	char *n;
-
-	flags->width -= 1;
-	n = handle_width(str, flags, flags->type);
-	flags->width += 1;
-	return (n);
+	if ('A' <= c && c <= 'Z')
+		return (1);
+	return (0);
 }

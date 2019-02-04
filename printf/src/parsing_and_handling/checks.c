@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/15 18:32:37 by dromansk          #+#    #+#             */
-/*   Updated: 2019/01/29 19:20:31 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/02/03 21:33:57 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,37 +25,6 @@ int		error_handle(char **buf)
 {
 	*buf = ft_strdup("");
 	return (0);
-}
-
-char	*neg_prec(char *st, t_flag *flags, int t)
-{
-	char	*neg;
-	char	*dig;
-	char	*ret;
-
-	dig = ft_strsub(st, 1, (int)ft_strlen(st) - 1);
-	neg = ft_strdup("-");
-	dig = swap_n_free(handle_precision(dig, flags, t), &dig);
-	ret = ft_strjoin(neg, dig);
-	free(dig);
-	free(neg);
-	return (ret);
-}
-
-char	*format_alt(char *st, t_flag *flags, int t)
-{
-	char	*n;
-
-	if (t == x || t == X || t == p)
-		flags->width -= 2;
-	else if (t == o)
-		flags->width -= 1;
-	n = handle_width(st, flags, c);
-	if (t == x || t == X || t == p)
-		flags->width += 2;
-	else if (t == o)
-		flags->width += 1;
-	return (n);
 }
 
 char	*null_cases(int t)

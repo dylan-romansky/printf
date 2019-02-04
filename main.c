@@ -3,6 +3,6 @@
 #include "printf.h"
 
 int		main(void){
-//	printf("e %s\n", "test");
-	ft_printf("r %s\n", "test");
+	printf("e %U\n", 4294967295);
+	ft_printf("r %U\n", 4294967295);
 return (0);}
