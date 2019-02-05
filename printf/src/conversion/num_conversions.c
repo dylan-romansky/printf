@@ -6,13 +6,13 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/08 21:02:36 by dromansk          #+#    #+#             */
-/*   Updated: 2019/01/29 18:32:12 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/02/04 16:31:43 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "printf.h"
 
-long		numlen(intmax_t n, int base)
+long	numlen(intmax_t n, int base)
 {
 	long		i;
 
@@ -22,7 +22,7 @@ long		numlen(intmax_t n, int base)
 	return (i);
 }
 
-char		*ft_imaxtoa_base(intmax_t n, int base)
+char	*ft_imaxtoa_base(intmax_t n, int base)
 {
 	char		*st;
 	intmax_t	v;
@@ -37,7 +37,8 @@ char		*ft_imaxtoa_base(intmax_t n, int base)
 		st[i] = '\0';
 		while (i--)
 		{
-			st[i + neg] = v < 0 ? base_table(-(v % base)) : base_table((v % base));
+			st[i + neg] = v < 0 ? base_table(-(v % base)) :
+				base_table((v % base));
 			v /= base;
 		}
 		if (neg)
@@ -49,7 +50,7 @@ char		*ft_imaxtoa_base(intmax_t n, int base)
 
 int		unumlen(unsigned long long value, unsigned int base)
 {
-	int					i;
+	int			i;
 
 	i = 1;
 	while (value /= base)
@@ -59,9 +60,9 @@ int		unumlen(unsigned long long value, unsigned int base)
 
 char	*ft_uimaxtoa_base(intmax_t n, int base)
 {
-	char				*s;
-	uintmax_t			v;
-	long				i;
+	char		*s;
+	uintmax_t	v;
+	long		i;
 
 	v = n;
 	i = unumlen(v, base);

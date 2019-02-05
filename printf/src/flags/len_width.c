@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/19 15:12:25 by dromansk          #+#    #+#             */
-/*   Updated: 2019/02/03 22:27:08 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/02/04 20:04:56 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ int		set_length(t_flag **input, char *format)
 	if (*format == 'l' && *(format + 1) == 'l')
 		flags->size = ll;
 	else if (*format == 'l' && *(format + 1) != 'l')
-			flags->size = l;
+		flags->size = l;
 	if (*format == 'h' && *(format + 1) == 'h')
 		flags->size = hh;
 	else if (*format == 'h' && *(format + 1) != 'h')
@@ -89,13 +89,13 @@ int		set_length(t_flag **input, char *format)
 int		set_type(t_flag **input, char *format)
 {
 	int		i;
-	t_flag *flags;
+	t_flag	*flags;
 
 	flags = *input;
 	i = 0;
 	if (!check_flag(format))
 	{
-		flags->type = c;
+		flags->type = ch;
 		return (1);
 	}
 	else

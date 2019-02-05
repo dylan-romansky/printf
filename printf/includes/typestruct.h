@@ -6,19 +6,18 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/29 16:37:05 by dromansk          #+#    #+#             */
-/*   Updated: 2019/01/29 16:37:44 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/02/04 20:07:18 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef TYPESTRUCT_H
 # define TYPESTRUCT_H
-
-#include "printf.h"
+# include "printf.h"
 
 t_types g_types[] =
 {
 	{'d', d},
-	{'i', i},
+	{'i', in},
 	{'o', o},
 	{'O', O},
 	{'u', u},
@@ -28,8 +27,8 @@ t_types g_types[] =
 	{'X', X},
 	{'b', b},
 	{'p', p},
-	{'s', s},
-	{'c', c},
+	{'s', st},
+	{'c', ch},
 	{'f', f},
 	{'F', F},
 	{'%', per}

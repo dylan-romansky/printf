@@ -6,14 +6,13 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/29 16:34:34 by dromansk          #+#    #+#             */
-/*   Updated: 2019/02/03 22:50:12 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/02/04 16:32:14 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PRINTSTRUCT_H
 # define PRINTSTRUCT_H
-
-#include "printf.h"
+# include "printf.h"
 
 t_stringmake g_string[] =
 {

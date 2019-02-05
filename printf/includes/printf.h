@@ -6,14 +6,9 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 15:47:32 by dromansk          #+#    #+#             */
-/*   Updated: 2019/02/03 22:13:44 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/02/04 20:05:41 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-/* YYYYMMDDhhmm.ss date/time format*/
-
-/* possible optimization, array with va_list calls populating. enumerate flag types in order to call data by storing enumerated value */
-/* maybe enumerate the data type flags too and store those */
 
 #ifndef PRINTF_H
 # define PRINTF_H
@@ -24,8 +19,8 @@
 
 typedef enum	e_argtype
 {
-	d = 0, D = 0, i = 0, o = 1, O = 1, u = 2, U = 2, x = 3, X = 4, b = 5, p = 6,
-	s = 7, c = 8, f = 9, F = 10, per = 11
+	d = 0, D = 0, in = 0, o = 1, O = 1, u = 2, U = 2, x = 3, X = 4, b = 5, p = 6,
+	st = 7, ch = 8, f = 9, F = 10, per = 11
 }				t_argtype;
 
 typedef enum	e_argsize
@@ -35,7 +30,6 @@ typedef enum	e_argsize
 
 typedef struct	s_flag
 {
-	int			percent;
 	int			sharp;
 	int			zero;
 	int			dash;
@@ -52,7 +46,9 @@ typedef struct	s_stringmake
 {
 	char *		(*string)(t_flag *, va_list *);
 }				t_stringmake;
-
+/*
+**norm doesn't like the below declaration
+*/
 typedef struct	s_numcon
 {
 	int			base;
@@ -70,10 +66,15 @@ typedef struct	s_types
 	int			num;
 }				t_types;
 
+/*
+**printf main function
+*/
 int				ft_printf(const char *restrict format, ...);
 int				ft_dprintf(int fd, const char *restrict format, ...);
 int				make_string(const char *restrict format, va_list *args, int fd);
-
+/*
+**flags related functions
+*/
 int				initflags(t_flag **input);
 int				set_flags(t_flag **flags, char *format, va_list *args);
 int				set_first(t_flag **input, char *format);
@@ -85,19 +86,24 @@ int				set_type(t_flag **input, char *format);
 int				is_flag(char form, char *flags);
 int				skip_nums(char *format);
 int				flag_skip(char *format);
-int				convert_type_num(int i);
-
+void			flag_del(t_flag **flags);
+/*
+**number conversion
+*/
 char			*ft_uimaxtoa_base(intmax_t n, int base);
 char			*ft_imaxtoa_base(intmax_t n, int base);
-char			*ft_sizetoa_base(size_t n, int base);
-
-int				conver_type_num(int i);
+/*
+**functions used in parsing
+*/
+int				convert_type_num(int i);
 int				parse_arg(t_flag *flags, va_list *args, char **buf);
 char			*parse_numbers(t_flag *flags, va_list *args);
 char			*parse_chars(t_flag *flags, va_list *args);
 char			*parse_float(t_flag *flags, va_list *args);
 char			*parse_pointer(t_flag *flags, va_list *args);
-
+/*
+**functions used to get actual data
+*/
 char			*get_char(va_list *args);
 char			*get_string(va_list *args);
 intmax_t		get_normal(va_list *args);
@@ -114,13 +120,13 @@ intmax_t		uget_l(va_list *args);
 intmax_t		uget_ll(va_list *args);
 intmax_t		uget_j(va_list *args);
 intmax_t		uget_z(va_list *args);
-
-int				format_string(char *st, t_flag *flags, char **buf);
+/*
+**functions used to reformat the data in accordance with the given flags
+*/
+int				format_string(char *st, t_flag *flags, char **buf, int t);
 int				prec(char *format, va_list *args, t_flag **input);
-void			putnstr_fd(char *st, int fd, size_t len);
 char			*handle_precision(char *st, t_flag *flags, int t);
 char			*neg_prec(char *st, t_flag *flags, int t);
-void			flag_del(t_flag **flags);
 int				float_check(char *st);
 char			*null_cases(int t);
 char			*format_alt(char *st, t_flag *flags, int t);

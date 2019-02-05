@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/23 16:35:01 by dromansk          #+#    #+#             */
-/*   Updated: 2019/01/31 18:46:53 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/02/04 14:15:03 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 char	*get_char(va_list *args)
 {
 	char	*st;
-	
+
 	st = ft_strnew(1);
 	*st = (char)va_arg(*args, int);
 	return (st);
@@ -23,7 +23,7 @@ char	*get_char(va_list *args)
 
 char	*get_string(va_list *args)
 {
-	return (va_arg(*args, char *));
+	return (ft_strdup(va_arg(*args, char *)));
 }
 
 int		convert_type_num(int i)

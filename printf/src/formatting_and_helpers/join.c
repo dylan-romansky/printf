@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/10 16:12:22 by dromansk          #+#    #+#             */
-/*   Updated: 2019/01/29 15:05:49 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/02/04 20:10:18 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,13 +57,13 @@ int		find_size(t_flag *flags, char *str, int t)
 	int		len;
 
 	len = (int)ft_strlen(str);
-	if ((len > flags->prec && len > flags->width) || t == s)
+	if ((len > flags->prec && len > flags->width) || t == st)
 		return (len);
-	else if (flags->dot && flags->prec > flags->width && t != f && t != c)
+	else if (flags->dot && flags->prec > flags->width && t != f && t != ch)
 		return (flags->prec);
 	else if ((!flags->dot && flags->width) || (flags->prec < flags->width))
 		return (flags->width);
-	if (t == c)
+	if (t == ch)
 		return (1);
 	return (0);
 }

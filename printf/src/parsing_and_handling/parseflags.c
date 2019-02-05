@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/27 13:50:27 by dromansk          #+#    #+#             */
-/*   Updated: 2019/02/03 23:04:05 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/02/04 20:06:44 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,20 @@
 int		parse_arg(t_flag *flags, va_list *args, char **buf)
 {
 	int			i;
+	char		*data;
 
 	i = convert_type_num(flags->type);
 	if (i == 4)
-		return (format_string(ft_strdup("%"), flags, buf));
-	return (format_string(g_string[i].string(flags, args), flags, buf));
+	{
+		flags->type = ch;
+		return (format_string("%", flags, buf, ch));
+	}
+	data = g_string[i].string(flags, args);
+	if (!data)
+		data = null_cases(flags->type);
+	i = format_string(data, flags, buf, flags->type);
+	free(data);
+	return (i);
 }
 
 char	*parse_numbers(t_flag *flags, va_list *args)
@@ -29,7 +38,7 @@ char	*parse_numbers(t_flag *flags, va_list *args)
 	int			base;
 
 	if (flags->type == d)
-	   num = g_arglen[flags->size].parse(args);
+		num = g_arglen[flags->size].parse(args);
 	else
 		num = g_uarglen[flags->size].parse(args);
 	base = g_numconvert[flags->type].base;

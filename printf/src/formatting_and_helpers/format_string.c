@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/27 15:32:04 by dromansk          #+#    #+#             */
-/*   Updated: 2019/02/03 22:00:54 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/02/04 20:09:49 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,15 +20,16 @@ char	*handle_width(char *str, t_flag *flags, int t)
 
 	if (str[0] == '-' && flags->zero)
 		return (neg_width(str, flags, t));
-	len = (t == c) ? 1 : (int)ft_strlen(str);
+	len = (t == ch) ? 1 : (int)ft_strlen(str);
 	n = NULL;
-	p = (flags->zero && !flags->dash && ((len < flags->prec	&& flags->dot) ||
-			   (!flags->dot || !flags->prec))) ? ft_strdup("0") : ft_strdup(" ");
+	p = (flags->zero && !flags->dash && ((len < flags->prec && flags->dot) ||
+				(!flags->dot || !flags->prec))) ?
+		ft_strdup("0") : ft_strdup(" ");
 	n = ft_strdup(str);
 	while (len < flags->width)
 	{
 		if (flags->dash)
-			n = swap_n_free((nullcheck(str)) ?  ft_strjoin_len(n, p, len, 1) :
+			n = swap_n_free((nullcheck(str)) ? ft_strjoin_len(n, p, len, 1) :
 					ft_strjoin(n, p), &n);
 		else
 			n = swap_n_free(ft_strjoin(p, n), &n);
@@ -66,15 +67,15 @@ char	*handle_precision(char *str, t_flag *flags, int ty)
 	t = ft_strdup("0");
 	n = ft_strdup(str);
 	len = (int)ft_strlen(str);
-	if (len > flags->prec && (ty == s || ft_strequ("0", str)))
+	if (len > flags->prec && (ty == st || ft_strequ("0", str)))
 		n = swap_n_free(ft_strndup(n, flags->prec), &n);
-	if (len < flags->prec && ty != c && ty != s)
-			while (len < flags->prec)
-			{
-				n = swap_n_free(ft_strjoin(t, n), &n);
-				len++;
-			}
-	free (t);
+	if (len < flags->prec && ty != ch && ty != st)
+		while (len < flags->prec)
+		{
+			n = swap_n_free(ft_strjoin(t, n), &n);
+			len++;
+		}
+	free(t);
 	return (n);
 }
 
@@ -90,7 +91,7 @@ char	*alt(char *str, t_flag *flags, int t)
 		n = format_alt(str, flags, t);
 	else
 		n = ft_strdup(str);
-	if (n[0] != '0' && (t == o || c == O))
+	if (n[0] != '0' && (t == o || t == O))
 		n = swap_n_free(ft_strjoin("0", n), &n);
 	else if ((t == x || t == X || t == p) &&
 			(ft_strlen(n) < 2 || !(n[1] == 'x' || n[1] == 'X')))
@@ -98,15 +99,11 @@ char	*alt(char *str, t_flag *flags, int t)
 	return (n);
 }
 
-int		format_string(char *st, t_flag *flags, char **buf)
+int		format_string(char *st, t_flag *flags, char **buf, int t)
 {
 	char	*n;
-	int		t;
 
-	t = flags->type;
-	if (!st)
-		n = null_cases(t);
-	else if ((t == F || t == f) && float_check(st))
+	if ((t == F || t == f) && float_check(st))
 	{
 		if (t == F)
 			st = ft_strupper(st);
@@ -120,7 +117,7 @@ int		format_string(char *st, t_flag *flags, char **buf)
 		n = swap_n_free(handle_precision(n, flags, t), &n);
 	if (flags->sharp || t == p)
 		n = swap_n_free(alt(n, flags, t), &n);
-	if ((flags->space || flags->plus) && (t == i || t == d))
+	if ((flags->space || flags->plus) && (t == in || t == d))
 		n = swap_n_free(handle_space(n, flags), &n);
 	if (flags->width)
 		n = swap_n_free(handle_width(n, flags, t), &n);

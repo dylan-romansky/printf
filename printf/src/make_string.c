@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/12 14:34:10 by dromansk          #+#    #+#             */
-/*   Updated: 2019/01/29 16:43:32 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/02/04 16:45:28 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ int		get_data(va_list *args, char *format, char **buf)
 {
 	t_flag	*flags;
 	int		b;
+	char	*fail;
 
 	if (!(flags = (t_flag *)malloc(sizeof(t_flag))) ||
 			!initflags(&flags) || !set_flags(&flags, ++format, args))
@@ -33,7 +34,9 @@ int		get_data(va_list *args, char *format, char **buf)
 	if (!check_flag(format))
 	{
 		format += flag_skip(format);
-		b = format_string(ft_strndup(format, 1), flags, buf);
+		fail = ft_strndup(format, 1);
+		b = format_string(fail, flags, buf, flags->type);
+		free(fail);
 	}
 	else
 	{
@@ -42,6 +45,19 @@ int		get_data(va_list *args, char *format, char **buf)
 	}
 	flag_del(&flags);
 	return (b);
+}
+
+int		putnstr_fd(char **str, int fd, size_t len)
+{
+	char	*print;
+	int		i;
+
+	i = 0;
+	print = *str;
+	while (i < len)
+		write(1, print + i++, fd);
+	free(print);
+	return (i);
 }
 
 int		make_string(const char *restrict format, va_list *args, int fd)
@@ -69,7 +85,5 @@ int		make_string(const char *restrict format, va_list *args, int fd)
 		format++;
 		format += flag_skip((char *)format) + 1;
 	}
-	putnstr_fd(string, fd, len);
-	free(string);
-	return (len);
+	return (putnstr_fd(&string, fd, len));
 }

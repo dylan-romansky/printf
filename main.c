@@ -1,10 +1,7 @@
-#include <stdio.h>
-#include <limits.h>
 #include "printf.h"
 
-int		main(void){
-	int strlen;
-	strlen = 6;
-	printf("e %.3%\n", &strlen);
-	ft_printf("r %.3%\n", &strlen);
-return (0);}
+int		main(int ac, char **av)
+{
+	printf("%i, %c, %s\n", 69, 'c', "butt");
+	return (0);
+}

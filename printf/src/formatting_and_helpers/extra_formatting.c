@@ -6,20 +6,11 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/04 00:06:38 by dromansk          #+#    #+#             */
-/*   Updated: 2019/02/03 21:53:23 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/02/04 14:30:45 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "printf.h"
-
-void	putnstr_fd(char *str, int fd, size_t len)
-{
-	int		i;
-
-	i = 0;
-	while (len--)
-		write(1, str + i++, fd);
-}
 
 char	*space_z(char *str, t_flag *flags)
 {

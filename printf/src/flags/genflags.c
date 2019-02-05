@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 15:18:32 by dromansk          #+#    #+#             */
-/*   Updated: 2019/01/29 19:19:33 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/02/04 18:36:19 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int		skip_nums(char *format)
 	int			i;
 
 	i = 0;
-	while (('0' <= format[i] && format[i] <= '9') || format [i] == '*')
+	while (('0' <= format[i] && format[i] <= '9') || format[i] == '*')
 		i++;
 	return (i);
 }
@@ -45,8 +45,6 @@ int		initflags(t_flag **input)
 	new = *input;
 	if (new != NULL)
 	{
-
-		new->percent = 0;
 		new->sharp = 0;
 		new->zero = 0;
 		new->dash = 0;
