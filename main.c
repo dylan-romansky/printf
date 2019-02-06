@@ -1,9 +1,13 @@
 #include "printf.h"
+#include <limits.h>
+#include <fcntl.h>
 
 int		main(int ac, char **av)
 {
-	char *filename = "420";
-	char *str = "chumbles";
-	ft_printf("Le fichier{cyan}%s{eoc} contient : {red}%s{eoc}\n", filename, str);
+	int fd;
+
+	fd = open(av[1], O_RDWR);
+	printf("%d\n", fd);
+	ft_dprintf(fd, "%d\n", SHRT_MAX);
 	return (0);
 }
