@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/05 14:57:14 by dromansk          #+#    #+#             */
-/*   Updated: 2019/02/05 16:23:41 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/02/05 16:53:36 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int		colour_skip(char *format)
 char	*colourcode(char *format)
 {
 	int		i;
-	
+
 	i = 0;
 	while (format[i] && format[i] != '}')
 		i++;

@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/12 14:34:10 by dromansk          #+#    #+#             */
-/*   Updated: 2019/02/05 16:48:48 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/02/05 21:06:24 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int		get_data(va_list *args, char *format, char **buf)
 	char	*fail;
 
 	if (*format == '{')
-		return(get_colour(format, buf));
+		return (get_colour(format, buf));
 	if (!(flags = (t_flag *)malloc(sizeof(t_flag))) ||
 			!initflags(&flags) || !set_flags(&flags, ++format, args))
 		return (error_handle(buf));
@@ -54,7 +54,7 @@ int		putnstr_fd(char **str, int fd, size_t len)
 	i = 0;
 	print = *str;
 	while ((size_t)i < len)
-		write(1, print + i++, fd);
+		write(fd, print + i++, 1);
 	free(print);
 	return (i);
 }

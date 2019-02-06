@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/05 13:54:51 by dromansk          #+#    #+#             */
-/*   Updated: 2019/02/05 15:13:18 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/02/05 19:43:52 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ struct	s_stringmake
 struct	s_numcon
 {
 	int		base;
-	char	*(*data)(long long, int);
+	char	*(*data)(intmax_t, int);
 };
 
 struct	s_arglen
