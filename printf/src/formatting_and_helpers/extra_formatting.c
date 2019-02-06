@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/04 00:06:38 by dromansk          #+#    #+#             */
-/*   Updated: 2019/02/04 14:30:45 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/02/05 13:34:06 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ char	*format_alt(char *st, t_flag *flags, int t)
 {
 	char	*n;
 
+	n = st;
 	if (t == x || t == X || t == p)
 	{
 		flags->width -= 2;

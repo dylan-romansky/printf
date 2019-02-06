@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/29 16:34:34 by dromansk          #+#    #+#             */
-/*   Updated: 2019/02/04 16:32:14 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/02/05 16:25:32 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ t_numcon g_numconvert[] =
 	{10, &ft_uimaxtoa_base},
 	{16, &ft_uimaxtoa_base},
 	{16, &ft_uimaxtoa_base},
-	{10, &ft_uimaxtoa_base},
+	{2, &ft_uimaxtoa_base},
 	{10, &ft_uimaxtoa_base}
 };
 

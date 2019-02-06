@@ -1,43 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   float_checks.c                                     :+:      :+:    :+:   */
+/*   colours.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/08 20:00:58 by dromansk          #+#    #+#             */
-/*   Updated: 2019/02/05 13:30:40 by dromansk         ###   ########.fr       */
+/*   Created: 2019/02/05 15:07:01 by dromansk          #+#    #+#             */
+/*   Updated: 2019/02/05 16:23:17 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printf.h"
+#ifndef COLOURS_H
+# define COLOURS_H
 
-int		float_check(char *st)
+typedef struct	s_colour	t_colour;
+
+struct	s_colour
 {
-	if (ft_strequ("inf", st) || ft_strequ("nan", st))
-		return (1);
-	return (0);
-}
+	char	*colour;
+	char	*code;
+};
 
-int		is_nan(char *st)
+t_colour g_colour[] =
 {
-	int		neg;
-	int		dot;
-	int		i;
+	{"red", "\033[0;31m"},
+	{"green", "\033[0;32m"},
+	{"yellow", "\033[0;33m"},
+	{"blue", "\033[0;34m"},
+	{"magenta", "\033[0;35m"},
+	{"cyan", "\033[0;36m"},
+	{"eoc", "\033[0m"}
+};
 
-	i = 0;
-	dot = 0;
-	neg = 0;
-	while (st[i])
-	{
-		if (st[i] == '.')
-			dot++;
-		if (st[i] == '-')
-			neg++;
-		if (dot > 1 || neg > 1 || (!ft_isdigit(st[i]) && st[i] != '.'
-					&& st[i] != '-'))
-			return (1);
-		i++;
-	}
-	return (0);
-}
+#endif

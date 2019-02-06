@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 15:18:32 by dromansk          #+#    #+#             */
-/*   Updated: 2019/02/04 18:36:19 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/02/05 15:52:41 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ int		flag_skip(char *format)
 	int		i;
 
 	i = 0;
+	if (iscolour(format) <= 6)
+		return (colour_skip(format));
 	while (is_flag(format[i], "+ 0123456789#hlLzj.-*"))
 		i++;
 	return (i);

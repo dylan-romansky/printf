@@ -2,6 +2,8 @@
 
 int		main(int ac, char **av)
 {
-	printf("%i, %c, %s\n", 69, 'c', "butt");
+	char *filename = "420bignig";
+	char *str = "chumbles";
+	ft_printf("Le fichier{cyan}%s{eoc} contient : {red}%s{eoc}", filename, str);
 	return (0);
 }

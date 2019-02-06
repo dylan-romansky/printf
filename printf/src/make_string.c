@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/12 14:34:10 by dromansk          #+#    #+#             */
-/*   Updated: 2019/02/04 16:45:28 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/02/05 16:04:56 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ char	*str_to_arg(char *format)
 	size_t	i;
 
 	i = 0;
-	while (format[i] && format[i] != '%')
+	while (format[i] && format[i] != '%' && format[i] != '{')
 		i++;
 	return (ft_strndup(format, i));
 }
@@ -28,6 +28,8 @@ int		get_data(va_list *args, char *format, char **buf)
 	int		b;
 	char	*fail;
 
+	if (*format == '{')
+		return(get_colour(format, buf));
 	if (!(flags = (t_flag *)malloc(sizeof(t_flag))) ||
 			!initflags(&flags) || !set_flags(&flags, ++format, args))
 		return (error_handle(buf));
@@ -39,10 +41,7 @@ int		get_data(va_list *args, char *format, char **buf)
 		free(fail);
 	}
 	else
-	{
-		format += flag_skip(format);
 		b = parse_arg(flags, args, buf);
-	}
 	flag_del(&flags);
 	return (b);
 }
@@ -54,7 +53,7 @@ int		putnstr_fd(char **str, int fd, size_t len)
 
 	i = 0;
 	print = *str;
-	while (i < len)
+	while ((size_t)i < len)
 		write(1, print + i++, fd);
 	free(print);
 	return (i);

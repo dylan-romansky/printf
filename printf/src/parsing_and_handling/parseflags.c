@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/27 13:50:27 by dromansk          #+#    #+#             */
-/*   Updated: 2019/02/04 20:06:44 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/02/05 13:32:12 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ char	*parse_pointer(t_flag *flags, va_list *args)
 	void		*st;
 
 	st = va_arg(*args, void *);
+	flags->type = p;
 	if (!st)
 		return (NULL);
 	ptr = (size_t)st;
