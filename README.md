@@ -5,10 +5,14 @@ WHAT DIS?
 HOW USE?
 
 -write yourself a nice lil main.c
+
 -in order to make use of fancy things you need to include the happy lil printf.h
+
 -Makefile has options for 'compile' to (re)compile a lovely libftprintf.a then compile yourself a happy lil a.out, 'test' to (re)compile libftprintf.a, your a.out, and run your happy lil a.out, and 'run' to just compile and run your a.out.
+
 -of course there's also the standard 42school options for compiling the library and cleaning your directory.
--there's also a couple nifty bonuses in that ft_dprintf lets you print to a file descriptor and if you put {'colour of choice'} into your string you get some limited colour functionality. To see the colours I've included take a look at the colours.h file. I will probably be adding more colours and updating my code accordingly as time goes on.
+
+-there's also a couple nifty bonuses in that ft_dprintf lets you print to a file descriptor and if you put {'colour of choice'} into your string you get some limited colour functionality. To see the colours I've included take a look at the colours.h file. I will probably be adding more colours and updating my code accordingly as time goes on.\
 
 PROBLEMS?
 
