@@ -1,4 +1,0 @@
-[ -------STARTING ALL UNIT TESTS------- ]
->>>> 75_precision_for_percent.spec [FAIL] F [FAIL] percent_point3precision -> printf("%.3%")
->>>> 05_percent_escape.spec.c ---- [FAIL] ....F... [FAIL] test_modulo_without_valid_specifier -> printf("%")
-[ ----------END OF UNIT TESTS---------- ]
