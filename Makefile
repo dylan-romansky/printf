@@ -41,10 +41,13 @@ re: fclean all
 reclean: re
 	make clean
 
-test: reclean
+compile: reclean
 	gcc main.c $(I) $(L)
+
+test: reclean
+	compile
 	./a.out
 
 run: clean
-	gcc main.c $(I) $(L)
+	compile
 	./a.out

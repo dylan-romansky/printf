@@ -15,6 +15,7 @@
 # include <stdarg.h>
 # include <stdint.h>
 # include <stddef.h>
+# include <fcntl.h>
 # include "libft.h"
 # include "enums.h"
 # include "structs.h"
