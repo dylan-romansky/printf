@@ -12,7 +12,9 @@ HOW USE?
 
 -of course there's also the standard 42school options for compiling the library and cleaning your directory.
 
--there's also a couple nifty bonuses in that ft_dprintf lets you print to a file descriptor and if you put {'colour of choice'} into your string you get some limited colour functionality. To see the colours I've included take a look at the colours.h file. I will probably be adding more colours and updating my code accordingly as time goes on.\
+-there's also a couple nifty bonuses in that ft_dprintf lets you print to a file descriptor and if you put {'colour of choice'} into your string you get some limited colour functionality. To see the colours I've included take a look at the colours.h file. I will probably be adding more colours and updating my code accordingly as time goes on.
+
+-also there may be potential issues with the way I'm handling colours. I'm going to test those later and brainstorm ways to solve it.
 
 PROBLEMS?
 
