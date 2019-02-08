@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/23 23:06:12 by dromansk          #+#    #+#             */
-/*   Updated: 2019/02/04 19:58:15 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/02/08 15:56:06 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ static char		**array_join(char **sentence, char *word)
 	i = 0;
 	while (old[i])
 		i++;
-	printf("i = %d\n", i);
 	if ((new = (char **)malloc(sizeof(char *) * (i + 2))))
 	{
 		i = -1;
