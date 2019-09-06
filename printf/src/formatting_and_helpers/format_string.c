@@ -6,12 +6,16 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/27 15:32:04 by dromansk          #+#    #+#             */
-/*   Updated: 2019/02/04 20:09:49 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/09/05 18:08:33 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "printf.h"
 #include "enums.h"
+
+/*
+**use the size of the argument to determine spacing for binary
+*/
 
 char	*handle_width(char *str, t_flag *flags, int t)
 {
