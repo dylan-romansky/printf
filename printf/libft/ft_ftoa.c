@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/28 20:19:02 by dromansk          #+#    #+#             */
-/*   Updated: 2019/09/12 21:34:33 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/09/12 23:00:04 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,10 @@ int			nan_comp(double f)
 	return (0);
 }
 
+/*
+** borrow alan's ideas for your implementation
+*/
+
 char		*ft_ftoa(double f, size_t prec)
 {
 	long long	num;
@@ -57,6 +61,8 @@ char		*ft_ftoa(double f, size_t prec)
 
 	if (f > DBL_MAX)
 		return (ft_strdup("inf"));
+	if (f < DBL_MIN)
+		return (ft_strdup("-inf"));
 	if (nan_comp(f))
 		return (ft_strdup("nan"));
 	num = (long long)f;
