@@ -6,7 +6,7 @@
 /*   By: dromansk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/27 15:32:04 by dromansk          #+#    #+#             */
-/*   Updated: 2019/09/05 18:08:33 by dromansk         ###   ########.fr       */
+/*   Updated: 2019/09/12 21:12:34 by dromansk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,7 @@ int		format_string(char *st, t_flag *flags, char **buf, int t)
 {
 	char	*n;
 
+	printf("%s\n", st);
 	if ((t == F || t == f) && float_check(st))
 	{
 		if (t == F)
@@ -117,17 +118,23 @@ int		format_string(char *st, t_flag *flags, char **buf, int t)
 	}
 	else
 		n = ft_strdup(st);
+	printf("%s\n", n);
 	if (flags->dot && ((t != f && t != F && t != per) ||
 				!(t == p && flags->prec == 0)))
 		n = swap_n_free(handle_precision(n, flags, t), &n);
+	printf("%s\n", n);
 	if (flags->sharp || t == p)
 		n = swap_n_free(alt(n, flags, t), &n);
+	printf("%s\n", n);
 	if ((flags->space || flags->plus) && (t == in || t == d))
 		n = swap_n_free(handle_space(n, flags), &n);
+	printf("%s\n", n);
 	if (flags->width)
 		n = swap_n_free(handle_width(n, flags, t), &n);
+	printf("%s\n", n);
 	if (t == X)
 		n = ft_strupper(n);
+	printf("%s\n", n);
 	*buf = n;
 	return (find_size(flags, n, t));
 }
