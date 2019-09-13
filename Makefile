@@ -6,7 +6,7 @@
 #    By: dromansk <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/10/22 14:53:52 by dromansk          #+#    #+#              #
-#    Updated: 2019/02/05 15:32:00 by dromansk         ###   ########.fr        #
+#    Updated: 2019/09/12 21:40:33 by dromansk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,7 +34,7 @@ clean:
 	rm -rf $(O)
 
 fclean: clean
-	rm -rf $(NAME)
+	rm -rf $(NAME) a.out a.out.dSYM
 
 re: fclean all
 
